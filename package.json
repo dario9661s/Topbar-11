@@ -11,7 +11,7 @@
     "dev:next": "next dev",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "start": "cross-env NODE_ENV=production node ./server/index.js -p $PORT",
-    "heroku-postbuild" : "npm run build"
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -54,7 +54,6 @@
     "react-color": "^2.19.3",
     "react-dom": "^16.10.1",
     "shopify": "^0.1.0",
-    "store-js": "^2.0.4",
     "webpack": "^4.46.0"
   },
   "devDependencies": {
