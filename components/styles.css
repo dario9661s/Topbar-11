@@ -1,0 +1,37 @@
+.background p {
+  color: white;
+  margin: auto;
+
+}
+.animation{
+  animation: slide-left 7s infinite;
+}
+
+.ColorText{
+  height: 130px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.ColorContainer{
+  height: 450px;
+}
+.MoreTextContainer{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.background{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  overflow: hidden;
+  background-image: url("https://image.freepik.com/free-vector/cute-silver-floral-pattern-white-background_1017-4614.jpg");
+}
+@keyframes slide-left {
+  0% { transform: translateX(-10%) }
+  100% { transform: translateX(110%) }
+}

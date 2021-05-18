@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="ProjectId" id="1rCetei6sxMLL5TBeMdSHDXp0NH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/asset" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dario\Desktop\shopify\bannerv2\node_modules\prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\korisnik\Desktop\Shopify\app\ShopifyApp-master\asset" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\korisnik\Desktop\Shopify\app\ShopifyApp-master\assets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="" />
+      <created>1618484714910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618484714910</updated>
+      <workItem from="1618484716107" duration="2196000" />
+      <workItem from="1618569757897" duration="9886000" />
+      <workItem from="1618824640683" duration="10492000" />
+      <workItem from="1618910243116" duration="1213000" />
+      <workItem from="1618913359564" duration="14225000" />
+      <workItem from="1618933843113" duration="20047000" />
+      <workItem from="1619096123156" duration="12635000" />
+      <workItem from="1619109582044" duration="647000" />
+      <workItem from="1619172008101" duration="352000" />
+      <workItem from="1619183815081" duration="238000" />
+      <workItem from="1619189007464" duration="2839000" />
+      <workItem from="1619191966184" duration="20000" />
+      <workItem from="1619193865845" duration="54000" />
+      <workItem from="1619194960156" duration="1895000" />
+      <workItem from="1619431097855" duration="100000" />
+      <workItem from="1619435151374" duration="1216000" />
+      <workItem from="1619437718398" duration="1779000" />
+      <workItem from="1619439541783" duration="209000" />
+      <workItem from="1619439767376" duration="68000" />
+      <workItem from="1619439849134" duration="48000" />
+      <workItem from="1619440121792" duration="14000" />
+      <workItem from="1619440139243" duration="6043000" />
+      <workItem from="1619448498766" duration="1558000" />
+      <workItem from="1619450708043" duration="4247000" />
+      <workItem from="1619466931022" duration="17913000" />
+      <workItem from="1620211405746" duration="48000" />
+      <workItem from="1620221368879" duration="19082000" />
+      <workItem from="1620307062216" duration="543000" />
+      <workItem from="1620308426250" duration="43000" />
+      <workItem from="1620313964585" duration="35905000" />
+      <workItem from="1620731364508" duration="601000" />
+      <workItem from="1620732237761" duration="102000" />
+      <workItem from="1620828388794" duration="1087000" />
+      <workItem from="1620829908313" duration="741000" />
+      <workItem from="1620830834743" duration="2108000" />
+      <workItem from="1620898932221" duration="14265000" />
+      <workItem from="1621245332229" duration="29957000" />
+      <workItem from="1621343813058" duration="311000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
