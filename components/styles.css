@@ -6,9 +6,25 @@
 .animation{
   animation: slide-left 7s infinite;
 }
-
+.animationRight{
+  animation: slide-right 7s infinite;
+}
+.none{
+  animation: none;
+  margin: auto;
+}
+MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
+  width: 100% !important;
+}
+.Progress {
+  margin: 0 auto;
+  width: 90%;
+  justify-content: center;
+  height: 250px;
+  align-items: center;
+  padding-top: 80px;
+}
 .ColorText{
-  height: 130px;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -29,9 +45,25 @@
   align-items: center;
   height: 40px;
   overflow: hidden;
-  background-image: url("https://image.freepik.com/free-vector/cute-silver-floral-pattern-white-background_1017-4614.jpg");
+}
+.ColorContainer{
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 @keyframes slide-left {
   0% { transform: translateX(-10%) }
   100% { transform: translateX(110%) }
+}
+@keyframes slide-right {
+  0% { transform: translateX(110%) }
+  100% { transform: translateX(-20%) }
 }

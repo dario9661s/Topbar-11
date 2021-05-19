@@ -13,7 +13,7 @@ function install() {
   console.log(scriptTagId)
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://topbardejri123.vercel.app/script_tag/all`
+      `https://tasty-skunk-91.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -24,7 +24,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://topbardejri123.vercel.app/script_tag/ship`
+      `https://tasty-skunk-91.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -35,9 +35,9 @@ function install() {
   console.log(ship)
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://topbardejri123.vercel.app/script_tag`);
+      axios.post(`https://tasty-skunk-91.loca.lt/script_tag`);
     } else {
-      axios.delete(`https://topbardejri123.vercel.app/script_tag/?id=${scriptTagId}`);
+      axios.delete(`https://tasty-skunk-91.loca.lt/script_tag/?id=${scriptTagId}`);
     }
     setIsInstalled((oldValue) => !oldValue);
   }

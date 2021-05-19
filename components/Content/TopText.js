@@ -8,7 +8,17 @@ const  TopText = (props) => {
   const [moreAfter, setMoreAfter] = useState();
   const [free, setFree] = useState();
 
-  const handleSubmit = useCallback((_event) => {
+  useEffect(() => {
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>{
+      setEmptyText(Object.values(res.data)[0].before)
+      setFree(Object.values(res.data)[0].freeShippin)
+      setMoreAfter(Object.values(res.data)[0].after)
+      setMoreBefore(Object.values(res.data)[0].before)
+
+    })
+  }, []);
+
+  const sendText = () => {
     let data = {
       empty: emptyText,
       after : moreAfter,
@@ -18,21 +28,16 @@ const  TopText = (props) => {
     axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=>{
       axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json", data).then(res=>console.log(res))
     })
-  }, []);
+  }
 
   const handleEmptyChange = useCallback((value) => setEmptyText(value), []);
   const handleMoreBeforeChange = useCallback((value) => setMoreBefore(value), []);
   const handleMoreAfterChange = useCallback((value) => setMoreAfter(value), []);
   const handleFreeChange = useCallback((value) => setFree(value), []);
-  console.log(emptyText)
-  console.log(moreAfter)
-  console.log(moreBefore)
-  console.log(free)
-
 
   return (
-    <div style={{marginTop:"30px"}}>
-      <Form onSubmit={handleSubmit}>
+    <div className="ColorContainer">
+      <Form >
         <FormLayout>
           <Heading element="h1">Top Bar Text</Heading>
           <TextField
@@ -62,7 +67,7 @@ const  TopText = (props) => {
             type="text"
             placeholder="Text displayed when the customer is ready for discount"
           />
-          <Button submit>Change Text!</Button>
+          <Button onClick={()=>sendText()}>Change Text!</Button>
         </FormLayout>
       </Form>
     </div>

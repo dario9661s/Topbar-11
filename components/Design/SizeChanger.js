@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from "react";
 import axioss from "axios";
-import {RadioButton, Stack} from "@shopify/polaris";
+import {Checkbox, Heading, RadioButton, Stack} from "@shopify/polaris";
 
 const  SizeChanger = (props) => {
 
@@ -17,6 +17,7 @@ const  SizeChanger = (props) => {
 
   return (
     <Stack vertical>
+      <Heading element="h1">Size</Heading>
       <RadioButton
         label="Large"
         checked={props.value === '50px'}

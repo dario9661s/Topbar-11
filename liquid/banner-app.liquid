@@ -5,7 +5,9 @@
   }
   .animation{
     animation: slide-left 7s infinite;
-
+  }
+  .animationRight{
+    animation: slide-right 7s infinite;
   }
 
   #background{
@@ -19,6 +21,10 @@
   @keyframes slide-left {
     0% { transform: translateX(-10%) }
     100% { transform: translateX(110%) }
+  }
+  @keyframes slide-right {
+    0% { transform: translateX(110%) }
+    100% { transform: translateX(-20%) }
   }
 </style>
 <div id="background">
@@ -57,11 +63,14 @@ axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/rates.json").t
     fetch('/cart.js').then(res=>res.json()).then(cart => {
       const price = cart.total_price / 100;
       const bar = document.getElementById('shipping_bar');
-      if(cartFetch.checked === true){
+      if(cartFetch.checked === "left"){
         document.getElementById("shipping_bar").classList.add("animation")
         document.getElementById("shipping_bar").style.flex = "1"
 
-      }else {
+      }else if (cartFetch.checked === "right") {
+        document.getElementById("shipping_bar").classList.add("animationRight")
+        document.getElementById("shipping_bar").style.flex = "1"
+      } else {
         document.getElementById("background").style.justifyContent = "center"
       }
       if(price == 0){
