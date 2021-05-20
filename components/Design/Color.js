@@ -1,19 +1,11 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {SketchPicker, SwatchesPicker} from "react-color";
 import axioss from "axios";
 import SizeChanger from "./SizeChanger";
-import {
-  Heading, RadioButton, Stack
-} from "@shopify/polaris";
+import { RadioButton, Stack, Heading } from "@shopify/polaris";
+
 const  Colors = (props) => {
   const [picker, setPicker] = useState("our")
-
-  // useEffect(() => {
-  //   axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json").then(res => {
-  //     const color = Object.values(res.data)[0].color.hex
-  //     props.setColor(color)
-  //   })
-  // }, []);
   const changeColor =  (color) =>{
     console.log(color)
     props.setColor(color.hex)
@@ -25,8 +17,6 @@ const  Colors = (props) => {
     (_checked, newValue) => setPicker(newValue),
     [],
   );
-
-
   return (
     <div className="ColorContainer">
       <div style={{display:"flex", justifyContent:"space-between", width:"80%"}}>
@@ -51,9 +41,11 @@ const  Colors = (props) => {
           <SizeChanger checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)} value = {props.value} setValue = {(value)=>props.setValue(value)}/>
         </div>
         <div style={{height: '300px'}}>
-          {picker === "our"? <SwatchesPicker  onChange={changeColor}
-                                              width={320}
-                                              height={320}/>
+          {picker === "our"?
+            <SwatchesPicker
+              onChange={changeColor}
+              width={320}
+              height={320}/>
             :<SketchPicker
               disableAlpha
               color = {props.color}

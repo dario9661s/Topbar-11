@@ -3,6 +3,7 @@
   margin: auto;
 
 }
+
 .animation{
   animation: slide-left 7s infinite;
 }
@@ -32,6 +33,17 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 }
 .ColorContainer{
   height: 450px;
+}
+.Floating{
+  position: absolute;
+  top: 80%;
+  right: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Floating h3 {
+  margin-right: 10px;
 }
 .MoreTextContainer{
   width: 100%;

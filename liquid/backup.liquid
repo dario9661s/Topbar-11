@@ -1,0 +1,88 @@
+<style>
+  #background p {
+    color: white;
+    margin: auto;
+  }
+  .animation{
+    animation: slide-left 7s infinite;
+  }
+  .animationRight{
+    animation: slide-right 7s infinite;
+  }
+  #background{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background: #273939;
+    overflow: hidden;
+  }
+  @keyframes slide-left {
+    0% { transform: translateX(-10%) }
+    100% { transform: translateX(110%) }
+  }
+  @keyframes slide-right {
+    0% { transform: translateX(110%) }
+    100% { transform: translateX(-20%) }
+  }
+</style>
+<div id="background">
+  <p id="shipping_bar" style="color:white">Add items to get free shipping </p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+  let size = "50px"
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/size.json").then(res => {
+    size = res.data[Object.keys(res.data)[0]];
+    document.getElementById("background").style.height = size.size
+  })
+  let cartFetch = {}
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json").then(res => {
+    cartFetch = res.data[Object.keys(res.data)[0]];
+  })
+  let emptyText = ""
+  let afterText = ""
+  let beforeText = ""
+  let free = ""
+
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res => {
+    text = res.data[Object.keys(res.data)];
+    emptyText = text.empty
+    free = text.freeShippin
+    beforeText = text.before
+    afterText = text.after
+  })
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json").then(res => {
+    document.getElementById("background").style.backgroundColor = Object.values(res.data)[0].color.hex
+  })
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/rates.json").then(res => {
+    const rate = res.data[Object.keys(res.data)[Object.keys(res.data).length - 1]].rates;
+    setInterval(()=>{
+      fetch('/cart.js').then(res=>res.json()).then(cart => {
+        const price = cart.total_price / 100;
+        const bar = document.getElementById('shipping_bar');
+
+        if(cartFetch.checked === "left"){
+          document.getElementById("shipping_bar").classList.add("animation")
+          document.getElementById("shipping_bar").style.flex = "1"
+
+        }else if (cartFetch.checked === "right") {
+          document.getElementById("shipping_bar").classList.add("animationRight")
+          document.getElementById("shipping_bar").style.flex = "1"
+        } else {
+          document.getElementById("background").style.justifyContent = "center"
+        }
+
+        if(price == 0){
+          bar.innerHTML = emptyText ;
+        }else if(Number(rate) >  Number(price)){
+          const result  = Number(rate) - Number(price)
+          bar.innerHTML = beforeText + "$"+ result + " " + afterText;
+        }else{
+          bar.innerHTML = free;
+        }
+      })
+    }, 1000);
+  })
+
+</script>

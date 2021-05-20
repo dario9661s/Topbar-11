@@ -8,19 +8,19 @@ import Typography from '@material-ui/core/Typography';
 import Animations from "../components/Animations";
 import Colors from "../components/Design/Color"
 import TopText from "../components/Content/TopText"
-import {Page} from "@shopify/polaris";
+
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-  },
-  button: {
-    marginRight: theme.spacing(1),
-  },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
+  // root: {
+  //   width: '100%',
+  // },
+  // button: {
+  //   marginRight: theme.spacing(1),
+  // },
+  // instructions: {
+  //   marginTop: theme.spacing(1),
+  //   marginBottom: theme.spacing(1),
+  // },
 }));
 
 function getSteps() {
@@ -32,17 +32,14 @@ const  StepperComponent = (props) => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <Page>
-                  <TopText/>
-              </Page>;
+        return <TopText/>
+
       case 1:
-        return <Page>
-                  <Colors  value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
-              </Page> ;
+        return <Colors  value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
+              ;
       case 2:
-        return  <Page>
-                  <Animations checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)}/>
-                </Page>;
+        return <Animations checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)}/>
+
       default:
         return 'Unknown step';
     }
@@ -108,7 +105,7 @@ const  StepperComponent = (props) => {
             stepProps.completed = false;
           }
           return (
-            <Step key={label} {...stepProps}>
+            <Step onClick={()=>props.setActiveStep(steps.indexOf(label))} key={label} {...stepProps}>
               <StepLabel {...labelProps}>{label}</StepLabel>
             </Step>
           );
@@ -126,7 +123,7 @@ const  StepperComponent = (props) => {
           </div>
         ) : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(props.activeStep)}</Typography>
+            <div className={classes.instructions}>{getStepContent(props.activeStep)}</div>
             <div>
               <Button disabled={props.activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back

@@ -1,10 +1,7 @@
-import {Page} from "@shopify/polaris";
-import Stepper from "../components/Steper";
-import Animations from "../components/Animations";
-import Colors from "../components/Design/Color"
-import TopText from "../components/Content/TopText"
 import React, { useEffect, useState } from "react";
 import {useAppBridge} from "@shopify/app-bridge-react";
+import Install from "../pages/install"
+import Stepper from "../components/Steper";
 import {getSessionToken} from "@shopify/app-bridge-utils";
 import {useAxios} from "../hooks/useAxios";
 import axioss from "axios";
@@ -55,7 +52,7 @@ function index({ shopOrigin }) {
   console.log(checked)
   async function fetchShippingRate() {
     const {data} = await axios.get(
-      `https://tasty-skunk-91.loca.lt/script_tag/ship`
+      `https://wicked-eel-96.loca.lt/script_tag/ship`
     );
     setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
   }
@@ -84,17 +81,7 @@ function index({ shopOrigin }) {
           checked = {checked} setChecked={(newChecked)=>setChecked(newChecked)}
         />
       </div>
-      <Page>
-        {/*{step === 0 ? <div className="Content">*/}
-        {/*  <TopText/>*/}
-        {/*</div> : null}*/}
-        {/*{step === 1 ?<div className="Content">*/}
-        {/*  <Colors  />*/}
-        {/*</div> : null}*/}
-        {/*{step === 2 ?<div className="Content">*/}
-        {/*  <Animations/>*/}
-        {/*</div> : null}*/}
-      </Page>
+      <Install/>
     </React.Fragment>
 
   );
