@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "engines": {
-      "node": "14.17.0"
+      "node": "14.17.0",
+      "npm": "6.14.4"
     },
     "dev": "cross-env NODE_ENV=development nodemon ./server/index.js --watch ./server/index.js",
     "dev:next": "next dev",
