@@ -30,5 +30,19 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script>
+  let campaign = null
+  {% comment %}if File Wont Change on uninstall and install delete sessions file{% endcomment %}
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res => {
+    if(res.data){
+      campaign = res.data[Object.keys(res.data)[0]]
+    }
 
+  })
+  axios.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res => {
+    if(res.data){
+      campaign = res.data[Object.keys(res.data)[0]]
+    }
+  })
+
+  console.log(campaign)
 </script>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAxios } from "../hooks/useAxios";
+import { Layout, Page, SettingToggle, TextStyle } from "@shopify/polaris";
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import Fab from '@material-ui/core/Fab';
@@ -8,8 +9,9 @@ function install() {
   const [axios] = useAxios();
   const [isInstalled, setIsInstalled] = useState(null);
   const [scriptTagId, setScriptTagId] = useState();
+  const titleDescription = isInstalled ? "Uninstall" : "Install";
+  const bodyDescription = isInstalled ? "installed" : "uninstalled";
   const [ship, setSHip] = useState(null);
-
   console.log(scriptTagId)
   async function fetchScriptTags() {
     const { data } = await axios.get(
@@ -45,14 +47,34 @@ function install() {
   console.log(isInstalled)
   return (
     <div className="Floating">
-      <h3>App Installed:</h3>
-      {isInstalled ?
-        <Fab color="secondary" onClick={() => handleAction()} aria-label="add">
-        <ClearIcon/>
-        </Fab> : <Fab color="primary" onClick={() => handleAction()} aria-label="add">
-        <CheckIcon/>
-      </Fab>}
+      <Page>
+        <Layout.AnnotatedSection
+          title={`${titleDescription} banner`}
+          description="Toggle banner installation on your shop"
+        >
+          <SettingToggle
+            action={{
+              content: titleDescription,
+              onAction: handleAction,
+            }}
+            enabled={true}
+          >
+            The banner script is{" "}
+            <TextStyle variation="strong">{bodyDescription}</TextStyle>
+          </SettingToggle>
+        </Layout.AnnotatedSection>
+      </Page>
     </div>
+
+    // <div className="Floating">
+    //   <h3>App Installed:</h3>
+    //   {isInstalled ?
+    //     <Fab color="secondary" onClick={() => handleAction()} aria-label="add">
+    //     <ClearIcon/>
+    //     </Fab> : <Fab color="primary" onClick={() => handleAction()} aria-label="add">
+    //     <CheckIcon/>
+    //   </Fab>}
+    // </div>
   );
 }
 

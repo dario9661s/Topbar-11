@@ -2,19 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Content/CampaignPicker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liquid/backup.liquid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/TopText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/TopText.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Steper.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Steper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liquid/backup.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/liquid/backup.liquid" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/liquid/banner-app.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/liquid/banner-app.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +29,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/liquid" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../CCBarTheme" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dario\Desktop\shopify\bannerv2\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -103,7 +93,7 @@
       <workItem from="1620898932221" duration="14265000" />
       <workItem from="1621245332229" duration="29957000" />
       <workItem from="1621343813058" duration="24055000" />
-      <workItem from="1621432563501" duration="31720000" />
+      <workItem from="1621432563501" duration="36147000" />
     </task>
     <servers />
   </component>
