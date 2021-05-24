@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/liquid/backup.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/liquid/backup.liquid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/liquid/banner-app.liquid" beforeDir="false" afterPath="$PROJECT_DIR$/liquid/banner-app.liquid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +28,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../CCBarTheme" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dario\Desktop\shopify\bannerv2\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -94,6 +93,7 @@
       <workItem from="1621245332229" duration="29957000" />
       <workItem from="1621343813058" duration="24055000" />
       <workItem from="1621432563501" duration="36534000" />
+      <workItem from="1621855309768" duration="95000" />
     </task>
     <servers />
   </component>
