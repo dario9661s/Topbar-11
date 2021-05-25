@@ -6,10 +6,18 @@ const  Animations = (props) => {
     (_checked, newValue) => props.setChecked(newValue),
     [],
   );
+  console.log(props.checked)
   return (
-    <div className="ColorContainer">
+    <div style={{paddingBottom:'90px'}} className="ColorContainer">
       <Stack vertical>
-        <Heading element="h1">Animations</Heading>
+        <Heading element="h1">Animations:</Heading>
+        <RadioButton
+          label="None"
+          id="none"
+          name="size"
+          checked={props.checked === 'none'}
+          onChange={handleChange}
+        />
         <RadioButton
           label="Left-Right"
           checked={props.checked === 'left'}
@@ -25,10 +33,24 @@ const  Animations = (props) => {
           onChange={handleChange}
         />
         <RadioButton
-          label="None"
-          id="none"
+          label="Pulse"
+          id="pulse"
           name="size"
-          checked={props.checked === 'none'}
+          checked={props.checked === 'pulse'}
+          onChange={handleChange}
+        />
+        <RadioButton
+          label="Vibrate"
+          id="vibrate"
+          name="size"
+          checked={props.checked === 'vibrate'}
+          onChange={handleChange}
+        />
+        <RadioButton
+          label="Jello"
+          id="jello"
+          name="size"
+          checked={props.checked === 'jello'}
           onChange={handleChange}
         />
       </Stack>

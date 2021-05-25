@@ -19,10 +19,9 @@ const  Colors = (props) => {
   );
   return (
     <div className="ColorContainer">
-      <div style={{display:"flex", justifyContent:"space-between", width:"80%"}}>
         <div className="ColorText">
-          <Heading element="h1">Background Color</Heading>
           <Stack vertical>
+            <Heading element="h1">Background Color</Heading>
             <RadioButton
               label="Custom Colors"
               checked={picker === 'our'}
@@ -54,7 +53,6 @@ const  Colors = (props) => {
               height={300}
             />}
         </div>
-      </div>
     </div>
 
   );

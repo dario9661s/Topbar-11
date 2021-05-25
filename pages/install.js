@@ -15,7 +15,7 @@ function install() {
   console.log(scriptTagId)
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://wicked-eel-96.loca.lt/script_tag/all`
+      `https://yellow-wombat-34.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,7 +26,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://wicked-eel-96.loca.lt/script_tag/ship`
+      `https://yellow-wombat-34.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -37,9 +37,9 @@ function install() {
   console.log(ship)
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://wicked-eel-96.loca.lt/script_tag`);
+      axios.post(`https://yellow-wombat-34.loca.lt/script_tag`);
     } else {
-      axios.delete(`https://wicked-eel-96.loca.lt/script_tag/?id=${scriptTagId}`);
+      axios.delete(`https://yellow-wombat-34.loca.lt/script_tag/?id=${scriptTagId}`);
       // https://wicked-eel-96.loca.lt
     }
     setIsInstalled((oldValue) => !oldValue);
@@ -47,35 +47,35 @@ function install() {
 
   console.log(isInstalled)
   return (
-    <div className="Floating">
-      <Page>
-        <Layout.AnnotatedSection
-          title={`${titleDescription} banner`}
-          description="Toggle banner installation on your shop"
-        >
-          <SettingToggle
-            action={{
-              content: titleDescription,
-              onAction: handleAction,
-            }}
-            enabled={true}
-          >
-            The banner script is{" "}
-            <TextStyle variation="strong">{bodyDescription}</TextStyle>
-          </SettingToggle>
-        </Layout.AnnotatedSection>
-      </Page>
-    </div>
-
     // <div className="Floating">
-    //   <h3>App Installed:</h3>
-    //   {isInstalled ?
-    //     <Fab color="secondary" onClick={() => handleAction()} aria-label="add">
-    //     <ClearIcon/>
-    //     </Fab> : <Fab color="primary" onClick={() => handleAction()} aria-label="add">
-    //     <CheckIcon/>
-    //   </Fab>}
+    //   <Page>
+    //     <Layout.AnnotatedSection
+    //       title={`${titleDescription} banner`}
+    //       description="Toggle banner installation on your shop"
+    //     >
+    //       <SettingToggle
+    //         action={{
+    //           content: titleDescription,
+    //           onAction: handleAction,
+    //         }}
+    //         enabled={true}
+    //       >
+    //         The banner script is{" "}
+    //         <TextStyle variation="strong">{bodyDescription}</TextStyle>
+    //       </SettingToggle>
+    //     </Layout.AnnotatedSection>
+    //   </Page>
     // </div>
+
+    <div className="Floating">
+      <h3>App Installed:</h3>
+      {isInstalled ?
+        <Fab color="secondary" onClick={() => handleAction()} aria-label="add">
+        <ClearIcon/>
+        </Fab> : <Fab color="primary" onClick={() => handleAction()} aria-label="add">
+        <CheckIcon/>
+      </Fab>}
+    </div>
   );
 }
 

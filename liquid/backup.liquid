@@ -62,18 +62,15 @@
       fetch('/cart.js').then(res=>res.json()).then(cart => {
         const price = cart.total_price / 100;
         const bar = document.getElementById('shipping_bar');
-
         if(cartFetch.checked === "left"){
           document.getElementById("shipping_bar").classList.add("animation")
           document.getElementById("shipping_bar").style.flex = "1"
-
         }else if (cartFetch.checked === "right") {
           document.getElementById("shipping_bar").classList.add("animationRight")
           document.getElementById("shipping_bar").style.flex = "1"
         } else {
           document.getElementById("background").style.justifyContent = "center"
         }
-
         if(price == 0){
           bar.innerHTML = emptyText ;
         }else if(Number(rate) >  Number(price)){

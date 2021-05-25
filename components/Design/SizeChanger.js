@@ -16,30 +16,32 @@ const  SizeChanger = (props) => {
   );
 
   return (
-    <Stack vertical>
-      <Heading element="h1">Size</Heading>
-      <RadioButton
-        label="Large"
-        checked={props.value === '50px'}
-        id="50px"
-        name="size"
-        onChange={handleChange}
-      />
-      <RadioButton
-        label="Medium"
-        id="30px"
-        name="size"
-        checked={props.value === '30px'}
-        onChange={handleChange}
-      />
-      <RadioButton
-        label="Small"
-        id="20px"
-        name="accounts"
-        checked={props.value === '20px'}
-        onChange={handleChange}
-      />
-    </Stack>
+    <div style={{marginTop:"30px"}}>
+      <Stack vertical>
+        <Heading element="h1">Size</Heading>
+        <RadioButton
+          label="Large"
+          checked={props.value === '50px'}
+          id="50px"
+          name="size"
+          onChange={handleChange}
+        />
+        <RadioButton
+          label="Medium"
+          id="30px"
+          name="size"
+          checked={props.value === '30px'}
+          onChange={handleChange}
+        />
+        <RadioButton
+          label="Small"
+          id="20px"
+          name="accounts"
+          checked={props.value === '20px'}
+          onChange={handleChange}
+        />
+      </Stack>
+    </div>
   );
 }
 export default SizeChanger;

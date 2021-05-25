@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -28,11 +28,23 @@ function getSteps() {
 }
 
 const  StepperComponent = (props) => {
-
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <TopText/>
+        return <TopText emptyText = {props.emptyText}
+                        free = {props.free}
+                        setFree = {(text)=>props.setFree(text)}
+                        moreAfter = {props.moreAfter}
+                        setMoreAfter = {(text)=>props.setMoreAfter(text)}
+                        setEmptyText = {(text)=>props.setEmptyText(text)}
+                        moreBefore = {props.moreBefore}
+                        setMoreBefore = {(text)=>props.setMoreBefore(text)}
+                        campaign = {props.campaign}
+                        setCampaign = {(camp)=>props.setCampaign(camp)}
+                        setAnnouncment = {(ann)=>props.setAnnouncment(ann)}
+                        announcment={props.announcment}
+                        products = {props.products}
+                        setProducts = {(prod)=>props.setProducts(prod)}/>
 
       case 1:
         return <Colors  value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
@@ -98,9 +110,9 @@ const  StepperComponent = (props) => {
         {steps.map((label, index) => {
           const stepProps = {};
           const labelProps = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = <Typography variant="caption">Optional</Typography>;
-          }
+          // if (isStepOptional(index)) {
+          //   labelProps.optional = <Typography variant="caption">Optional</Typography>;
+          // }
           if (isStepSkipped(index)) {
             stepProps.completed = false;
           }
