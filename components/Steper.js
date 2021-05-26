@@ -44,8 +44,10 @@ const  StepperComponent = (props) => {
                         setAnnouncment = {(ann)=>props.setAnnouncment(ann)}
                         announcment={props.announcment}
                         products = {props.products}
-                        setProducts = {(prod)=>props.setProducts(prod)}/>
-
+                        setProducts = {(prod)=>props.setProducts(prod)}
+                        setTimeRemaining={(time)=> {props.setTimeRemaining(time)}}
+                        countDownText = {props.countDownText}
+                        setCountDownText = {(text)=> props.setCountDownText(text)}/>
       case 1:
         return <Colors  value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
               ;

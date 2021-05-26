@@ -22,6 +22,10 @@ function index({ shopOrigin }) {
   const [free, setFree] = useState();
   const [announcment, setAnnouncment] = useState();
   const [products, setProducts] = useState([]);
+  const [timeRemaining, setTimeRemaining] = useState(null);
+  const [countDownText, setCountDownText] = useState();
+
+  console.log(countDownText)
 
   useEffect(() => {
     deleteData();
@@ -66,7 +70,7 @@ function index({ shopOrigin }) {
       )
       .then((res) => {
         if (res.data) {
-          setProducts([...Object.values(res.data)[0].products]);
+          setProducts([...Object.values(res.data)[0].products].filter(Boolean) );
         }
       });
   }, []);
@@ -123,7 +127,7 @@ function index({ shopOrigin }) {
 
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://unlucky-deer-73.loca.lt/script_tag/ship`
+      `https://slippery-rabbit-56.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -153,6 +157,8 @@ function index({ shopOrigin }) {
   return (
     <React.Fragment>
       <Preview
+        countDownText = {countDownText}
+        timeRemaining={timeRemaining}
         announcment={announcment}
         text={{
           empty: emptyText,
@@ -168,6 +174,9 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
+          countDownText = {countDownText}
+          setCountDownText = {(text)=> setCountDownText(text)}
+          setTimeRemaining={(time)=> {setTimeRemaining(time)}}
           products={products}
           setProducts={(prod) => setProducts(prod)}
           emptyText={emptyText}

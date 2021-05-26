@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Shipping from "./Campaign/Shipping";
 import Announcment from "./Campaign/Announcment";
-import CustomText from "./Campaign/CountDown";
+import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
 import axioss from "axios";
 
@@ -54,8 +54,11 @@ const TopText = (props) => {
           setAnnouncment={props.setAnnouncment}
           announcment={props.announcment}
         />
-      ) : props.campaign === "Custom" ? (
-        <CustomText />
+      ) : props.campaign === "CountDown" ? (
+        <CountDown
+          countDownText = {props.countDownText}
+          setCountDownText = {(text)=> props.setCountDownText(text)}
+          setTimeRemaining={(time)=> {props.setTimeRemaining(time)}} />
       ) : null}
     </div>
   );

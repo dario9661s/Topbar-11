@@ -23,7 +23,9 @@ export default function SimpleListMenu(props) {
   const options = [
     { label: "Shipping", value: "Shipping" },
     { label: "Announcment", value: "Announcment" },
-    { label: "Custom", value: "Custom" },
+    { label: "Count Down Timer", value: "CountDown" },
+    { label: "Custom text", value: "Custom" },
+    { label: "Link", value: "Link" },
   ];
 
   return (

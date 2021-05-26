@@ -10,16 +10,18 @@ const  Shipping = (props) => {
       before: props.moreBefore,
       freeShippin: props.free
     }
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
-      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=>{
-        axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json", data).then(res=>console.log(res)).then(()=> {
-          axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>{
-            if (res.data){
-              props.setEmptyText(Object.values(res.data)[0].before)
-              props.setFree(Object.values(res.data)[0].freeShippin)
-              props.setMoreAfter(Object.values(res.data)[0].after)
-              props.setMoreBefore(Object.values(res.data)[0].before)
-            }
+    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json").then(res=>console.log(res)).then(()=> {
+      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
+        axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=>{
+          axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json", data).then(res=>console.log(res)).then(()=> {
+            axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>{
+              if (res.data){
+                props.setEmptyText(Object.values(res.data)[0].before)
+                props.setFree(Object.values(res.data)[0].freeShippin)
+                props.setMoreAfter(Object.values(res.data)[0].after)
+                props.setMoreBefore(Object.values(res.data)[0].before)
+              }
+            })
           })
         })
       })

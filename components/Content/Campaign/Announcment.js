@@ -10,17 +10,20 @@ const  Shipping = (props) => {
       announcmentText: props.announcment,
       products: props.products
     }
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=> {
-      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
-        axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json", data).then(res=>console.log(res)).then(()=>{
-          axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>{
-            if(res.data){
-              props.setProducts([... Object.values(res.data)[0].products])
-            }
+    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json").then(res=>console.log(res)).then(()=> {
+      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=> {
+        axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
+          axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json", data).then(res=>console.log(res)).then(()=>{
+            axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>{
+              if(res.data){
+                props.setProducts([... Object.values(res.data)[0].products])
+              }
+            })
           })
         })
       })
     })
+
   }
   function handleSelection(resources) {
     const idsFromResources = resources.selection.map((product) => product);
@@ -41,7 +44,7 @@ const  Shipping = (props) => {
         <Heading>Selected Items:</Heading>
         <List type="bullet">
           {props.products && props.products.map((product , i) => {
-            return <List.Item key = {i}>{product.title}</List.Item>
+            return <List.Item key = {i}>{product && product.title}</List.Item>
           })}
         </List>
         <Button onClick={() => setOpen(true)}>Select New products</Button>

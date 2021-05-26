@@ -15,7 +15,7 @@ function install() {
   console.log(scriptTagId);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://unlucky-deer-73.loca.lt/script_tag/all`
+      `https://slippery-rabbit-56.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,7 +26,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://unlucky-deer-73.loca.lt/script_tag/ship`
+      `https://slippery-rabbit-56.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -37,10 +37,10 @@ function install() {
   console.log(ship);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://unlucky-deer-73.loca.lt/script_tag`);
+      axios.post(`https://slippery-rabbit-56.loca.lt/script_tag`);
     } else {
       axios.delete(
-        `https://unlucky-deer-73.loca.lt/script_tag/?id=${scriptTagId}`
+        `https://slippery-rabbit-56.loca.lt/script_tag/?id=${scriptTagId}`
       );
       // https://wicked-eel-96.loca.lt
     }

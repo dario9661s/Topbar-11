@@ -82,6 +82,9 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   align-items: center;
   padding-bottom: 60px;
 }
+.react-datepicker-popper{
+  z-index:99999 !important; ;
+}
 
 .Floating{
   position: absolute;
@@ -313,4 +316,20 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
   }
+}
+.TimerContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TimerContainer p {
+  font-size: 18px;
+  margin: 0 10px;
+}
+/*Clock*/
+.TimerContainer span {
+
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
 }
