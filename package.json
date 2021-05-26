@@ -1,10 +1,6 @@
 {
   "name": "shopify-app-node",
   "version": "1.0.0",
-  "engines": {
-    "node": "14.17.0",
-    "npm": "7.12.1"
-  },
   "description": "Shopify's node app for CLI tool",
   "scripts": {
     "test": "jest",
@@ -55,7 +51,9 @@
     "react": "^16.10.1",
     "react-apollo": "^3.1.5",
     "react-color": "^2.19.3",
+    "react-datepicker": "^3.8.0",
     "react-dom": "^16.10.1",
+    "reactjs-countdown": "0.0.8",
     "shopify": "^0.1.0",
     "webpack": "^4.46.0"
   },

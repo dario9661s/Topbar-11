@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAxios } from "../hooks/useAxios";
 import { Layout, Page, SettingToggle, TextStyle } from "@shopify/polaris";
-import CheckIcon from '@material-ui/icons/Check';
-import ClearIcon from '@material-ui/icons/Clear';
-import Fab from '@material-ui/core/Fab';
+import CheckIcon from "@material-ui/icons/Check";
+import ClearIcon from "@material-ui/icons/Clear";
+import Fab from "@material-ui/core/Fab";
 
 function install() {
   const [axios] = useAxios();
@@ -12,10 +12,10 @@ function install() {
   const titleDescription = isInstalled ? "Uninstall" : "Install";
   const bodyDescription = isInstalled ? "installed" : "uninstalled";
   const [ship, setSHip] = useState(null);
-  console.log(scriptTagId)
+  console.log(scriptTagId);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://yellow-wombat-34.loca.lt/script_tag/all`
+      `https://unlucky-deer-73.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,26 +26,28 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://yellow-wombat-34.loca.lt/script_tag/ship`
+      `https://unlucky-deer-73.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
   useEffect(() => {
     fetchScriptTags();
-    fetch()
+    fetch();
   }, []);
-  console.log(ship)
+  console.log(ship);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://yellow-wombat-34.loca.lt/script_tag`);
+      axios.post(`https://unlucky-deer-73.loca.lt/script_tag`);
     } else {
-      axios.delete(`https://yellow-wombat-34.loca.lt/script_tag/?id=${scriptTagId}`);
+      axios.delete(
+        `https://unlucky-deer-73.loca.lt/script_tag/?id=${scriptTagId}`
+      );
       // https://wicked-eel-96.loca.lt
     }
     setIsInstalled((oldValue) => !oldValue);
   }
 
-  console.log(isInstalled)
+  console.log(isInstalled);
   return (
     // <div className="Floating">
     //   <Page>
@@ -69,12 +71,15 @@ function install() {
 
     <div className="Floating">
       <h3>App Installed:</h3>
-      {isInstalled ?
+      {isInstalled ? (
         <Fab color="secondary" onClick={() => handleAction()} aria-label="add">
-        <ClearIcon/>
-        </Fab> : <Fab color="primary" onClick={() => handleAction()} aria-label="add">
-        <CheckIcon/>
-      </Fab>}
+          <ClearIcon />
+        </Fab>
+      ) : (
+        <Fab color="primary" onClick={() => handleAction()} aria-label="add">
+          <CheckIcon />
+        </Fab>
+      )}
     </div>
   );
 }
