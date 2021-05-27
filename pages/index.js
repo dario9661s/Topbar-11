@@ -127,7 +127,7 @@ function index({ shopOrigin }) {
 
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://slippery-rabbit-56.loca.lt/script_tag/ship`
+      `https://top-bar-cc.herokuapp.com/script_tag/ship`
     );
     setShippingRate(
       Number(
