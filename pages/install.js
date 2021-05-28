@@ -15,7 +15,7 @@ function install() {
   console.log(scriptTagId);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://top-bar-cc.herokuapp.com/script_tag/all`
+      `https://nice-dolphin-78.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,7 +26,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://top-bar-cc.herokuapp.com/script_tag/ship`
+      `https://nice-dolphin-78.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -34,20 +34,19 @@ function install() {
     fetchScriptTags();
     fetch();
   }, []);
-  console.log(ship);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://top-bar-cc.herokuapp.com/script_tag`);
+      axios.post(`https://nice-dolphin-78.loca.lt/script_tag`);
     } else {
       axios.delete(
-        `https://top-bar-cc.herokuapp.com/script_tag/?id=${scriptTagId}`
+        `https://nice-dolphin-78.loca.lt/script_tag/?id=${scriptTagId}`
       );
       // https://wicked-eel-96.loca.lt
     }
     setIsInstalled((oldValue) => !oldValue);
   }
 
-  console.log(isInstalled);
+  // console.log(isInstalled);
   return (
     // <div className="Floating">
     //   <Page>

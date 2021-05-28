@@ -4,7 +4,6 @@ import {
   deleteScriptTagById,
   getAllScriptTags,
   fetchShipping,
-  postColor
 } from "../controllers/script_tag_controller";
 
 const router = new Router({ prefix: "/script_tag" });
@@ -20,7 +19,6 @@ router.get("/all", async (ctx) => {
   };
 });
 router.get("/ship", async (ctx) => {
-  console.log("fec");
   const result = await fetchShipping(ctx.myClient);
   ctx.body = {
     details: result,

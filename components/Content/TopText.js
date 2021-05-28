@@ -3,33 +3,23 @@ import Shipping from "./Campaign/Shipping";
 import Announcment from "./Campaign/Announcment";
 import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
+import Link from "./Campaign/Link";
 import axioss from "axios";
 
 const TopText = (props) => {
   useEffect(() => {
-    axioss
-      .get(
-        "https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json"
-      )
-      .then((res) => {
-        if (res.data) {
-          props.setCampaign("Announcment");
-        }
-      })
-      .then(() => {
-        axioss
-          .get(
-            "https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json"
-          )
-          .then((res) => {
-            if (res.data) {
-              props.setCampaign("Shipping");
-            }
-          });
-      });
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+      if (res.data.link) {
+        props.setCampaign("Link")
+      } else if (res.data.countDown){
+        props.setCampaign("CountDown")
+      } else if (res.data.announcement){
+        props.setCampaign("Announcment")
+      } else if (res.data.text){
+        props.setCampaign("Shipping")
+      }
+    });
   }, []);
-
-  console.log(props.campaign);
   return (
     <div className="TopTextContainer">
       <CampaignPicker
@@ -38,6 +28,8 @@ const TopText = (props) => {
       />
       {props.campaign === "Shipping" ? (
         <Shipping
+          shippingFocused = {props.shippingFocused}
+          setShippingFocused = {(focus)=>props.setShippingFocused(focus)}
           emptyText={props.emptyText}
           free={props.free}
           setFree={(text) => props.setFree(text)}
@@ -56,10 +48,18 @@ const TopText = (props) => {
         />
       ) : props.campaign === "CountDown" ? (
         <CountDown
+          countDownFinished = {props.countDownFinished}
+          setCountDownFinished = {(cdf)=>props.setCountDownFinished(cdf)}
           countDownText = {props.countDownText}
           setCountDownText = {(text)=> props.setCountDownText(text)}
           setTimeRemaining={(time)=> {props.setTimeRemaining(time)}} />
-      ) : null}
+      ) : props.campaign === "Link" ? (
+        <Link
+          link = {props.link}
+          setLink = {(link)=> props.setLink(link)}
+          linkText = {props.linkText}
+          setLinkText = {(linkText)=> props.setLinkText(linkText)} />
+        ) : null}
     </div>
   );
 };

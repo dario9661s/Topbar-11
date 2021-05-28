@@ -3,29 +3,17 @@ import axioss from "axios";
 import {TextField, FormLayout, Button, Heading} from "@shopify/polaris";
 
 const  Shipping = (props) => {
+
   const sendText = () => {
     let data = {
-      empty: props.emptyText,
-      after : props.moreAfter,
-      before: props.moreBefore,
-      freeShippin: props.free
+      text: {
+        empty: props.emptyText,
+        after : props.moreAfter,
+        before: props.moreBefore,
+        freeShippin: props.free
+      }
     }
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json").then(res=>console.log(res)).then(()=> {
-      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
-        axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=>{
-          axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json", data).then(res=>console.log(res)).then(()=> {
-            axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>{
-              if (res.data){
-                props.setEmptyText(Object.values(res.data)[0].before)
-                props.setFree(Object.values(res.data)[0].freeShippin)
-                props.setMoreAfter(Object.values(res.data)[0].after)
-                props.setMoreBefore(Object.values(res.data)[0].before)
-              }
-            })
-          })
-        })
-      })
-    })
+    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res))
   }
   const handleEmptyChange = useCallback((value) => props.setEmptyText(value), []);
   const handleMoreBeforeChange = useCallback((value) => props.setMoreBefore(value), []);
@@ -35,6 +23,8 @@ const  Shipping = (props) => {
         <FormLayout>
           <Heading element="h1">Top Bar Text</Heading>
           <TextField
+            onBlur={()=>props.setShippingFocused(null)}
+            onFocus={()=>props.setShippingFocused("empty")}
             value={props.emptyText}
             onChange={handleEmptyChange}
             type="text"
@@ -42,6 +32,8 @@ const  Shipping = (props) => {
           />
           <div className="MoreTextContainer">
             <TextField
+              onBlur={()=>props.setShippingFocused(null)}
+              onFocus={()=>props.setShippingFocused("more")}
               value={props.moreBefore}
               onChange={handleMoreBeforeChange}
               type="text"
@@ -49,6 +41,8 @@ const  Shipping = (props) => {
             />
             <p>User cart value</p>
             <TextField
+              onFocus={()=>props.setShippingFocused("more")}
+              onBlur={()=>props.setShippingFocused(null)}
               value={props.moreAfter}
               onChange={handleMoreAfterChange}
               type="text"
@@ -56,6 +50,8 @@ const  Shipping = (props) => {
             />
           </div>
           <TextField
+            onFocus={()=>props.setShippingFocused("free")}
+            onBlur={()=>props.setShippingFocused(null)}
             value={props.free}
             onChange={handleFreeChange}
             type="text"

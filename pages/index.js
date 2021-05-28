@@ -17,64 +17,67 @@ function index({ shopOrigin }) {
   const [value, setValue] = useState("50px");
   const [campaign, setCampaign] = useState();
   const [emptyText, setEmptyText] = useState();
-  const [moreBefore, setMoreBefore] = useState();
-  const [moreAfter, setMoreAfter] = useState();
+  const [moreBefore, setMoreBefore] = useState("");
+  const [moreAfter, setMoreAfter] = useState("");
   const [free, setFree] = useState();
+  const [shippingFocused, setShippingFocused] = useState("");
   const [announcment, setAnnouncment] = useState();
   const [products, setProducts] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState(null);
-  const [countDownText, setCountDownText] = useState();
-
-  console.log(countDownText)
+  const [countDownText, setCountDownText] = useState("");
+  const [countDownFinished, setCountDownFinished] = useState("");
+  const [linkText, setLinkText] = useState("");
+  const [link, setLink] = useState("");
 
   useEffect(() => {
     deleteData();
     fetchShippingRate();
-    axioss
-      .get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json")
-      .then((res) => {
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json").then((res) => {
         setColor(Object.values(res.data)[0].color.hex);
       });
-    axioss
-      .get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json")
-      .then((res) => {
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json").then((res) => {
         if (res.data) {
           const animation = Object.values(res.data)[0].checked;
           setChecked(animation);
         }
       });
-    axioss
-      .get(
-        "https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json"
-      )
-      .then((res) => {
-        if (res.data) {
-          setAnnouncment(Object.values(res.data)[0].announcmentText);
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+        if (res.data.announcement) {
+          setAnnouncment(res.data.announcement.announcementText);
         }
-        axioss
-          .get(
-            "https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json"
-          )
-          .then((res) => {
-            if (res.data) {
-              setEmptyText(Object.values(res.data)[0].before);
-              setFree(Object.values(res.data)[0].freeShippin);
-              setMoreAfter(Object.values(res.data)[0].after);
-              setMoreBefore(Object.values(res.data)[0].before);
+        axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+            if (res.data.text) {
+              setEmptyText(res.data.text.before);
+              setFree(res.data.text.freeShippin);
+              setMoreAfter(res.data.text.after);
+              setMoreBefore(res.data.text.before);
             }
           });
       });
-    axioss
-      .get(
-        "https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json"
-      )
-      .then((res) => {
-        if (res.data) {
-          setProducts([...Object.values(res.data)[0].products].filter(Boolean) );
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+        if (res.data.announcement) {
+          setProducts([...res.data.announcement.products].filter(Boolean) );
         }
       });
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+        if (res.data.countDown) {
+          let date = res.data.countDown.date
+          let countDownDate = new Date(date).getTime();
+          let now = new Date().getTime();
+          let distance = countDownDate - now;
+          setCountDownText(res.data.countDown.text)
+          setCountDownFinished(res.data.countDown.finishText)
+          setTimeRemaining(distance/1000)
+        }
+      });
+    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
+      if (res.data.link) {
+        setLink(res.data.link.link)
+        setLinkText(res.data.link.linkText)
+      }
+    });
   }, []);
-  console.log(step);
+  console.log(campaign)
   useEffect(() => {
     sendShippingRates();
   }, [shippingRate]);
@@ -127,7 +130,7 @@ function index({ shopOrigin }) {
 
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://top-bar-cc.herokuapp.com/script_tag/ship`
+      `https://nice-dolphin-78.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -157,6 +160,9 @@ function index({ shopOrigin }) {
   return (
     <React.Fragment>
       <Preview
+        linkText = {linkText}
+        shippingFocused = {shippingFocused}
+        countDownFinished = {countDownFinished}
         countDownText = {countDownText}
         timeRemaining={timeRemaining}
         announcment={announcment}
@@ -174,6 +180,14 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
+          shippingFocused = {shippingFocused}
+          setShippingFocused = {(focus)=>setShippingFocused(focus)}
+          link = {link}
+          setLink = {(link)=> setLink(link)}
+          linkText = {linkText}
+          setLinkText = {(linkText)=> setLinkText(linkText)}
+          countDownFinished = {countDownFinished}
+          setCountDownFinished = {(cdf)=>setCountDownFinished(cdf)}
           countDownText = {countDownText}
           setCountDownText = {(text)=> setCountDownText(text)}
           setTimeRemaining={(time)=> {setTimeRemaining(time)}}

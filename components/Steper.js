@@ -31,7 +31,15 @@ const  StepperComponent = (props) => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <TopText emptyText = {props.emptyText}
+        return <TopText shippingFocused = {props.shippingFocused}
+                        setShippingFocused = {(focus)=>props.setShippingFocused(focus)}
+                        link = {props.link}
+                        setLink = {(link)=> props.setLink(link)}
+                        linkText = {props.linkText}
+                        setLinkText = {(linkText)=> props.setLinkText(linkText)}
+                        countDownFinished = {props.countDownFinished}
+                        setCountDownFinished = {(cdf)=>props.setCountDownFinished(cdf)}
+                        emptyText = {props.emptyText}
                         free = {props.free}
                         setFree = {(text)=>props.setFree(text)}
                         moreAfter = {props.moreAfter}

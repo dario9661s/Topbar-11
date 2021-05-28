@@ -10,7 +10,7 @@ const CountDown = (props) => {
 
   useEffect(() => {
     if (startDate) {
-      const oneDay =   1000; // hours*minutes*seconds*milliseconds
+      const oneDay = 1000; // hours*minutes*seconds*milliseconds
       const firstDate = startDate;
       const secondDate = new Date(Date.now());
       const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
@@ -20,19 +20,15 @@ const CountDown = (props) => {
 
   const sendData = () => {
     const data = {
-      text : props.countDownText,
-      date : startDate
+      countDown: {
+        text: props.countDownText,
+        date: startDate,
+        finishText: props.countDownFinished
+      }
     }
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=> {
-      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
-        axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json").then(res=>console.log(res)).then(()=>{
-          axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json", data).then(res=>console.log(res))
-        })
-      })
-    })
-
+    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res))
   }
-
+  const handleChangeCountDownFinished = useCallback((value) => props.setCountDownFinished(value), []);
   const handleChange = useCallback((value) => props.setCountDownText(value), []);
   return (
     <FormLayout>
@@ -46,9 +42,15 @@ const CountDown = (props) => {
         value={props.countDownText}
         onChange={handleChange}
         type="text"
-        placeholder="Text which is displayed when the cart is empty"
+        placeholder="Text before the countdown"
       />
-      <Button onClick={()=>sendData()} primary>Save theme</Button>
+      <TextField
+        value={props.countDownFinished}
+        onChange={handleChangeCountDownFinished}
+        type="text"
+        placeholder="Text displayed when the countdown is finished"
+      />
+      <Button onClick={() => sendData()} primary>Save theme</Button>
     </FormLayout>
 
   );

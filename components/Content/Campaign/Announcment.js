@@ -7,23 +7,18 @@ const  Shipping = (props) => {
   const [open, setOpen] = useState(false);
   const sendText = () => {
     let data = {
-      announcmentText: props.announcment,
-      products: props.products
+      announcement: {
+        announcementText: props.announcment,
+        products: props.products
+      }
     }
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/countDown.json").then(res=>console.log(res)).then(()=> {
-      axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/text.json").then(res=>console.log(res)).then(()=> {
-        axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>console.log(res)).then(()=>{
-          axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json", data).then(res=>console.log(res)).then(()=>{
-            axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/textAnnouncment.json").then(res=>{
-              if(res.data){
-                props.setProducts([... Object.values(res.data)[0].products])
-              }
-            })
-          })
-        })
+    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res)).then(() => {
+      axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then(res => {
+        if (res.data) {
+          props.setProducts(res.data.announcement.products)
+        }
       })
     })
-
   }
   function handleSelection(resources) {
     const idsFromResources = resources.selection.map((product) => product);
@@ -32,7 +27,7 @@ const  Shipping = (props) => {
   }
   const handleEmptyChange = useCallback((value) => props.setAnnouncment(value), []);
   return (
-    <div className="AnnouncmentContainer">
+    <FormLayout >
       <ResourcePicker
         resourceType="Product"
         showVariants={false}
@@ -61,7 +56,7 @@ const  Shipping = (props) => {
           <Button onClick={() => sendText()}>Save Changes!</Button>
         </FormLayout>
       </div>
-    </div>
+    </FormLayout>
   );
 }
 export default Shipping;
