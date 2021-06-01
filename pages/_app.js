@@ -40,11 +40,6 @@ class MyApp extends App {
     const config = { apiKey: API_KEY, shopOrigin: shopOrigin, forceRedirect: true };
     return (
       <React.Fragment>
-        <link
-          async
-          rel="stylesheet"
-          href="//cdn.jsdelivr.net/npm/semantic-ui@${props.versions.sui}/dist/semantic.min.css"
-        />
         <Head>
           <title>Sample App</title>
           <meta charSet="utf-8" />

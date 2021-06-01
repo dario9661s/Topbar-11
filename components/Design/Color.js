@@ -7,11 +7,8 @@ import { RadioButton, Stack, Heading } from "@shopify/polaris";
 const  Colors = (props) => {
   const [picker, setPicker] = useState("our")
   const changeColor =  (color) =>{
-    console.log(color)
     props.setColor(color.hex)
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json").then(res=>console.log(res)).then(()=>{
-      axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json", {color:color}).then(res=>console.log(res))
-    })
+      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/color.json`, {color:color}).then(res=>res)
   }
   const handleChange = useCallback(
     (_checked, newValue) => setPicker(newValue),
@@ -37,7 +34,7 @@ const  Colors = (props) => {
               onChange={handleChange}
             />
           </Stack>
-          <SizeChanger checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)} value = {props.value} setValue = {(value)=>props.setValue(value)}/>
+          <SizeChanger shop = {props.shop} checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)} value = {props.value} setValue = {(value)=>props.setValue(value)}/>
         </div>
         <div style={{height: '300px'}}>
           {picker === "our"?

@@ -4,6 +4,7 @@ import {
   deleteScriptTagById,
   getAllScriptTags,
   fetchShipping,
+  fetchShopUrl
 } from "../controllers/script_tag_controller";
 
 const router = new Router({ prefix: "/script_tag" });
@@ -20,6 +21,12 @@ router.get("/all", async (ctx) => {
 });
 router.get("/ship", async (ctx) => {
   const result = await fetchShipping(ctx.myClient);
+  ctx.body = {
+    details: result,
+  };
+});
+router.get("/shop", async (ctx) => {
+  const result = await fetchShopUrl(ctx.myClient);
   ctx.body = {
     details: result,
   };

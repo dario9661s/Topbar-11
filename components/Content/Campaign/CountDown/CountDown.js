@@ -26,7 +26,7 @@ const CountDown = (props) => {
         finishText: props.countDownFinished
       }
     }
-    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res))
+    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then(res => console.log(res))
   }
   const handleChangeCountDownFinished = useCallback((value) => props.setCountDownFinished(value), []);
   const handleChange = useCallback((value) => props.setCountDownText(value), []);

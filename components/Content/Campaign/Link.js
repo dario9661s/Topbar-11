@@ -12,9 +12,7 @@ const link = (props) => {
         linkText: props.linkText
       }
     }
-    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res)).then(() => {
-
-    })
+    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then(res => console.log(res))
   }
 
   const changeLink = useCallback((value) => props.setLink(value), []);

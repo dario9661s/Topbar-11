@@ -21,141 +21,88 @@ function index({ shopOrigin }) {
   const [moreAfter, setMoreAfter] = useState("");
   const [free, setFree] = useState();
   const [shippingFocused, setShippingFocused] = useState("");
-  const [announcment, setAnnouncment] = useState();
+  const [announcment, setAnnouncment] = useState("");
   const [products, setProducts] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState(null);
   const [countDownText, setCountDownText] = useState("");
   const [countDownFinished, setCountDownFinished] = useState("");
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
+  const [shop, setShop] = useState("");
 
   useEffect(() => {
-    deleteData();
-    fetchShippingRate();
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/color.json").then((res) => {
-        setColor(Object.values(res.data)[0].color.hex);
-      });
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json").then((res) => {
-        if (res.data) {
+    if(shop){
+      axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`).then((res) => {
+        if(res.data.color){
+          setColor(res.data.color.color.hex);
+        }
+        if (res.data.cart) {
           const animation = Object.values(res.data)[0].checked;
           setChecked(animation);
         }
-      });
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-        if (res.data.announcement) {
-          setAnnouncment(res.data.announcement.announcementText);
+        if (res.data.campaign.announcement) {
+          setCampaign("Announcment")
+          setAnnouncment(res.data.campaign.announcement.announcementText);
+          setProducts([...res.data.campaign.announcement.products].filter(Boolean) );
         }
-        axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-            if (res.data.text) {
-              setEmptyText(res.data.text.before);
-              setFree(res.data.text.freeShippin);
-              setMoreAfter(res.data.text.after);
-              setMoreBefore(res.data.text.before);
-            }
-          });
-      });
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-        if (res.data.announcement) {
-          setProducts([...res.data.announcement.products].filter(Boolean) );
+        if (res.data.campaign.text) {
+          setCampaign("Shipping")
+          setEmptyText(res.data.campaign.text.before);
+          setFree(res.data.campaign.text.freeShippin);
+          setMoreAfter(res.data.campaign.text.after);
+          setMoreBefore(res.data.campaign.text.before);
         }
-      });
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-        if (res.data.countDown) {
-          let date = res.data.countDown.date
+        if (res.data.campaign.countDown) {
+          setCampaign("CountDown")
+          let date = res.data.campaign.countDown.date
           let countDownDate = new Date(date).getTime();
           let now = new Date().getTime();
           let distance = countDownDate - now;
-          setCountDownText(res.data.countDown.text)
-          setCountDownFinished(res.data.countDown.finishText)
+          setCountDownText(res.data.campaign.countDown.text)
+          setCountDownFinished(res.data.campaign.countDown.finishText)
           setTimeRemaining(distance/1000)
         }
+        if (res.data.campaign.link) {
+          setCampaign("Link")
+          setLink(res.data.campaign.link.link)
+          setLinkText(res.data.campaign.link.linkText)
+        }
       });
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-      if (res.data.link) {
-        setLink(res.data.link.link)
-        setLinkText(res.data.link.linkText)
-      }
-    });
+    }
+  }, [shop]);
+  useEffect(() => {
+    getUrl()
+    deleteData();
+    fetchShippingRate();
   }, []);
-  console.log(campaign)
   useEffect(() => {
     sendShippingRates();
   }, [shippingRate]);
-
   useEffect(() => {
     if (checked === "left") {
-      axioss
-        .delete(
-          "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json"
-        )
-        .then((res) => console.log(res))
-        .then(() => {
-          axioss
-            .post(
-              "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json",
-              { checked: checked }
-            )
-            .then((res) => console.log(res));
-        });
+      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) =>res);
     } else if (checked === "right") {
-      axioss
-        .delete(
-          "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json"
-        )
-        .then((res) => console.log(res))
-        .then(() => {
-          axioss
-            .post(
-              "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json",
-              { checked: checked }
-            )
-            .then((res) => console.log(res));
-        });
+       axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) => res);
     } else {
-      axioss
-        .delete(
-          "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json"
-        )
-        .then((res) => console.log(res))
-        .then(() => {
-          axioss
-            .post(
-              "https://cleverchoicetopbar-default-rtdb.firebaseio.com/cart.json",
-              { checked: checked }
-            )
-            .then((res) => console.log(res));
-        });
-    }
+      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) => res);
+      }
   }, [checked]);
-
   async function fetchShippingRate() {
-    const { data } = await axios.get(
-      `https://nice-dolphin-78.loca.lt/script_tag/ship`
-    );
-    setShippingRate(
-      Number(
-        data.details.body.shipping_zones[1].price_based_shipping_rates[0].price
-      )
-    );
+    const { data } = await axios.get(`https://top-bar-cc.herokuapp.com//script_tag/ship`);
+    setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
+  }
+  async function getUrl() {
+    const { data } = await axios.get(`https://top-bar-cc.herokuapp.com//script_tag/shop`);
+    setShop(data.details.domain.replaceAll(".", "_"))
   }
   const deleteData = () => {
-    axioss
-      .delete(
-        "https://cleverchoicetopbar-default-rtdb.firebaseio.com/rates.json"
-      )
-      .then((res) => console.log(res));
+    axioss.delete(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`).then((res) => res);
   };
   const sendShippingRates = () => {
     const params = {
       rates: shippingRate,
     };
-    // console.log(params)
-    axioss
-      .post(
-        "https://cleverchoicetopbar-default-rtdb.firebaseio.com/rates.json",
-        params
-      )
-      .then((res) => console.log(res));
+    axioss.post(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`, params).then((res) =>  res);
   };
   return (
     <React.Fragment>
@@ -180,6 +127,7 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
+          shop = {shop}
           shippingFocused = {shippingFocused}
           setShippingFocused = {(focus)=>setShippingFocused(focus)}
           link = {link}
@@ -215,7 +163,7 @@ function index({ shopOrigin }) {
           setChecked={(newChecked) => setChecked(newChecked)}
         />
       </div>
-      <Install />
+      <Install/>
     </React.Fragment>
   );
 }

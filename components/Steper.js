@@ -31,7 +31,8 @@ const  StepperComponent = (props) => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <TopText shippingFocused = {props.shippingFocused}
+        return <TopText shop = {props.shop}
+                        shippingFocused = {props.shippingFocused}
                         setShippingFocused = {(focus)=>props.setShippingFocused(focus)}
                         link = {props.link}
                         setLink = {(link)=> props.setLink(link)}
@@ -57,16 +58,14 @@ const  StepperComponent = (props) => {
                         countDownText = {props.countDownText}
                         setCountDownText = {(text)=> props.setCountDownText(text)}/>
       case 1:
-        return <Colors  value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
+        return <Colors shop = {props.shop} value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
               ;
       case 2:
         return <Animations checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)}/>
-
       default:
         return 'Unknown step';
     }
   }
-
   const classes = useStyles();
   // const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
@@ -75,33 +74,27 @@ const  StepperComponent = (props) => {
   const isStepOptional = (step) => {
     return step === 1;
   };
-
   const isStepSkipped = (step) => {
     return skipped.has(step);
   };
-
   const handleNext = () => {
     let newSkipped = skipped;
     if (isStepSkipped(props.activeStep)) {
       newSkipped = new Set(newSkipped.values());
       newSkipped.delete(props.activeStep);
     }
-
     props.setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped(newSkipped);
   };
-
   const handleBack = () => {
     props.setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
   const handleSkip = () => {
     if (!isStepOptional(props.activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
       throw new Error("You can't skip a step that isn't optional.");
     }
-
     props.setActiveStep((prevActiveStep) => prevActiveStep + 1);
     setSkipped((prevSkipped) => {
       const newSkipped = new Set(prevSkipped.values());
@@ -109,11 +102,9 @@ const  StepperComponent = (props) => {
       return newSkipped;
     });
   };
-
   const handleReset = () => {
     props.setActiveStep(0);
   };
-
   return (
     <div className={classes.root}>
       <Stepper activeStep={props.activeStep}>

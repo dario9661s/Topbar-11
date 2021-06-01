@@ -12,8 +12,8 @@ const  Shipping = (props) => {
         products: props.products
       }
     }
-    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res)).then(() => {
-      axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then(res => {
+    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then(res => console.log(res)).then(() => {
+      axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`).then(res => {
         if (res.data) {
           props.setProducts(res.data.announcement.products)
         }

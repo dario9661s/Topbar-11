@@ -12,10 +12,9 @@ function install() {
   const titleDescription = isInstalled ? "Uninstall" : "Install";
   const bodyDescription = isInstalled ? "installed" : "uninstalled";
   const [ship, setSHip] = useState(null);
-  console.log(scriptTagId);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://nice-dolphin-78.loca.lt/script_tag/all`
+      `https://top-bar-cc.herokuapp.com//script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,7 +25,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://nice-dolphin-78.loca.lt/script_tag/ship`
+      `https://top-bar-cc.herokuapp.com//script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -36,12 +35,11 @@ function install() {
   }, []);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://nice-dolphin-78.loca.lt/script_tag`);
+      axios.post(`https://top-bar-cc.herokuapp.com//script_tag`);
     } else {
       axios.delete(
-        `https://nice-dolphin-78.loca.lt/script_tag/?id=${scriptTagId}`
+        `https://top-bar-cc.herokuapp.com//script_tag/?id=${scriptTagId}`
       );
-      // https://wicked-eel-96.loca.lt
     }
     setIsInstalled((oldValue) => !oldValue);
   }

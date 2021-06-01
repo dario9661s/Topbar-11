@@ -1,9 +1,8 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback} from "react";
 import axioss from "axios";
 import {TextField, FormLayout, Button, Heading} from "@shopify/polaris";
 
 const  Shipping = (props) => {
-
   const sendText = () => {
     let data = {
       text: {
@@ -13,7 +12,7 @@ const  Shipping = (props) => {
         freeShippin: props.free
       }
     }
-    axioss.put("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json", data).then(res => console.log(res))
+    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then(res => console.log(res))
   }
   const handleEmptyChange = useCallback((value) => props.setEmptyText(value), []);
   const handleMoreBeforeChange = useCallback((value) => props.setMoreBefore(value), []);
@@ -23,7 +22,6 @@ const  Shipping = (props) => {
         <FormLayout>
           <Heading element="h1">Top Bar Text</Heading>
           <TextField
-            onBlur={()=>props.setShippingFocused(null)}
             onFocus={()=>props.setShippingFocused("empty")}
             value={props.emptyText}
             onChange={handleEmptyChange}
@@ -32,7 +30,6 @@ const  Shipping = (props) => {
           />
           <div className="MoreTextContainer">
             <TextField
-              onBlur={()=>props.setShippingFocused(null)}
               onFocus={()=>props.setShippingFocused("more")}
               value={props.moreBefore}
               onChange={handleMoreBeforeChange}
@@ -42,7 +39,6 @@ const  Shipping = (props) => {
             <p>User cart value</p>
             <TextField
               onFocus={()=>props.setShippingFocused("more")}
-              onBlur={()=>props.setShippingFocused(null)}
               value={props.moreAfter}
               onChange={handleMoreAfterChange}
               type="text"
@@ -51,7 +47,6 @@ const  Shipping = (props) => {
           </div>
           <TextField
             onFocus={()=>props.setShippingFocused("free")}
-            onBlur={()=>props.setShippingFocused(null)}
             value={props.free}
             onChange={handleFreeChange}
             type="text"

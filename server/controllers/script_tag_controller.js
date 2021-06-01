@@ -35,9 +35,7 @@ export async function getAllScriptTags(client, src) {
 
 export async function fetchShipping(client, src) {
     if (!client) {
-      console.error(
-        "cant fech"
-      );
+      console.error("cant fech");
       return;
     }
     const result = await client.get({
@@ -45,6 +43,13 @@ export async function fetchShipping(client, src) {
     });
 
     return result;
+}
+export async function fetchShopUrl(client, src) {
+  if (!client) {
+    console.error("cant fech");
+    return;
+  }
+  return client;
 }
 
 export async function deleteScriptTagById(client, id) {

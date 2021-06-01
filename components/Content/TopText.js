@@ -8,15 +8,19 @@ import axioss from "axios";
 
 const TopText = (props) => {
   useEffect(() => {
-    axioss.get("https://cleverchoicetopbar-default-rtdb.firebaseio.com/campaign.json").then((res) => {
-      if (res.data.link) {
-        props.setCampaign("Link")
-      } else if (res.data.countDown){
-        props.setCampaign("CountDown")
-      } else if (res.data.announcement){
-        props.setCampaign("Announcment")
-      } else if (res.data.text){
-        props.setCampaign("Shipping")
+    axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}.json`).then((res) => {
+      if(props.shop){
+        console.log(res.data)
+        if (res.data.campaign.link) {
+          props.setCampaign("Link")
+        } else if (res.data.campaign.countDown){
+          props.setCampaign("CountDown")
+        } else if (res.data.campaign.announcement){
+          props.setCampaign("Announcment")
+          console.log("adasdasdjadndnja")
+        } else if (res.data.campaign.text){
+          props.setCampaign("Shipping")
+        }
       }
     });
   }, []);
@@ -28,6 +32,7 @@ const TopText = (props) => {
       />
       {props.campaign === "Shipping" ? (
         <Shipping
+          shop = {props.shop}
           shippingFocused = {props.shippingFocused}
           setShippingFocused = {(focus)=>props.setShippingFocused(focus)}
           emptyText={props.emptyText}
@@ -41,6 +46,7 @@ const TopText = (props) => {
         />
       ) : props.campaign === "Announcment" ? (
         <Announcment
+          shop = {props.shop}
           products={props.products}
           setProducts={(prod) => props.setProducts(prod)}
           setAnnouncment={props.setAnnouncment}
@@ -48,6 +54,7 @@ const TopText = (props) => {
         />
       ) : props.campaign === "CountDown" ? (
         <CountDown
+          shop = {props.shop}
           countDownFinished = {props.countDownFinished}
           setCountDownFinished = {(cdf)=>props.setCountDownFinished(cdf)}
           countDownText = {props.countDownText}
@@ -55,6 +62,7 @@ const TopText = (props) => {
           setTimeRemaining={(time)=> {props.setTimeRemaining(time)}} />
       ) : props.campaign === "Link" ? (
         <Link
+          shop = {props.shop}
           link = {props.link}
           setLink = {(link)=> props.setLink(link)}
           linkText = {props.linkText}

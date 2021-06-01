@@ -5,9 +5,7 @@ import {Checkbox, Heading, RadioButton, Stack} from "@shopify/polaris";
 const  SizeChanger = (props) => {
 
   useEffect(() => {
-    axioss.delete("https://cleverchoicetopbar-default-rtdb.firebaseio.com/size.json").then(res=>console.log(res)).then(()=>{
-      axioss.post("https://cleverchoicetopbar-default-rtdb.firebaseio.com/size.json", {size :props.value}).then(res=>console.log(res))
-    })
+      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/size.json`, {size :props.value}).then(res=>console.log(res))
   }, [props.value]);
 
   const handleChange = useCallback(
