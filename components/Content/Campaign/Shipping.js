@@ -20,7 +20,6 @@ const  Shipping = (props) => {
   const handleFreeChange = useCallback((value) => props.setFree(value), []);
   return (
         <FormLayout>
-          <Heading element="h1">Top Bar Text</Heading>
           <TextField
             onFocus={()=>props.setShippingFocused("empty")}
             value={props.emptyText}

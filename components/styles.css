@@ -3,6 +3,17 @@
   margin: auto;
 
 }
+.NextBackBtns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+.MuiButton-containedPrimary{
+  width: 100px;
+  height: 30px;
+}
 .MuiStep-root {
   cursor:pointer !important;
 }
@@ -17,9 +28,32 @@
   display: flex;
   flex-direction: row;
 }
-.SelectCampaignContainer {
-  width: 45%;
-  margin: 30px;
+.CampaignBtnActive svg {
+  margin-left: 10px;
+}
+.CampaignBtn{
+  display: flex;
+  align-items: center;
+
+  width: 90%;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: rgba(86, 86, 86, 0.49);
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+}
+.CampaignBtnActive{
+  display: flex;
+  align-items: center;
+
+  width: 90%;
+  color: white;
+  font-weight: bold;
+  padding: 10px 10px;
+  border-radius: 5px;
+  background-color: rgba(82, 117, 212, 0.77);
+  cursor: pointer;
 }
 .AnnouncmentContainer ul {
   margin: 20px;
@@ -102,6 +136,9 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+.MuiStepper-root{
+  margin-bottom: 40px!important;
 }
 .background{
   width: 100%;

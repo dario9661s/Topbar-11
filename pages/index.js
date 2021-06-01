@@ -88,11 +88,11 @@ function index({ shopOrigin }) {
       }
   }, [checked]);
   async function fetchShippingRate() {
-    const { data } = await axios.get(`https://top-bar-cc.herokuapp.com/script_tag/ship`);
+    const { data } = await axios.get(`https://modern-catfish-10.loca.lt/script_tag/ship`);
     setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
   }
   async function getUrl() {
-    const { data } = await axios.get(`https://top-bar-cc.herokuapp.com/script_tag/shop`);
+    const { data } = await axios.get(`https://modern-catfish-10.loca.lt/script_tag/shop`);
     setShop(data.details.domain.replaceAll(".", "_"))
   }
   const deleteData = () => {

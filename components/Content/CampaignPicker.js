@@ -1,29 +1,28 @@
-import React, { useCallback } from "react";
-import { Select } from "@shopify/polaris";
-
+import React from "react";
+import { Stack } from "@shopify/polaris";
+import CheckIcon from '@material-ui/icons/Check';
 
 export default function SimpleListMenu(props) {
-  const handleSelectChange = useCallback(
-    (value) => props.setCampaign(value),
-    []
-  );
+
+  const handleSelectChange = (btn)=>{
+     props.setCampaign(btn)
+  }
 
   const options = [
-    { label: "Shipping", value: "Shipping" },
-    { label: "Announcment", value: "Announcment" },
-    { label: "Count Down Timer", value: "CountDown" },
-    { label: "Custom text", value: "Custom" },
     { label: "Link", value: "Link" },
+    { label: "Shipping", value: "Shipping" },
+    { label: "Announcement", value: "Announcment" },
+    { label: "Count Down Timer", value: "CountDown" },
   ];
 
   return (
-    <div className="SelectCampaignContainer">
-      <Select
-        label="Select Campaign"
-        options={options}
-        onChange={handleSelectChange}
-        value={props.campaign}
-      />
-    </div>
+    <Stack vertical={true}>
+      {options.map((btn,i)=> {
+        return <div  className={props.campaign === btn.value? "CampaignBtnActive" : "CampaignBtn" } onClick={()=>handleSelectChange(btn.value)}>
+          {btn.label}
+          {props.campaign === btn.value? <CheckIcon/> : null}
+        </div>
+      })}
+    </Stack>
   );
 }

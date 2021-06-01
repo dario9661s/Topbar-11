@@ -11,9 +11,9 @@ import TopText from "../components/Content/TopText"
 
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   width: '100%',
-  // },
+  root: {
+    marginBottom: "50px",
+  },
   // button: {
   //   marginRight: theme.spacing(1),
   // },
@@ -137,7 +137,7 @@ const  StepperComponent = (props) => {
         ) : (
           <div>
             <div className={classes.instructions}>{getStepContent(props.activeStep)}</div>
-            <div>
+            <div className="NextBackBtns">
               <Button disabled={props.activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>

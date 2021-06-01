@@ -45,7 +45,6 @@ async function uploadAssetTheme(axios, id, page, pageName) {
   await axios.put(`/themes/${id}/assets.json`, body);
   console.log(`Upload page ${pageName}`);
 }
-
 async function getAssetThemeLiquid(id, axios) {
   const { data } = await axios.get(
     `/themes/${id}/assets.json?asset[key]=layout/theme.liquid`
@@ -66,7 +65,6 @@ async function getAssetThemeLiquid(id, axios) {
   );
   return newPage;
 }
-
 async function getThemeId(axios) {
   const { data } = await axios.get("/themes.json");
   console.log("Themes found: ", data);
