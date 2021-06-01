@@ -35,10 +35,10 @@ function install() {
   }, []);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://top-bar-cc.herokuapp.com//script_tag`);
+      axios.post(`https://top-bar-cc.herokuapp.com/script_tag`);
     } else {
       axios.delete(
-        `https://top-bar-cc.herokuapp.com//script_tag/?id=${scriptTagId}`
+        `https://top-bar-cc.herokuapp.com/script_tag/?id=${scriptTagId}`
       );
     }
     setIsInstalled((oldValue) => !oldValue);
