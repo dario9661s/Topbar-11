@@ -23,6 +23,7 @@ function install() {
     }
   }
 
+  console.log(scriptTagId)
   async function fetch() {
     const { data } = await axios.get(
       `https://top-bar-cc.herokuapp.com/script_tag/ship`
@@ -44,7 +45,7 @@ function install() {
     setIsInstalled((oldValue) => !oldValue);
   }
 
-  // console.log(isInstalled);
+  console.log(isInstalled);
   return (
     // <div className="Floating">
     //   <Page>
