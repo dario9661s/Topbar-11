@@ -29,7 +29,7 @@ function index({ shopOrigin }) {
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
   const [shop, setShop] = useState("");
-
+  console.log(shop)
   useEffect(() => {
     if(shop){
       axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`).then((res) => {
