@@ -14,7 +14,7 @@ function install() {
   const [ship, setSHip] = useState(null);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://top-bar-cc.herokuapp.com//script_tag/all`
+      `https://top-bar-cc.herokuapp.com/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -25,7 +25,7 @@ function install() {
 
   async function fetch() {
     const { data } = await axios.get(
-      `https://top-bar-cc.herokuapp.com//script_tag/ship`
+      `https://top-bar-cc.herokuapp.com/script_tag/ship`
     );
     setSHip(data.details);
   }
