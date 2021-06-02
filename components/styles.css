@@ -1,8 +1,8 @@
 .background p {
   color: white;
   margin: auto;
-
 }
+
 .NextBackBtns {
   width: 100%;
   display: flex;
@@ -10,12 +10,26 @@
   align-items: center;
   margin-top: 40px;
 }
-.MuiButton-containedPrimary{
+.CartValue {
+  width: 100%;
+  height: 35px;
+  background-color: rgba(82, 117, 212, 0.77);
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+.CartValue p {
+  font-weight: bold;
+}
+.MuiButton-containedPrimary {
   width: 100px;
   height: 30px;
 }
 .MuiStep-root {
-  cursor:pointer !important;
+  cursor: pointer !important;
 }
 .MuiStepLabel-iconContainer svg {
   width: 25px;
@@ -24,14 +38,14 @@
 .MuiTypography-body2 {
   font-size: 14px !important;
 }
-.AnnouncmentContainer{
+.AnnouncmentContainer {
   display: flex;
   flex-direction: row;
 }
 .CampaignBtnActive svg {
   margin-left: 10px;
 }
-.CampaignBtn{
+.CampaignBtn {
   display: flex;
   align-items: center;
 
@@ -43,7 +57,7 @@
   color: white;
   font-weight: 600;
 }
-.CampaignBtnActive{
+.CampaignBtnActive {
   display: flex;
   align-items: center;
 
@@ -58,10 +72,10 @@
 .AnnouncmentContainer ul {
   margin: 20px;
 }
-.AnnouncmenttextContainer{
+.AnnouncmenttextContainer {
   margin: 0 20px;
 }
-.TopTextContainer{
+.TopTextContainer {
   margin: 0;
   width: 100%;
   display: flex;
@@ -75,13 +89,13 @@
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
 
-.animation{
+.animation {
   animation: slide-left 7s infinite;
 }
-.animationRight{
+.animationRight {
   animation: slide-right 7s infinite;
 }
-.none{
+.none {
   animation: none;
   margin: auto;
 }
@@ -96,10 +110,10 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   align-items: center;
   padding-top: 80px;
 }
-.Polaris-Stack .Polaris-Stack--vertical{
+.Polaris-Stack .Polaris-Stack--vertical {
   margin-top: 20px !important;
 }
-.ColorText{
+.ColorText {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -108,19 +122,19 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 .ColorText {
   margin-right: 30px;
 }
-.ColorContainer{
-  display:flex;
-  justify-content:center;
-  width:100%;
+.ColorContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
   height: 450px;
   align-items: center;
   padding-bottom: 60px;
 }
-.react-datepicker-popper{
-  z-index:99999 !important; ;
+.react-datepicker-popper {
+  z-index: 99999 !important;
 }
 
-.Floating{
+.Floating {
   position: absolute;
   top: 80%;
   right: 10%;
@@ -131,16 +145,16 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 .Floating h3 {
   margin-right: 10px;
 }
-.MoreTextContainer{
+.MoreTextContainer {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.MuiStepper-root{
-  margin-bottom: 40px!important;
+.MuiStepper-root {
+  margin-bottom: 40px !important;
 }
-.background{
+.background {
   width: 100%;
   display: flex;
   align-items: center;
@@ -148,7 +162,7 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   overflow: hidden;
 }
 
-.Content{
+.Content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -224,7 +238,6 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   }
 }
 
-
 @-webkit-keyframes vibrate-1 {
   0% {
     -webkit-transform: translate(0);
@@ -279,12 +292,20 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 }
 
 @keyframes slide-left {
-  0% { transform: translateX(-10%) }
-  100% { transform: translateX(110%) }
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
 }
 @keyframes slide-right {
-  0% { transform: translateX(110%) }
-  100% { transform: translateX(-20%) }
+  0% {
+    transform: translateX(110%);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
 }
 @-webkit-keyframes heartbeat {
   from {
@@ -354,7 +375,7 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
     animation-timing-function: ease-out;
   }
 }
-.TimerContainer{
+.TimerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -365,7 +386,6 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 }
 /*Clock*/
 .TimerContainer span {
-
   color: white;
   font-weight: bold;
   font-size: 20px;

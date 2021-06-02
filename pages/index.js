@@ -29,49 +29,55 @@ function index({ shopOrigin }) {
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
   const [shop, setShop] = useState("");
-  console.log(shop)
+  console.log(shop);
   useEffect(() => {
-    if(shop){
-      axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`).then((res) => {
-        if(res.data.color){
-          setColor(res.data.color.color.hex);
-        }
-        if (res.data.cart) {
-          const animation = Object.values(res.data)[0].checked;
-          setChecked(animation);
-        }
-        if (res.data.campaign.announcement) {
-          setCampaign("Announcment")
-          setAnnouncment(res.data.campaign.announcement.announcementText);
-          setProducts([...res.data.campaign.announcement.products].filter(Boolean) );
-        }
-        if (res.data.campaign.text) {
-          setCampaign("Shipping")
-          setEmptyText(res.data.campaign.text.before);
-          setFree(res.data.campaign.text.freeShippin);
-          setMoreAfter(res.data.campaign.text.after);
-          setMoreBefore(res.data.campaign.text.before);
-        }
-        if (res.data.campaign.countDown) {
-          setCampaign("CountDown")
-          let date = res.data.campaign.countDown.date
-          let countDownDate = new Date(date).getTime();
-          let now = new Date().getTime();
-          let distance = countDownDate - now;
-          setCountDownText(res.data.campaign.countDown.text)
-          setCountDownFinished(res.data.campaign.countDown.finishText)
-          setTimeRemaining(distance/1000)
-        }
-        if (res.data.campaign.link) {
-          setCampaign("Link")
-          setLink(res.data.campaign.link.link)
-          setLinkText(res.data.campaign.link.linkText)
-        }
-      });
+    if (shop) {
+      axioss
+        .get(
+          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`
+        )
+        .then((res) => {
+          if (res.data.color) {
+            setColor(res.data.color.color.hex);
+          }
+          if (res.data.cart) {
+            const animation = Object.values(res.data)[0].checked;
+            setChecked(animation);
+          }
+          if (res.data.campaign.announcement) {
+            setCampaign("Announcment");
+            setAnnouncment(res.data.campaign.announcement.announcementText);
+            setProducts(
+              [...res.data.campaign.announcement.products].filter(Boolean)
+            );
+          }
+          if (res.data.campaign.text) {
+            setCampaign("Shipping");
+            setEmptyText(res.data.campaign.text.before);
+            setFree(res.data.campaign.text.freeShippin);
+            setMoreAfter(res.data.campaign.text.after);
+            setMoreBefore(res.data.campaign.text.before);
+          }
+          if (res.data.campaign.countDown) {
+            setCampaign("CountDown");
+            let date = res.data.campaign.countDown.date;
+            let countDownDate = new Date(date).getTime();
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+            setCountDownText(res.data.campaign.countDown.text);
+            setCountDownFinished(res.data.campaign.countDown.finishText);
+            setTimeRemaining(distance / 1000);
+          }
+          if (res.data.campaign.link) {
+            setCampaign("Link");
+            setLink(res.data.campaign.link.link);
+            setLinkText(res.data.campaign.link.linkText);
+          }
+        });
     }
   }, [shop]);
   useEffect(() => {
-    getUrl()
+    getUrl();
     deleteData();
     fetchShippingRate();
   }, []);
@@ -80,37 +86,69 @@ function index({ shopOrigin }) {
   }, [shippingRate]);
   useEffect(() => {
     if (checked === "left") {
-      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) =>res);
+      axioss
+        .put(
+          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
+          { checked: checked }
+        )
+        .then((res) => res);
     } else if (checked === "right") {
-       axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) => res);
+      axioss
+        .put(
+          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
+          { checked: checked }
+        )
+        .then((res) => res);
     } else {
-      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`, { checked: checked }).then((res) => res);
-      }
+      axioss
+        .put(
+          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
+          { checked: checked }
+        )
+        .then((res) => res);
+    }
   }, [checked]);
   async function fetchShippingRate() {
-    const { data } = await axios.get(`https://modern-catfish-10.loca.lt/script_tag/ship`);
-    setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
+    const { data } = await axios.get(
+      `https://fast-squid-4.loca.lt/script_tag/ship`
+    );
+    setShippingRate(
+      Number(
+        data.details.body.shipping_zones[1].price_based_shipping_rates[0].price
+      )
+    );
   }
   async function getUrl() {
-    const { data } = await axios.get(`https://modern-catfish-10.loca.lt/script_tag/shop`);
-    setShop(data.details.domain.replaceAll(".", "_"))
+    const { data } = await axios.get(
+      `https://fast-squid-4.loca.lt/script_tag/shop`
+    );
+    setShop(data.details.domain.replaceAll(".", "_"));
   }
   const deleteData = () => {
-    axioss.delete(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`).then((res) => res);
+    axioss
+      .delete(
+        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`
+      )
+      .then((res) => res);
   };
   const sendShippingRates = () => {
     const params = {
       rates: shippingRate,
     };
-    axioss.post(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`, params).then((res) =>  res);
+    axioss
+      .post(
+        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`,
+        params
+      )
+      .then((res) => res);
   };
   return (
     <React.Fragment>
       <Preview
-        linkText = {linkText}
-        shippingFocused = {shippingFocused}
-        countDownFinished = {countDownFinished}
-        countDownText = {countDownText}
+        linkText={linkText}
+        shippingFocused={shippingFocused}
+        countDownFinished={countDownFinished}
+        countDownText={countDownText}
         timeRemaining={timeRemaining}
         announcment={announcment}
         text={{
@@ -127,18 +165,20 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
-          shop = {shop}
-          shippingFocused = {shippingFocused}
-          setShippingFocused = {(focus)=>setShippingFocused(focus)}
-          link = {link}
-          setLink = {(link)=> setLink(link)}
-          linkText = {linkText}
-          setLinkText = {(linkText)=> setLinkText(linkText)}
-          countDownFinished = {countDownFinished}
-          setCountDownFinished = {(cdf)=>setCountDownFinished(cdf)}
-          countDownText = {countDownText}
-          setCountDownText = {(text)=> setCountDownText(text)}
-          setTimeRemaining={(time)=> {setTimeRemaining(time)}}
+          shop={shop}
+          shippingFocused={shippingFocused}
+          setShippingFocused={(focus) => setShippingFocused(focus)}
+          link={link}
+          setLink={(link) => setLink(link)}
+          linkText={linkText}
+          setLinkText={(linkText) => setLinkText(linkText)}
+          countDownFinished={countDownFinished}
+          setCountDownFinished={(cdf) => setCountDownFinished(cdf)}
+          countDownText={countDownText}
+          setCountDownText={(text) => setCountDownText(text)}
+          setTimeRemaining={(time) => {
+            setTimeRemaining(time);
+          }}
           products={products}
           setProducts={(prod) => setProducts(prod)}
           emptyText={emptyText}
@@ -163,7 +203,7 @@ function index({ shopOrigin }) {
           setChecked={(newChecked) => setChecked(newChecked)}
         />
       </div>
-      <Install/>
+      <Install />
     </React.Fragment>
   );
 }
