@@ -3,20 +3,18 @@ import axioss from "axios";
 import {Checkbox, Heading, RadioButton, Stack} from "@shopify/polaris";
 
 const  SizeChanger = (props) => {
-
   useEffect(() => {
       axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/size.json`, {size :props.value}).then(res=>console.log(res))
   }, [props.value]);
-
   const handleChange = useCallback(
     (_checked, newValue) => props.setValue(newValue),
     [],
   );
-
   return (
     <div style={{marginTop:"30px"}}>
-      <Stack vertical>
-        <Heading element="h1">Size</Heading>
+      <Heading element="h1">Size</Heading>
+      <div style={{marginTop:"10px"}}></div>
+      <Stack>
         <RadioButton
           label="Large"
           checked={props.value === '50px'}

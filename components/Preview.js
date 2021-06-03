@@ -3,11 +3,12 @@ import Clock from "../components/Content/Campaign/CountDown/Clock"
 
 const  Preview = (props) => {
   let announcement = props.products.map((product) => {
+
     return <p
       className={props.checked === "left" ? "animation" : props.checked === "right" ? "animationRight" : props.checked === "pulse" ? "animationPulse" : props.checked === "vibrate" ? "vibrate-1" : props.checked === "jello" ? "jello-horizontal" : null}
-      style={props.checked === "left" || props.checked === "right" ? {flex: "1"} : null}
+      style={ props.checked === "left" || props.checked === "right" ? {flex: "1"} : null}
     >
-      { props.announcment + " " + product.title}
+      {props.announcment + " " + product.title}
     </p>
   })
   let shipping = <p
@@ -17,14 +18,17 @@ const  Preview = (props) => {
   </p>
   let link = <p
     className={props.checked === "left" ? "animation" : props.checked === "right" ? "animationRight" : props.checked === "pulse" ? "animationPulse" : props.checked === "vibrate" ? "vibrate-1" : props.checked === "jello" ? "jello-horizontal" : null}
-    style={props.checked === "left" || props.checked === "right" ? {flex: "1"} : null}>
+    style={ props.checked === "left" || props.checked === "right" ? {flex: "1"} : null}>
     {props.linkText}
   </p>
+  console.log(props.fontColor)
   return (
     <div className="background" style={{
       width: "100%",
+      color: props.fontColor,
       backgroundColor: props.color,
       height: props.value,
+      fontSize: props.fontSize,
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
@@ -32,7 +36,7 @@ const  Preview = (props) => {
       zIndex: "1000"
     }}>
       {props.campaign === "Announcment" ? announcement : props.campaign === "Shipping" ? shipping : props.campaign === "CountDown" ?
-        <Clock countDownText={props.countDownText} timeRemaining={props.timeRemaining}/> : props.campaign === "Link"? link : null}
+        <Clock checked = {props.checked}ountDownFinished = {props.countDownFinished} countDownFocus = {props.countDownFocus} countDownText={props.countDownText} timeRemaining={props.timeRemaining}/> : props.campaign === "Link"? link : null}
     </div>
   );
 }

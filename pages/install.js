@@ -14,7 +14,7 @@ function install() {
   const [ship, setSHip] = useState(null);
   async function fetchScriptTags() {
     const { data } = await axios.get(
-      `https://fast-squid-4.loca.lt/script_tag/all`
+      `https://sweet-frog-7.loca.lt/script_tag/all`
     );
     console.log("my initial script tag status: ", data);
     setIsInstalled(data.installed);
@@ -26,7 +26,7 @@ function install() {
   console.log(scriptTagId);
   async function fetch() {
     const { data } = await axios.get(
-      `https://fast-squid-4.loca.lt/script_tag/ship`
+      `https://sweet-frog-7.loca.lt/script_tag/ship`
     );
     setSHip(data.details);
   }
@@ -36,10 +36,10 @@ function install() {
   }, []);
   async function handleAction() {
     if (!isInstalled) {
-      axios.post(`https://fast-squid-4.loca.lt/script_tag`);
+      axios.post(`https://sweet-frog-7.loca.lt/script_tag`);
     } else {
       axios.delete(
-        `https://fast-squid-4.loca.lt/script_tag/?id=${scriptTagId}`
+        `https://sweet-frog-7.loca.lt/script_tag/?id=${scriptTagId}`
       );
     }
     setIsInstalled((oldValue) => !oldValue);

@@ -20,6 +20,7 @@ const CountDown = (props) => {
     start: new Date(Date.now()),
     end: new Date(Date.now()),
   });
+
   useEffect(() => {
     if (startDate) {
       const oneDay = 1000; // hours*minutes*seconds*milliseconds
@@ -29,13 +30,11 @@ const CountDown = (props) => {
       props.setTimeRemaining(diffDays);
     }
   }, [startDate]);
-
   const handleMonthChange = useCallback(
     (month, year) => setDate({ month, year }),
     []
   );
   console.log(startDate);
-
   const sendData = () => {
     const data = {
       countDown: {
@@ -44,12 +43,7 @@ const CountDown = (props) => {
         finishText: props.countDownFinished,
       },
     };
-    axioss
-      .put(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`,
-        data
-      )
-      .then((res) => console.log(res));
+    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then((res) => console.log(res));
   };
   const handleChangeCountDownFinished = useCallback(
     (value) => props.setCountDownFinished(value),
@@ -60,37 +54,41 @@ const CountDown = (props) => {
     []
   );
   return (
-    <FormLayout>
-      <DatePicker
-        disableDatesBefore={new Date(Date.now())}
-        month={month}
-        year={year}
-        onChange={setStartDate}
-        onMonthChange={handleMonthChange}
-        selected={selectedDates}
-      />
-      {/* <DatePicker
+    <div className="CampaignContainer">
+      <FormLayout>
+        <DatePicker
+          disableDatesBefore={new Date(Date.now())}
+          month={month}
+          year={year}
+          onChange={setStartDate}
+          onMonthChange={handleMonthChange}
+          selected={selectedDates}
+        />
+        {/* <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         minDate={Date.now()}
         placeholderText="Select a date after 5 days ago"
       /> */}
-      <TextField
-        value={props.countDownText}
-        onChange={handleChange}
-        type="text"
-        placeholder="Text before the countdown"
-      />
-      <TextField
-        value={props.countDownFinished}
-        onChange={handleChangeCountDownFinished}
-        type="text"
-        placeholder="Text displayed when the countdown is finished"
-      />
-      <Button onClick={() => sendData()} primary>
-        Save theme
-      </Button>
-    </FormLayout>
+        <TextField
+          label="Text before Timer"
+          onFocus={() => props.setCountDownFocus("timer")}
+          value={props.countDownText}
+          onChange={handleChange}
+          type="text"
+          placeholder="Sale!"
+        />
+        <TextField
+          label="Text displayed when the timer is finished"
+          onFocus={() => props.setCountDownFocus("finished")}
+          value={props.countDownFinished}
+          onChange={handleChangeCountDownFinished}
+          type="text"
+          placeholder="Timer finished!!!"
+        />
+        <Button onClick={() => sendData()} primary>Save Changes!</Button>
+      </FormLayout>
+    </div>
   );
 };
 export default CountDown;

@@ -18,7 +18,7 @@ export default function SimpleListMenu(props) {
   return (
     <Stack vertical={true}>
       {options.map((btn,i)=> {
-        return <div  className={props.campaign === btn.value? "CampaignBtnActive" : "CampaignBtn" } onClick={()=>handleSelectChange(btn.value)}>
+        return <div key={i}  className={props.campaign === btn.value? "CampaignBtnActive" : "CampaignBtn" } onClick={()=>handleSelectChange(btn.value)}>
           {btn.label}
           {props.campaign === btn.value? <CheckIcon/> : null}
         </div>

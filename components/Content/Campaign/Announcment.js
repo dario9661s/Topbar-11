@@ -50,62 +50,61 @@ const Shipping = (props) => {
     []
   );
   return (
-    <FormLayout>
-      <ResourcePicker
-        resourceType="Product"
-        showVariants={false}
-        open={open}
-        onCancel={() => setOpen(false)}
-        onSelection={(resources) => handleSelection(resources)}
-      />
-      <ResourceList
-        resourceName={{ singular: "customer", plural: "customers" }}
-        items={props.products}
-        renderItem={(item) => {
-          const { id, url, name, location } = item;
-          const media = (
-            <Thumbnail
-              source={item.images[0] ? item.images[0].originalSrc : ""}
-              alt={item.images[0] ? item.images[0].altText : ""}
-            />
-          );
-
-          return (
-            <ResourceItem
-              id={id}
-              url={url}
-              media={media}
-              accessibilityLabel={`View details for ${item.title}`}
-            >
-              <h3>
-                <TextStyle variation="strong">{item.title}</TextStyle>
-              </h3>
-              <div>{item.variants[0].price}</div>
-            </ResourceItem>
-          );
-        }}
-      />
-
-      {/* {props.products && props.products.map((product , i) => {
-            return <List.Item key = {i}>{product && product.title}</List.Item>
-          })} */}
-
-      <div style={{ height: "60px" }}>
-        <Button onClick={() => setOpen(true)}>Select New products</Button>
-      </div>
+    <div className="CampaignContainer">
       <FormLayout>
-        <TextField
-          label="Announcement text"
-          value={props.announcment}
-          onChange={handleEmptyChange}
-          type="text"
-          placeholder="Text displayed before item links"
+        <ResourcePicker
+          selectMultiple = {5}
+          resourceType="Product"
+          showVariants={false}
+          open={open}
+          onCancel={() => setOpen(false)}
+          onSelection={(resources) => handleSelection(resources)}
         />
-        <Button primary onClick={() => sendText()}>
-          Save Changes!
-        </Button>
+        <ResourceList
+          resourceName={{ singular: "customer", plural: "customers" }}
+          items={props.products}
+          renderItem={(item) => {
+            const { id, url } = item;
+            const media = (
+              <Thumbnail
+                source={item.images[0] ? item.images[0].originalSrc : ""}
+                alt={item.images[0] ? item.images[0].altText : ""}
+              />
+            );
+
+            return (
+              <ResourceItem
+                id={id}
+                url={url}
+                media={media}
+                accessibilityLabel={`View details for ${item.title}`}
+              >
+                <h3>
+                  <TextStyle variation="strong">{item.title}</TextStyle>
+                </h3>
+                <div>{item.variants[0].price}</div>
+              </ResourceItem>
+            );
+          }}
+        />
+        <div style={{ height: "60px" }}>
+          <Button onClick={() => setOpen(true)}>Select New products</Button>
+        </div>
+        <FormLayout>
+          <TextField
+            label="Announcement text"
+            value={props.announcment}
+            onChange={handleEmptyChange}
+            type="text"
+            placeholder="Text displayed before item links"
+          />
+          <Button primary onClick={() => sendText()}>
+            Save Changes!
+          </Button>
+        </FormLayout>
       </FormLayout>
-    </FormLayout>
+    </div>
+
   );
 };
 export default Shipping;

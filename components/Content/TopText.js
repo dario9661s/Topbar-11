@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Shipping from "./Campaign/Shipping";
-import { Layout, Card, Button, Heading } from "@shopify/polaris";
+import { Layout, Card } from "@shopify/polaris";
 import Announcment from "./Campaign/Announcment";
 import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
@@ -9,11 +9,7 @@ import axioss from "axios";
 
 const TopText = (props) => {
   useEffect(() => {
-    axioss
-      .get(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}.json`
-      )
-      .then((res) => {
+    axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}.json`).then((res) => {
         if (props.shop) {
           console.log(res.data);
           if (res.data.campaign.link) {
@@ -22,7 +18,6 @@ const TopText = (props) => {
             props.setCampaign("CountDown");
           } else if (res.data.campaign.announcement) {
             props.setCampaign("Announcment");
-            console.log("adasdasdjadndnja");
           } else if (res.data.campaign.text) {
             props.setCampaign("Shipping");
           }
@@ -78,6 +73,8 @@ const TopText = (props) => {
             />
           ) : props.campaign === "CountDown" ? (
             <CountDown
+              countDownFocus = {props.countDownFocus}
+              setCountDownFocus = {(fcs)=>props.setCountDownFocus(fcs)}
               shop={props.shop}
               countDownFinished={props.countDownFinished}
               setCountDownFinished={(cdf) => props.setCountDownFinished(cdf)}

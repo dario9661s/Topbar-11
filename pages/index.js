@@ -6,6 +6,7 @@ import { getSessionToken } from "@shopify/app-bridge-utils";
 import Preview from "../components/Preview";
 import { useAxios } from "../hooks/useAxios";
 import axioss from "axios";
+import { Loading, Frame } from "@shopify/polaris";
 
 function index({ shopOrigin }) {
   const app = useAppBridge();
@@ -26,22 +27,28 @@ function index({ shopOrigin }) {
   const [timeRemaining, setTimeRemaining] = useState(null);
   const [countDownText, setCountDownText] = useState("");
   const [countDownFinished, setCountDownFinished] = useState("");
-  const [linkText, setLinkText] = useState("");
+  const [countDownFocus, setCountDownFocus] = useState();
+  const [linkText, setLinkText] = useState("Start typing for preview");
   const [link, setLink] = useState("");
   const [shop, setShop] = useState("");
-  console.log(shop);
+  const [fontSize, setFontSize] = useState("");
+  const [fontColor, setFontColor] = useState("");
+
+
   useEffect(() => {
     if (shop) {
-      axioss
-        .get(
-          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`
-        )
-        .then((res) => {
+      axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`).then((res) => {
           if (res.data.color) {
             setColor(res.data.color.color.hex);
           }
+        if (res.data.fontSize) {
+          setFontSize(res.data.fontSize.fontSize);
+        }
+        if (res.data.fontColor) {
+          setFontColor(res.data.fontColor.fontColor);
+        }
           if (res.data.cart) {
-            const animation = Object.values(res.data)[0].checked;
+            const animation = res.data.cart.checked;
             setChecked(animation);
           }
           if (res.data.campaign.announcement) {
@@ -110,7 +117,7 @@ function index({ shopOrigin }) {
   }, [checked]);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://fast-squid-4.loca.lt/script_tag/ship`
+      `https://sweet-frog-7.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -120,7 +127,7 @@ function index({ shopOrigin }) {
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://fast-squid-4.loca.lt/script_tag/shop`
+      `https://sweet-frog-7.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }
@@ -136,15 +143,19 @@ function index({ shopOrigin }) {
       rates: shippingRate,
     };
     axioss
-      .post(
+      .put(
         `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`,
         params
       )
       .then((res) => res);
   };
   return (
-    <React.Fragment>
+    <Frame>
+      <Loading />
       <Preview
+        fontColor = {fontColor}
+        fontSize = {fontSize}
+        countDownFocus = {countDownFocus}
         linkText={linkText}
         shippingFocused={shippingFocused}
         countDownFinished={countDownFinished}
@@ -165,6 +176,12 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
+          fontColor = {fontColor}
+          setFontColor = {(clr)=>setFontColor(clr)}
+          fontSize = {fontSize}
+          setFontSize = {(size)=> setFontSize(size)}
+          countDownFocus = {countDownFocus}
+          setCountDownFocus = {(fcs)=>setCountDownFocus(fcs)}
           shop={shop}
           shippingFocused={shippingFocused}
           setShippingFocused={(focus) => setShippingFocused(focus)}
@@ -204,7 +221,7 @@ function index({ shopOrigin }) {
         />
       </div>
       <Install />
-    </React.Fragment>
+    </Frame>
   );
 }
 

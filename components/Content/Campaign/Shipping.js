@@ -33,43 +33,50 @@ const Shipping = (props) => {
   );
   const handleFreeChange = useCallback((value) => props.setFree(value), []);
   return (
-    <FormLayout>
-      <TextField
-        onFocus={() => props.setShippingFocused("empty")}
-        value={props.emptyText}
-        onChange={handleEmptyChange}
-        type="text"
-        placeholder="Text which is displayed when the cart is empty"
-      />
-      <FormLayout.Group>
+    <div className="CampaignContainer">
+      <FormLayout>
         <TextField
-          onFocus={() => props.setShippingFocused("more")}
-          value={props.moreBefore}
-          onChange={handleMoreBeforeChange}
+          label="Empty cart Text"
+          onFocus={() => props.setShippingFocused("empty")}
+          value={props.emptyText}
+          onChange={handleEmptyChange}
           type="text"
-          placeholder="Text displayed when the customer still doesnt have enough items in cart for free shipping "
+          placeholder="Cart is empty!"
         />
-        <div className="CartValue">
-          <p>User cart value</p>
-        </div>
-        <TextField
-          onFocus={() => props.setShippingFocused("more")}
-          value={props.moreAfter}
-          onChange={handleMoreAfterChange}
-          type="text"
-          placeholder="Text displayed when the customer still doesnt have enough items in cart for free shipping "
-        />
-      </FormLayout.Group>
+        <FormLayout.Group>
+          <TextField
+            label="Text before user cart value"
+            onFocus={() => props.setShippingFocused("more")}
+            value={props.moreBefore}
+            onChange={handleMoreBeforeChange}
+            type="text"
+            placeholder="Add more items"
+          />
+          <div className="CartValue">
+            <p>User cart value</p>
+          </div>
+          <TextField
+            label="Text after user cart value "
+            onFocus={() => props.setShippingFocused("more")}
+            value={props.moreAfter}
+            onChange={handleMoreAfterChange}
+            type="text"
+            placeholder="For free shipping"
+          />
+        </FormLayout.Group>
 
-      <TextField
-        onFocus={() => props.setShippingFocused("free")}
-        value={props.free}
-        onChange={handleFreeChange}
-        type="text"
-        placeholder="Text displayed when the customer is ready for discount"
-      />
-      <Button onClick={() => sendText()}>Change Text!</Button>
-    </FormLayout>
+        <TextField
+          label="Free shipping text"
+          onFocus={() => props.setShippingFocused("free")}
+          value={props.free}
+          onChange={handleFreeChange}
+          type="text"
+          placeholder="Free shiping!!!"
+        />
+        <Button primary onClick={() => sendText()}>Save Changes!</Button>
+      </FormLayout>
+    </div>
+
   );
 };
 export default Shipping;

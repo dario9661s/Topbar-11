@@ -31,7 +31,10 @@ const  StepperComponent = (props) => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <TopText shop = {props.shop}
+        return <TopText
+                        shop = {props.shop}
+                        countDownFocus = {props.countDownFocus}
+                        setCountDownFocus = {(fcs)=>props.setCountDownFocus(fcs)}
                         shippingFocused = {props.shippingFocused}
                         setShippingFocused = {(focus)=>props.setShippingFocused(focus)}
                         link = {props.link}
@@ -58,7 +61,15 @@ const  StepperComponent = (props) => {
                         countDownText = {props.countDownText}
                         setCountDownText = {(text)=> props.setCountDownText(text)}/>
       case 1:
-        return <Colors shop = {props.shop} value = {props.value} setValue = {(value)=>props.setValue(value)} color={props.color} setColor={(color) => props.setColor(color)}/>
+        return <Colors fontColor = {props.fontColor}
+                       setFontColor = {(clr)=>props.setFontColor(clr)}
+                       fontSize = {props.fontSize}
+                       setFontSize = {(size)=> props.setFontSize(size)}
+                       shop = {props.shop}
+                       value = {props.value}
+                       setValue = {(value)=>props.setValue(value)}
+                       color={props.color}
+                       setColor={(color) => props.setColor(color)}/>
               ;
       case 2:
         return <Animations checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)}/>
@@ -67,7 +78,6 @@ const  StepperComponent = (props) => {
     }
   }
   const classes = useStyles();
-  // const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
 
@@ -141,17 +151,6 @@ const  StepperComponent = (props) => {
               <Button disabled={props.activeStep === 0} onClick={handleBack} className={classes.button}>
                 Back
               </Button>
-              {isStepOptional(props.activeStep) && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleSkip}
-                  className={classes.button}
-                >
-                  Skip
-                </Button>
-              )}
-
               <Button
                 variant="contained"
                 color="primary"

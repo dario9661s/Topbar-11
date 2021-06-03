@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/Design/FontColor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Design/FontSize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Animations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Link.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/CampaignPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/CampaignPicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/TopText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/TopText.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Design/SizeChanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/SizeChanger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Preview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Steper.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Steper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
@@ -102,7 +112,7 @@
       <workItem from="1621855309768" duration="2297000" />
       <workItem from="1621859964521" duration="31305000" />
       <workItem from="1622021228263" duration="4511000" />
-      <workItem from="1622026981007" duration="86317000" />
+      <workItem from="1622026981007" duration="104085000" />
     </task>
     <servers />
   </component>
