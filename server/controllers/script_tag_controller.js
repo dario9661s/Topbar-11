@@ -32,17 +32,59 @@ export async function getAllScriptTags(client, src) {
   const matchSrc = result.body.script_tags.filter((tag) => tag.src === src);
   return matchSrc;
 }
-
 export async function fetchShipping(client, src) {
     if (!client) {
       console.error("cant fech");
       return;
     }
-    const result = await client.get({
-      path: "shipping_zones",
-    });
+    let namespace = 'cleverchoice';
+    let key = 'topbar';
 
-    return result;
+    const rates = await client.get({
+      path: "shipping_zones",
+    })
+
+    const data = {
+      rates:  rates.body.shipping_zones[1].price_based_shipping_rates[0].price
+    }
+
+    const rateMetafields = await client.get({
+      path: "metafields",
+    })
+
+    let appMetafield = {};
+    rateMetafields['metafields'] && rateMetafields['metafields'].forEach(metafield => {
+      if(metafield['namespace'] === namespace && metafield['key'] === key){
+        appMetafield = metafield;
+      }
+    })
+    if(appMetafield.id){
+      await client.put({
+        path: `metafields/${rateMetafields.id}`,
+        data : {
+          "metafield": {
+            "id": appMetafield.id,
+            "value": JSON.stringify(data),
+            "value_type": "json_string"
+          }
+        },
+        type: DataType.JSON,
+      })
+    } else {
+      await client.post({
+        path: "metafields",
+        data: {
+          "metafield": {
+            "namespace": namespace,
+            "key": key,
+            "value": JSON.stringify(data),
+            "value_type": "json_string"
+          }
+        },
+        type: DataType.JSON,
+      })
+    }
+    return rates;
 }
 export async function fetchShopUrl(client, src) {
   if (!client) {
@@ -51,7 +93,6 @@ export async function fetchShopUrl(client, src) {
   }
   return client;
 }
-
 export async function deleteScriptTagById(client, id) {
   if (!client) {
     console.error(
@@ -85,23 +126,18 @@ export async function deleteScriptTagById(client, id) {
   // console.log(result);
   // return result;
 // }
-
 function getBaseUrl(shop) {
   return `https://${shop}`;
 }
-
 function getAllScriptTagsUrl(shop) {
   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
 }
-
 function getScriptTagUrl(shop, id) {
   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
 }
-
 function getCreateScriptTagUrl(shop) {
   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
 }
-
 function getDeleteScriptTagUrl(shop, id) {
   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
 }

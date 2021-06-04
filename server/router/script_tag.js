@@ -4,7 +4,8 @@ import {
   deleteScriptTagById,
   getAllScriptTags,
   fetchShipping,
-  fetchShopUrl
+  fetchShopUrl,
+
 } from "../controllers/script_tag_controller";
 
 const router = new Router({ prefix: "/script_tag" });
