@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/server/controllers/campaign_controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/router/campaign.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Link.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/script_tag_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/script_tag_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/router/script_tag.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/script_tag.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +105,7 @@
       <workItem from="1621859964521" duration="31305000" />
       <workItem from="1622021228263" duration="4511000" />
       <workItem from="1622026981007" duration="105741000" />
-      <workItem from="1622798232533" duration="17215000" />
+      <workItem from="1622798232533" duration="41197000" />
     </task>
     <servers />
   </component>

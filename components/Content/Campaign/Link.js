@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import axioss from "axios";
+import {useAxios} from "../../../hooks/useAxios";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, FormLayout, Button } from "@shopify/polaris";
 
 const link = (props) => {
+  const [axios] = useAxios();
   const sendData = () => {
     const data = {
       link: {
@@ -11,7 +12,8 @@ const link = (props) => {
         linkText: props.linkText,
       },
     };
-    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then((res) => console.log(res));};
+    axios.put(`https://cowardly-ladybug-60.loca.lt/campaign?link=${props.link}&linkText=${props.linkText}`).then((res) => console.log(res));
+  };
   const changeLink = useCallback((value) => props.setLink(value), []);
   const changeText = useCallback((value) => props.setLinkText(value), []);
   return (

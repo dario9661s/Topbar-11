@@ -32,58 +32,63 @@ export async function getAllScriptTags(client, src) {
   const matchSrc = result.body.script_tags.filter((tag) => tag.src === src);
   return matchSrc;
 }
-export async function fetchShipping(client, src) {
+export async function fetchShipping(client) {
     if (!client) {
       console.error("cant fech");
       return;
     }
     let namespace = 'cleverchoice';
     let key = 'topbar';
-
     const rates = await client.get({
       path: "shipping_zones",
     })
-
     const data = {
       rates:  rates.body.shipping_zones[1].price_based_shipping_rates[0].price
     }
-
     const rateMetafields = await client.get({
       path: "metafields",
     })
-
+  rateMetafields && console.log(rateMetafields["body"]['metafields'].length)
     let appMetafield = {};
-    rateMetafields['metafields'] && rateMetafields['metafields'].forEach(metafield => {
+    rateMetafields["body"]['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
       if(metafield['namespace'] === namespace && metafield['key'] === key){
-        appMetafield = metafield;
+       appMetafield =  metafield
+
+      }
+      if(rateMetafields && rateMetafields["body"]['metafields'].length === 0){
+        console.log('1')
+        let value = JSON.parse(appMetafield.value);
+        value['rates'] = rates.body.shipping_zones[1].price_based_shipping_rates[0].price;
+        client.put({
+          path: `metafields/${appMetafield.id}`,
+          data : {
+            "metafield": {
+              "id": appMetafield.id,
+              "value": JSON.stringify(value),
+              "value_type": "json_string"
+            }
+          },
+          type: DataType.JSON,
+        })
+      } else {
+        console.log("2")
+        client.post({
+          path: "metafields",
+          data: {
+            "metafield": {
+              "namespace": namespace,
+              "key": key,
+              "value": JSON.stringify(data),
+              "value_type": "json_string"
+            }
+          },
+          type: DataType.JSON,
+        })
       }
     })
-    if(appMetafield.id){
-      await client.put({
-        path: `metafields/${rateMetafields.id}`,
-        data : {
-          "metafield": {
-            "id": appMetafield.id,
-            "value": JSON.stringify(data),
-            "value_type": "json_string"
-          }
-        },
-        type: DataType.JSON,
-      })
-    } else {
-      await client.post({
-        path: "metafields",
-        data: {
-          "metafield": {
-            "namespace": namespace,
-            "key": key,
-            "value": JSON.stringify(data),
-            "value_type": "json_string"
-          }
-        },
-        type: DataType.JSON,
-      })
-    }
+
+
+
     return rates;
 }
 export async function fetchShopUrl(client, src) {
@@ -126,18 +131,18 @@ export async function deleteScriptTagById(client, id) {
   // console.log(result);
   // return result;
 // }
-function getBaseUrl(shop) {
-  return `https://${shop}`;
-}
-function getAllScriptTagsUrl(shop) {
-  return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
-}
-function getScriptTagUrl(shop, id) {
-  return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
-}
-function getCreateScriptTagUrl(shop) {
-  return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
-}
-function getDeleteScriptTagUrl(shop, id) {
-  return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
-}
+// function getBaseUrl(shop) {
+//   return `https://${shop}`;
+// }
+// function getAllScriptTagsUrl(shop) {
+//   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
+// }
+// function getScriptTagUrl(shop, id) {
+//   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
+// }
+// function getCreateScriptTagUrl(shop) {
+//   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags.json`;
+// }
+// function getDeleteScriptTagUrl(shop, id) {
+//   return `${getBaseUrl(shop)}/admin/api/2021-01/script_tags/${id}.json`;
+// }

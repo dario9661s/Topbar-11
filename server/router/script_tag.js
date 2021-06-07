@@ -5,7 +5,7 @@ import {
   getAllScriptTags,
   fetchShipping,
   fetchShopUrl,
-
+  postLink
 } from "../controllers/script_tag_controller";
 
 const router = new Router({ prefix: "/script_tag" });
@@ -32,6 +32,13 @@ router.get("/shop", async (ctx) => {
     details: result,
   };
 });
+router.post("/link", async (ctx) => {
+  console.log(ctx.myClient)
+  const result  = await postLink(ctx.myClient);
+  ctx.body = {
+    details: result
+  }
+});
 router.post("/", async (ctx) => {
   console.log("create script tag", ctx.sesionFromToken);
   //const { shop, accessToken } = ctx.sesionFromToken;
@@ -44,6 +51,8 @@ router.delete("/", async (ctx) => {
   const result = await deleteScriptTagById(ctx.myClient, id);
   ctx.body = result;
 });
+
+
 //post with query
 // router.post("/colors", async (ctx) => {
 //   console.log(ctx.query)

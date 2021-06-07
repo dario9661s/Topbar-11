@@ -89,9 +89,6 @@ function index({ shopOrigin }) {
     fetchShippingRate();
   }, []);
   useEffect(() => {
-    sendShippingRates();
-  }, [shippingRate]);
-  useEffect(() => {
     if (checked === "left") {
       axioss
         .put(
@@ -117,13 +114,13 @@ function index({ shopOrigin }) {
   }, [checked]);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://calm-husky-100.loca.lt/script_tag/ship`
+      `https://cowardly-ladybug-60.loca.lt/script_tag/ship`
     );
     setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://calm-husky-100.loca.lt/script_tag/shop`
+      `https://cowardly-ladybug-60.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }
@@ -131,17 +128,6 @@ function index({ shopOrigin }) {
     axioss
       .delete(
         `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`
-      )
-      .then((res) => res);
-  };
-  const sendShippingRates = () => {
-    const params = {
-      rates: shippingRate,
-    };
-    axioss
-      .put(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`,
-        params
       )
       .then((res) => res);
   };
