@@ -6,13 +6,7 @@ import { TextField, FormLayout, Button } from "@shopify/polaris";
 const link = (props) => {
   const [axios] = useAxios();
   const sendData = () => {
-    const data = {
-      link: {
-        link: props.link,
-        linkText: props.linkText,
-      },
-    };
-    axios.put(`https://cowardly-ladybug-60.loca.lt/campaign?link=${props.link}&linkText=${props.linkText}`).then((res) => console.log(res));
+    axios.put(`https://blue-emu-26.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`).then((res) => console.log(res));
   };
   const changeLink = useCallback((value) => props.setLink(value), []);
   const changeText = useCallback((value) => props.setLinkText(value), []);

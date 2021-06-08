@@ -5,23 +5,25 @@ import Announcment from "./Campaign/Announcment";
 import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
 import Link from "./Campaign/Link";
-import axioss from "axios";
+import {useAxios} from "../../hooks/useAxios";
 
 const TopText = (props) => {
+  const [axios] = useAxios();
+
   useEffect(() => {
-    axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}.json`).then((res) => {
-        if (props.shop) {
+    axios.get(`https://blue-emu-26.loca.lt/campaign/metafields`).then((res) => {
+      let campaign = JSON.parse(res.data.body.metafields[0].value)
+      console.log(campaign)
           console.log(res.data);
-          if (res.data.campaign.link) {
+          if (campaign.link) {
             props.setCampaign("Link");
-          } else if (res.data.campaign.countDown) {
+          } else if (campaign.date) {
             props.setCampaign("CountDown");
-          } else if (res.data.campaign.announcement) {
+          } else if (campaign.products) {
             props.setCampaign("Announcment");
-          } else if (res.data.campaign.text) {
+          } else if (campaign.empty) {
             props.setCampaign("Shipping");
           }
-        }
       });
   }, []);
   return (

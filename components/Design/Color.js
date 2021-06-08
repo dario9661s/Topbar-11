@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {SketchPicker, SwatchesPicker} from "react-color";
-import axioss from "axios";
+import {useAxios} from "../../hooks/useAxios";
 import SizeChanger from "./SizeChanger";
 import {RadioButton, Stack, Heading, Layout, Card} from "@shopify/polaris";
 import CampaignPicker from "../Content/CampaignPicker";
@@ -12,10 +12,12 @@ import FontSize from "./FontSize";
 import FontColor from "./FontColor";
 
 const  Colors = (props) => {
+  const [axios] = useAxios();
   const [picker, setPicker] = useState("our")
   const changeColor =  (color) =>{
-    props.setColor(color.hex)
-      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/color.json`, {color:color}).then(res=>res)
+    // props.setColor(color.hex)
+    // console.log(color.hex)
+    //   axios.put(`https://blue-emu-26.loca.lt/design/color?color=${color.hex}`).then(res=>res)
   }
   const handleChange = useCallback(
     (_checked, newValue) => setPicker(newValue),

@@ -48,46 +48,60 @@ export async function fetchShipping(client) {
     const rateMetafields = await client.get({
       path: "metafields",
     })
-  rateMetafields && console.log(rateMetafields["body"]['metafields'].length)
-    let appMetafield = {};
-    rateMetafields["body"]['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
-      if(metafield['namespace'] === namespace && metafield['key'] === key){
-       appMetafield =  metafield
-
-      }
-      if(rateMetafields && rateMetafields["body"]['metafields'].length === 0){
-        console.log('1')
-        let value = JSON.parse(appMetafield.value);
-        value['rates'] = rates.body.shipping_zones[1].price_based_shipping_rates[0].price;
-        client.put({
-          path: `metafields/${appMetafield.id}`,
-          data : {
-            "metafield": {
-              "id": appMetafield.id,
-              "value": JSON.stringify(value),
-              "value_type": "json_string"
-            }
-          },
-          type: DataType.JSON,
-        })
-      } else {
+  console.log(rateMetafields['body']['metafields'])
+    if(rateMetafields['body']['metafields'].length === 0){
+      console.log("1")
+      client.post({
+            path: "metafields",
+            data: {
+              "metafield": {
+                "namespace": namespace,
+                "key": key,
+                "value": JSON.stringify(data),
+                "value_type": "json_string"
+              }
+            },
+            type: DataType.JSON,
+          })
+    } else {
+      let appMetafield = {};
+      rateMetafields["body"]['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
+        if(metafield['namespace'] === namespace && metafield['key'] === key){
+          appMetafield =  metafield
+        }
         console.log("2")
-        client.post({
-          path: "metafields",
-          data: {
-            "metafield": {
-              "namespace": namespace,
-              "key": key,
-              "value": JSON.stringify(data),
-              "value_type": "json_string"
-            }
-          },
-          type: DataType.JSON,
-        })
-      }
-    })
-
-
+        if(rateMetafields["body"]['metafields'].length !== 0){
+          console.log('1')
+          let value = JSON.parse(appMetafield.value);
+          value['rates'] = rates.body.shipping_zones[1].price_based_shipping_rates[0].price;
+          client.put({
+            path: `metafields/${appMetafield.id}`,
+            data : {
+              "metafield": {
+                "id": appMetafield.id,
+                "value": JSON.stringify(value),
+                "value_type": "json_string"
+              }
+            },
+            type: DataType.JSON,
+          })
+        // } else {
+        //   console.log("2")
+        //   client.post({
+        //     path: "metafields",
+        //     data: {
+        //       "metafield": {
+        //         "namespace": namespace,
+        //         "key": key,
+        //         "value": JSON.stringify(data),
+        //         "value_type": "json_string"
+        //       }
+        //     },
+        //     type: DataType.JSON,
+        //   })
+        }
+      })
+    }
 
     return rates;
 }

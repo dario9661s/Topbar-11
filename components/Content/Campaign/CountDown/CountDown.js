@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import axioss from "axios";
+import {useAxios} from "../../../../hooks/useAxios";
+
 import "react-datepicker/dist/react-datepicker.css";
 // import DatePicker from "react-datepicker"
 import {
@@ -11,6 +12,7 @@ import {
 } from "@shopify/polaris";
 
 const CountDown = (props) => {
+  const [axios] = useAxios();
   const [startDate, setStartDate] = useState(null);
   const [{ month, year }, setDate] = useState({
     month: new Date().getMonth(),
@@ -36,14 +38,7 @@ const CountDown = (props) => {
   );
   console.log(startDate);
   const sendData = () => {
-    const data = {
-      countDown: {
-        text: props.countDownText,
-        date: startDate.end,
-        finishText: props.countDownFinished,
-      },
-    };
-    axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`, data).then((res) => console.log(res));
+    axios.put(`https://blue-emu-26.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`).then((res) => console.log(res));
   };
   const handleChangeCountDownFinished = useCallback(
     (value) => props.setCountDownFinished(value),

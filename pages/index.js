@@ -28,7 +28,7 @@ function index({ shopOrigin }) {
   const [countDownText, setCountDownText] = useState("");
   const [countDownFinished, setCountDownFinished] = useState("");
   const [countDownFocus, setCountDownFocus] = useState();
-  const [linkText, setLinkText] = useState("Start typing for preview");
+  const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
   const [shop, setShop] = useState("");
   const [fontSize, setFontSize] = useState("");
@@ -85,7 +85,6 @@ function index({ shopOrigin }) {
   }, [shop]);
   useEffect(() => {
     getUrl();
-    deleteData();
     fetchShippingRate();
   }, []);
   useEffect(() => {
@@ -114,23 +113,16 @@ function index({ shopOrigin }) {
   }, [checked]);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://cowardly-ladybug-60.loca.lt/script_tag/ship`
+      `https://blue-emu-26.loca.lt/script_tag/ship`
     );
     setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://cowardly-ladybug-60.loca.lt/script_tag/shop`
+      `https://blue-emu-26.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }
-  const deleteData = () => {
-    axioss
-      .delete(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/rates.json`
-      )
-      .then((res) => res);
-  };
   return (
     <Frame>
       <Loading />

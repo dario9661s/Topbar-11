@@ -1,21 +1,13 @@
 import React, { useCallback } from "react";
-import axioss from "axios";
-import { TextField, FormLayout, Button, Heading } from "@shopify/polaris";
+import {useAxios} from "../../../hooks/useAxios";
+import { TextField, FormLayout, Button } from "@shopify/polaris";
 
 const Shipping = (props) => {
+  const [axios] = useAxios();
   const sendText = () => {
-    let data = {
-      text: {
-        empty: props.emptyText,
-        after: props.moreAfter,
-        before: props.moreBefore,
-        freeShippin: props.free,
-      },
-    };
-    axioss
+    axios
       .put(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`,
-        data
+        `https://blue-emu-26.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
       )
       .then((res) => console.log(res));
   };

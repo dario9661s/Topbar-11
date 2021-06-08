@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import axioss from "axios";
+import {useAxios} from "../../../hooks/useAxios";
 import {
   TextField,
   FormLayout,
@@ -12,31 +12,28 @@ import {
 import { ResourcePicker } from "@shopify/app-bridge-react";
 
 const Shipping = (props) => {
+  const [axios] = useAxios();
   const [open, setOpen] = useState(false);
+  console.log(props.products)
   const sendText = () => {
-    let data = {
-      announcement: {
-        announcementText: props.announcment,
-        products: props.products,
-      },
-    };
-    axioss
+   let products =  props.products.map((product)=> {
+       return {
+         name: product.title,
+         handle: product.title
+       }
+     })
+
+    console.log(products)
+    console.log(props.announcment)
+    axios
       .put(
-        `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`,
-        data
+        `https://blue-emu-26.loca.lt/campaign/announcement?announcement=${props.announcment}&products=${JSON.stringify(products)}`
       )
-      .then((res) => console.log(res))
-      .then(() => {
-        axioss
-          .get(
-            `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/campaign.json`
-          )
-          .then((res) => {
-            if (res.data) {
-              props.setProducts(res.data.announcement.products);
-            }
-          });
-      });
+      .then((res) => {
+        if (res.data) {
+          console.log(res.data);
+        }
+      })
   };
   console.log(props.products);
 

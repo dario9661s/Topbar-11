@@ -36,7 +36,7 @@ const  Preview = (props) => {
       zIndex: "1000"
     }}>
       {props.campaign === "Announcment" ? announcement : props.campaign === "Shipping" ? shipping : props.campaign === "CountDown" ?
-        <Clock checked = {props.checked}ountDownFinished = {props.countDownFinished} countDownFocus = {props.countDownFocus} countDownText={props.countDownText} timeRemaining={props.timeRemaining}/> : props.campaign === "Link"? link : null}
+        <Clock checked = {props.checked} countDownFinished = {props.countDownFinished} countDownFocus = {props.countDownFocus} countDownText={props.countDownText} timeRemaining={props.timeRemaining}/> : props.campaign === "Link"? link : null}
     </div>
   );
 }
