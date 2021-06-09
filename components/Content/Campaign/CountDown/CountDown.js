@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {useAxios} from "../../../../hooks/useAxios";
+import { useAxios } from "../../../../hooks/useAxios";
 
 import "react-datepicker/dist/react-datepicker.css";
 // import DatePicker from "react-datepicker"
@@ -38,7 +38,11 @@ const CountDown = (props) => {
   );
   console.log(startDate);
   const sendData = () => {
-    axios.put(`https://blue-emu-26.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`).then((res) => console.log(res));
+    axios
+      .put(
+        `https://mighty-hound-83.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`
+      )
+      .then((res) => console.log(res));
   };
   const handleChangeCountDownFinished = useCallback(
     (value) => props.setCountDownFinished(value),
@@ -81,7 +85,9 @@ const CountDown = (props) => {
           type="text"
           placeholder="Timer finished!!!"
         />
-        <Button onClick={() => sendData()} primary>Save Changes!</Button>
+        <Button onClick={() => sendData()} primary>
+          Save Changes!
+        </Button>
       </FormLayout>
     </div>
   );

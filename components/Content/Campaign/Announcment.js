@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import {useAxios} from "../../../hooks/useAxios";
+import { useAxios } from "../../../hooks/useAxios";
 import {
   TextField,
   FormLayout,
@@ -14,26 +14,28 @@ import { ResourcePicker } from "@shopify/app-bridge-react";
 const Shipping = (props) => {
   const [axios] = useAxios();
   const [open, setOpen] = useState(false);
-  console.log(props.products)
+  console.log(props.products);
   const sendText = () => {
-   let products =  props.products.map((product)=> {
-       return {
-         name: product.title,
-         handle: product.title
-       }
-     })
+    let products = props.products.map((product) => {
+      return {
+        name: product.title,
+        handle: product.title,
+      };
+    });
 
-    console.log(products)
-    console.log(props.announcment)
+    console.log(products);
+    console.log(props.announcment);
     axios
       .put(
-        `https://blue-emu-26.loca.lt/campaign/announcement?announcement=${props.announcment}&products=${JSON.stringify(products)}`
+        `https://mighty-hound-83.loca.lt/campaign/announcement?announcement=${
+          props.announcment
+        }&products=${JSON.stringify(products)}`
       )
       .then((res) => {
         if (res.data) {
           console.log(res.data);
         }
-      })
+      });
   };
   console.log(props.products);
 
@@ -50,7 +52,7 @@ const Shipping = (props) => {
     <div className="CampaignContainer">
       <FormLayout>
         <ResourcePicker
-          selectMultiple = {5}
+          selectMultiple={5}
           resourceType="Product"
           showVariants={false}
           open={open}
@@ -101,7 +103,6 @@ const Shipping = (props) => {
         </FormLayout>
       </FormLayout>
     </div>
-
   );
 };
 export default Shipping;

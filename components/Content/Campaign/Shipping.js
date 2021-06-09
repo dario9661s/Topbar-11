@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import {useAxios} from "../../../hooks/useAxios";
+import { useAxios } from "../../../hooks/useAxios";
 import { TextField, FormLayout, Button } from "@shopify/polaris";
 
 const Shipping = (props) => {
@@ -7,7 +7,7 @@ const Shipping = (props) => {
   const sendText = () => {
     axios
       .put(
-        `https://blue-emu-26.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
+        `https://mighty-hound-83.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
       )
       .then((res) => console.log(res));
   };
@@ -65,10 +65,11 @@ const Shipping = (props) => {
           type="text"
           placeholder="Free shiping!!!"
         />
-        <Button primary onClick={() => sendText()}>Save Changes!</Button>
+        <Button primary onClick={() => sendText()}>
+          Save Changes!
+        </Button>
       </FormLayout>
     </div>
-
   );
 };
 export default Shipping;

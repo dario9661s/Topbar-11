@@ -1,12 +1,16 @@
 import React, { useCallback } from "react";
-import {useAxios} from "../../../hooks/useAxios";
+import { useAxios } from "../../../hooks/useAxios";
 import "react-datepicker/dist/react-datepicker.css";
 import { TextField, FormLayout, Button } from "@shopify/polaris";
 
 const link = (props) => {
   const [axios] = useAxios();
   const sendData = () => {
-    axios.put(`https://blue-emu-26.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`).then((res) => console.log(res));
+    axios
+      .put(
+        `https://mighty-hound-83.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
+      )
+      .then((res) => console.log(res));
   };
   const changeLink = useCallback((value) => props.setLink(value), []);
   const changeText = useCallback((value) => props.setLinkText(value), []);

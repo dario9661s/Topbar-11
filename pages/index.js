@@ -34,19 +34,22 @@ function index({ shopOrigin }) {
   const [fontSize, setFontSize] = useState("");
   const [fontColor, setFontColor] = useState("");
 
-
   useEffect(() => {
     if (shop) {
-      axioss.get(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`).then((res) => {
+      axioss
+        .get(
+          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`
+        )
+        .then((res) => {
           if (res.data.color) {
             setColor(res.data.color.color.hex);
           }
-        if (res.data.fontSize) {
-          setFontSize(res.data.fontSize.fontSize);
-        }
-        if (res.data.fontColor) {
-          setFontColor(res.data.fontColor.fontColor);
-        }
+          if (res.data.fontSize) {
+            setFontSize(res.data.fontSize.fontSize);
+          }
+          if (res.data.fontColor) {
+            setFontColor(res.data.fontColor.fontColor);
+          }
           if (res.data.cart) {
             const animation = res.data.cart.checked;
             setChecked(animation);
@@ -113,13 +116,17 @@ function index({ shopOrigin }) {
   }, [checked]);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://blue-emu-26.loca.lt/script_tag/ship`
+      `https://mighty-hound-83.loca.lt/script_tag/ship`
     );
-    setShippingRate(Number(data.details.body.shipping_zones[1].price_based_shipping_rates[0].price));
+    setShippingRate(
+      Number(
+        data.details.body.shipping_zones[1].price_based_shipping_rates[0].price
+      )
+    );
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://blue-emu-26.loca.lt/script_tag/shop`
+      `https://mighty-hound-83.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }
@@ -127,9 +134,9 @@ function index({ shopOrigin }) {
     <Frame>
       <Loading />
       <Preview
-        fontColor = {fontColor}
-        fontSize = {fontSize}
-        countDownFocus = {countDownFocus}
+        fontColor={fontColor}
+        fontSize={fontSize}
+        countDownFocus={countDownFocus}
         linkText={linkText}
         shippingFocused={shippingFocused}
         countDownFinished={countDownFinished}
@@ -150,12 +157,12 @@ function index({ shopOrigin }) {
       />
       <div className="Progress">
         <Stepper
-          fontColor = {fontColor}
-          setFontColor = {(clr)=>setFontColor(clr)}
-          fontSize = {fontSize}
-          setFontSize = {(size)=> setFontSize(size)}
-          countDownFocus = {countDownFocus}
-          setCountDownFocus = {(fcs)=>setCountDownFocus(fcs)}
+          fontColor={fontColor}
+          setFontColor={(clr) => setFontColor(clr)}
+          fontSize={fontSize}
+          setFontSize={(size) => setFontSize(size)}
+          countDownFocus={countDownFocus}
+          setCountDownFocus={(fcs) => setCountDownFocus(fcs)}
           shop={shop}
           shippingFocused={shippingFocused}
           setShippingFocused={(focus) => setShippingFocused(focus)}

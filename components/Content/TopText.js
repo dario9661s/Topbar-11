@@ -5,25 +5,27 @@ import Announcment from "./Campaign/Announcment";
 import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
 import Link from "./Campaign/Link";
-import {useAxios} from "../../hooks/useAxios";
+import { useAxios } from "../../hooks/useAxios";
 
 const TopText = (props) => {
   const [axios] = useAxios();
 
   useEffect(() => {
-    axios.get(`https://blue-emu-26.loca.lt/campaign/metafields`).then((res) => {
-      let campaign = JSON.parse(res.data.body.metafields[0].value)
-      console.log(campaign)
-          console.log(res.data);
-          if (campaign.link) {
-            props.setCampaign("Link");
-          } else if (campaign.date) {
-            props.setCampaign("CountDown");
-          } else if (campaign.products) {
-            props.setCampaign("Announcment");
-          } else if (campaign.empty) {
-            props.setCampaign("Shipping");
-          }
+    axios
+      .get(`https://mighty-hound-83.loca.lt/campaign/metafields`)
+      .then((res) => {
+        let campaign = JSON.parse(res.data.body.metafields[0].value);
+        console.log(campaign);
+        console.log(res.data);
+        if (campaign.link) {
+          props.setCampaign("Link");
+        } else if (campaign.date) {
+          props.setCampaign("CountDown");
+        } else if (campaign.products) {
+          props.setCampaign("Announcment");
+        } else if (campaign.empty) {
+          props.setCampaign("Shipping");
+        }
       });
   }, []);
   return (
@@ -75,8 +77,8 @@ const TopText = (props) => {
             />
           ) : props.campaign === "CountDown" ? (
             <CountDown
-              countDownFocus = {props.countDownFocus}
-              setCountDownFocus = {(fcs)=>props.setCountDownFocus(fcs)}
+              countDownFocus={props.countDownFocus}
+              setCountDownFocus={(fcs) => props.setCountDownFocus(fcs)}
               shop={props.shop}
               countDownFinished={props.countDownFinished}
               setCountDownFinished={(cdf) => props.setCountDownFinished(cdf)}
