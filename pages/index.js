@@ -13,7 +13,11 @@ function index({ shopOrigin }) {
   const [axios] = useAxios();
   const [shippingRate, setShippingRate] = useState(null);
   const [step, setStep] = useState(0);
-  const [color, setColor] = useState();
+  const [color, setColor] = useState({
+    hue: 120,
+    brightness: 1,
+    saturation: 1,
+  });
   const [checked, setChecked] = useState();
   const [value, setValue] = useState("50px");
   const [campaign, setCampaign] = useState();
@@ -116,7 +120,7 @@ function index({ shopOrigin }) {
   }, [checked]);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://mighty-hound-83.loca.lt/script_tag/ship`
+      `https://massive-frog-5.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -126,7 +130,7 @@ function index({ shopOrigin }) {
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://mighty-hound-83.loca.lt/script_tag/shop`
+      `https://massive-frog-5.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }

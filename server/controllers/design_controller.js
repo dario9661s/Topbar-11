@@ -19,19 +19,16 @@ export async function postColor(client, color) {
     rateMetafields["body"]["metafields"].forEach((metafield) => {
       if (metafield["namespace"] === namespace && metafield["key"] === key) {
         let value = JSON.parse(metafield.value);
-        const picked = (({ rates, fontColor, fontSize }) => ({
-          rates,
-          fontColor,
-          fontSize,
-        }))(value);
-        picked["color"] = color;
-        console.log(picked);
+        if(!value["design"]){
+          value["design"] = {}
+        }
+        value["design"]["color"] = color;
         client.put({
           path: `metafields/${metafield.id}`,
           data: {
             metafield: {
               id: metafield.id,
-              value: JSON.stringify(picked),
+              value: JSON.stringify(value),
               value_type: "json_string",
             },
           },
@@ -54,19 +51,16 @@ export async function postFontColor(client, fontcolor) {
     rateMetafields["body"]["metafields"].forEach((metafield) => {
       if (metafield["namespace"] === namespace && metafield["key"] === key) {
         let value = JSON.parse(metafield.value);
-        const picked = (({ rates, color, fontSize }) => ({
-          rates,
-          color,
-          fontSize,
-        }))(value);
-        picked["fontColor"] = fontcolor;
-        console.log(picked);
+        if(!value["design"]){
+          value["design"] = {}
+        }
+        value['design']["fontColor"] = fontcolor;
         client.put({
           path: `metafields/${metafield.id}`,
           data: {
             metafield: {
               id: metafield.id,
-              value: JSON.stringify(picked),
+              value: JSON.stringify(value),
               value_type: "json_string",
             },
           },
@@ -89,18 +83,17 @@ export async function postFontSize(client, fontsize) {
     rateMetafields["body"]["metafields"].forEach((metafield) => {
       if (metafield["namespace"] === namespace && metafield["key"] === key) {
         let value = JSON.parse(metafield.value);
-        const picked = (({ rates, color, fontColor }) => ({
-          rates,
-          color,
-          fontColor,
-        }))(value);
-        picked["fontSize"] = fontsize;
+        if(!value["design"]){
+          value["design"] = {}
+        }
+        value['design']["fontSize"] = fontsize;
+       // picked
         client.put({
           path: `metafields/${metafield.id}`,
           data: {
             metafield: {
               id: metafield.id,
-              value: JSON.stringify(picked),
+              value: JSON.stringify(value),
               value_type: "json_string",
             },
           },
@@ -108,5 +101,37 @@ export async function postFontSize(client, fontsize) {
         });
       }
     });
+  return "return";
+}
+
+export async function postSize(client, size) {
+  if (!client) {
+    msg();
+    return;
+  }
+  const rateMetafields = await client.get({
+    path: "metafields",
+  });
+  rateMetafields["body"]["metafields"] &&
+  rateMetafields["body"]["metafields"].forEach((metafield) => {
+    if (metafield["namespace"] === namespace && metafield["key"] === key) {
+      let value = JSON.parse(metafield.value);
+      if(!value["design"]){
+        value["design"] = {}
+      }
+      value['design']["size"] = size;
+      client.put({
+        path: `metafields/${metafield.id}`,
+        data: {
+          metafield: {
+            id: metafield.id,
+            value: JSON.stringify(value),
+            value_type: "json_string",
+          },
+        },
+        type: DataType.JSON,
+      });
+    }
+  });
   return "return";
 }

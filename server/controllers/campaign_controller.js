@@ -18,15 +18,15 @@ export async function postLink(client, link, linkText) {
   rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
     if(metafield['namespace'] === namespace && metafield['key'] === key){
         let value = JSON.parse(metafield.value);
-        const picked = (({ rates }) => ({ rates }))(value)
-        picked['link'] = link;
-        picked['linkText'] = linkText
+        value["campaign"] = {}
+        value['campaign']['link'] = link;
+        value['campaign']['linkText'] = linkText
         client.put({
           path: `metafields/${metafield.id}`,
           data : {
             "metafield": {
               "id": metafield.id,
-              "value": JSON.stringify(picked),
+              "value": JSON.stringify(value),
               "value_type": "json_string"
             }
           },
@@ -48,17 +48,17 @@ export async function postShipping(client, empty, before, after, free) {
   rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
     if(metafield['namespace'] === namespace && metafield['key'] === key){
       let value = JSON.parse(metafield.value);
-      const picked = (({ rates }) => ({ rates }))(value)
-      picked['empty'] = empty
-      picked['before'] = before
-      picked['after'] = after
-      picked['free'] = free
+      value["campaign"] = {}
+      value['campaign']['empty'] = empty
+      value['campaign']['before'] = before
+      value['campaign']['after'] = after
+      value['campaign']['free'] = free
       client.put({
         path: `metafields/${metafield.id}`,
         data : {
           "metafield": {
             "id": metafield.id,
-            "value": JSON.stringify(picked),
+            "value": JSON.stringify(value),
             "value_type": "json_string"
           }
         },
@@ -80,16 +80,16 @@ export async function postCountDown(client, text, date, finish) {
   rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
     if(metafield['namespace'] === namespace && metafield['key'] === key){
       let value = JSON.parse(metafield.value);
-      const picked = (({ rates }) => ({ rates }))(value)
-      picked['text'] = text
-      picked['date'] = date
-      picked['finish'] = finish
+      value["campaign"] = {}
+      value['campaign']['text'] = text
+      value['campaign']['date'] = date
+      value['campaign']['finish'] = finish
       client.put({
         path: `metafields/${metafield.id}`,
         data : {
           "metafield": {
             "id": metafield.id,
-            "value": JSON.stringify(picked),
+            "value": JSON.stringify(value),
             "value_type": "json_string"
           }
         },
@@ -112,17 +112,17 @@ export async function postAnnouncement(client, announcement, products) {
   rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
     if(metafield['namespace'] === namespace && metafield['key'] === key){
       let value = JSON.parse(metafield.value);
-      const picked = (({ rates }) => ({ rates }))(value)
-      picked['announcement'] = announcement
-      picked['products'] = products
+      value["campaign"] = {}
+      value['campaign']['announcement'] = announcement
+      value['campaign']['products'] = products
       productsForFrontEnd['products'] = products
-      console.log(picked)
+      console.log(value)
       client.put({
         path: `metafields/${metafield.id}`,
         data : {
           "metafield": {
             "id": metafield.id,
-            "value": JSON.stringify(picked),
+            "value": JSON.stringify(value),
             "value_type": "json_string"
           }
         },

@@ -7,7 +7,7 @@ const FontColor = (props) => {
   useEffect(() => {
     axios
       .put(
-        `https://mighty-hound-83.loca.lt/design/fontcolor?fontcolor=${props.fontColor}`
+        `https://massive-frog-5.loca.lt/design/fontcolor?fontcolor=${props.fontColor}`
       )
       .then((res) => console.log(res));
   }, [props.fontColor]);

@@ -12,18 +12,20 @@ const TopText = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://mighty-hound-83.loca.lt/campaign/metafields`)
+      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
       .then((res) => {
-        let campaign = JSON.parse(res.data.body.metafields[0].value);
-        console.log(campaign);
-        console.log(res.data);
-        if (campaign.link) {
+        let campaign = null
+        if(res.data.body.metafields){
+          campaign = JSON.parse(res.data.body.metafields[0].value);
+        }
+        console.log(campaign)
+        if (campaign.campaign.link) {
           props.setCampaign("Link");
-        } else if (campaign.date) {
+        } else if (campaign.campaign.date) {
           props.setCampaign("CountDown");
-        } else if (campaign.products) {
+        } else if (campaign.campaign.products) {
           props.setCampaign("Announcment");
-        } else if (campaign.empty) {
+        } else if (campaign.campaign.empty) {
           props.setCampaign("Shipping");
         }
       });

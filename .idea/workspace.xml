@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/controllers/design_controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/router/design.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" afterDir="false" />
@@ -11,14 +9,14 @@
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/TopText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/TopText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Preview.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Design/FontColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontColor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Design/FontSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontSize.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Design/SizeChanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/SizeChanger.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/campaign_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/campaign_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/script_tag_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/script_tag_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/campaign.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/campaign.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/design_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/design_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/design.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/design.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +44,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dario\Desktop\shopify\bannerv2\node_modules\prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2021.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -113,6 +112,8 @@
       <workItem from="1622021228263" duration="4511000" />
       <workItem from="1622026981007" duration="105741000" />
       <workItem from="1622798232533" duration="62629000" />
+      <workItem from="1623228318363" duration="8274000" />
+      <workItem from="1623255133664" duration="2483000" />
     </task>
     <servers />
   </component>

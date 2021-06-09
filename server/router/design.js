@@ -3,6 +3,7 @@ import {
   postColor,
   postFontColor,
   postFontSize,
+  postSize,
 } from "../controllers/design_controller";
 
 const router = new Router({ prefix: "/design" });
@@ -20,5 +21,10 @@ router.put("/fontcolor", async (ctx) => {
 router.put("/fontsize", async (ctx) => {
   const fontsize = ctx.query.fontsize;
   ctx.body = await postFontSize(ctx.myClient, fontsize);
+});
+
+router.put("/size", async (ctx) => {
+  const size = ctx.query.size;
+  ctx.body = await postSize(ctx.myClient, size);
 });
 export default router;

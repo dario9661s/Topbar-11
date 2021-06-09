@@ -1,10 +1,11 @@
-import React, {useCallback, useEffect, useState} from "react";
-import axioss from "axios";
-import {Checkbox, Heading, RadioButton, Stack} from "@shopify/polaris";
+import React, {useCallback, useEffect} from "react";
+import {useAxios} from "../../hooks/useAxios";
+import { Heading, RadioButton, Stack} from "@shopify/polaris";
 
 const  SizeChanger = (props) => {
+  const [axios] = useAxios();
   useEffect(() => {
-      axioss.put(`https://cleverchoicetopbar-default-rtdb.firebaseio.com/${props.shop}/size.json`, {size :props.value}).then(res=>console.log(res))
+      axios.put(`https://massive-frog-5.loca.lt/design/size?size=${props.value}`).then(res=>console.log(res))
   }, [props.value]);
   const handleChange = useCallback(
     (_checked, newValue) => props.setValue(newValue),
@@ -32,7 +33,7 @@ const  SizeChanger = (props) => {
         <RadioButton
           label="Small"
           id="20px"
-          name="accounts"
+          name="size"
           checked={props.value === '20px'}
           onChange={handleChange}
         />

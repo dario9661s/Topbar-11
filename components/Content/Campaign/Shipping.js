@@ -7,7 +7,7 @@ const Shipping = (props) => {
   const sendText = () => {
     axios
       .put(
-        `https://mighty-hound-83.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
+        `https://massive-frog-5.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
       )
       .then((res) => console.log(res));
   };

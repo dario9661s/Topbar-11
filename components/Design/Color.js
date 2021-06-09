@@ -10,14 +10,12 @@ const Colors = (props) => {
   const [axios] = useAxios();
   const [picker, setPicker] = useState("our");
   const changeColor = (color) => {
-    props.setColor(color.hex);
     axios
       .put(
-        `https://mighty-hound-83.loca.lt/design/color?color=${JSON.stringify(
-          color
-        )}`
+        `https://massive-frog-5.loca.lt/design/color?color=${JSON.stringify(color.hsl)}`
       )
       .then((res) => res);
+    props.setColor(color.hex);
   };
   const handleChange = useCallback(
     (_checked, newValue) => setPicker(newValue),
