@@ -8,7 +8,7 @@ const  Preview = (props) => {
       className={props.checked === "left" ? "animation" : props.checked === "right" ? "animationRight" : props.checked === "pulse" ? "animationPulse" : props.checked === "vibrate" ? "vibrate-1" : props.checked === "jello" ? "jello-horizontal" : null}
       style={ props.checked === "left" || props.checked === "right" ? {flex: "1"} : null}
     >
-      {props.announcment + " " + product.title}
+      {props.announcment + " " + product.name}
     </p>
   })
   let shipping = <p

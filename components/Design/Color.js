@@ -12,7 +12,7 @@ const Colors = (props) => {
   const changeColor = (color) => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/design/color?color=${JSON.stringify(color.hsl)}`
+        `https://massive-frog-5.loca.lt/design/color?color=${(color.hex.replace("#", ""))}`
       )
       .then((res) => res);
     props.setColor(color.hex);

@@ -11,12 +11,20 @@ const TopText = (props) => {
   const [axios] = useAxios();
 
   useEffect(() => {
+    let namespace = 'cleverchoice';
+    let key = 'topbar';
     axios
       .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
       .then((res) => {
+        let rateMetafields = res.data
         let campaign = null
         if(res.data.body.metafields){
-          campaign = JSON.parse(res.data.body.metafields[0].value);
+          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
+            if(metafield['namespace'] === namespace && metafield['key'] === key){
+               campaign = JSON.parse(metafield.value);
+            }
+          })
+         
         }
         console.log(campaign)
         if (campaign.campaign.link) {
@@ -25,6 +33,13 @@ const TopText = (props) => {
           props.setCampaign("CountDown");
         } else if (campaign.campaign.products) {
           props.setCampaign("Announcment");
+          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
+            if(metafield['namespace'] === namespace && metafield['key'] === key){
+              let value = JSON.parse(metafield.value);
+              props.setProducts(JSON.parse(value.campaign.products))
+            }
+          })
+        
         } else if (campaign.campaign.empty) {
           props.setCampaign("Shipping");
         }

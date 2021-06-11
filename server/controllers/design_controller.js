@@ -22,7 +22,8 @@ export async function postColor(client, color) {
         if(!value["design"]){
           value["design"] = {}
         }
-        value["design"]["color"] = color;
+        let hash = "#"
+        value["design"]["color"] = hash.concat("",color);
         client.put({
           path: `metafields/${metafield.id}`,
           data: {

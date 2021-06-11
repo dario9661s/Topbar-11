@@ -18,8 +18,13 @@ const Shipping = (props) => {
   const sendText = () => {
     let products = props.products.map((product) => {
       return {
-        name: product.title,
-        handle: product.title,
+        name:product.name,
+        handle: product.handle,
+        src: product.src,
+        alt: product.alt,
+        price: product.price,
+        id: product.id,
+        url: product.url
       };
     });
 
@@ -40,8 +45,20 @@ const Shipping = (props) => {
   console.log(props.products);
 
   function handleSelection(resources) {
-    const idsFromResources = resources.selection.map((product) => product);
+    console.log(resources)
+    const idsFromResources = resources.selection.map((product) => {
+      return {
+        name: product.title,
+        handle: product.handle,
+        src: product.images[0] ? product.images[0].originalSrc : "",
+        alt: product.images[0] ? product.images[0].altText : "",
+        price: product.variants[0].price,
+        id: product.id,
+        url: product.url
+      }
+    });
     setOpen(false);
+    console.log(idsFromResources)
     props.setProducts(idsFromResources);
   }
   const handleEmptyChange = useCallback(
@@ -50,59 +67,58 @@ const Shipping = (props) => {
   );
   return (
     <div className="CampaignContainer">
+    <FormLayout>
+      <ResourcePicker
+        selectMultiple={5}
+        resourceType="Product"
+        showVariants={false}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onSelection={(resources) => handleSelection(resources)}
+      />
+      <ResourceList
+        resourceName={{ singular: "customer", plural: "customers" }}
+        items={props.products}
+        renderItem={(item) => {
+          const { id, url } = item;
+          const media = (
+            <Thumbnail
+              source={item.src}
+              alt={item.alt}
+            />
+          );
+          return (
+            <ResourceItem
+              id={id}
+              url={url}
+              media={media}
+              accessibilityLabel={`View details for ${item.name}`}
+            >
+              <h3>
+                <TextStyle variation="strong">{item.name}</TextStyle>
+              </h3>
+              <div>{item.price}</div>
+            </ResourceItem>
+          );
+        }}
+      />
+      <div style={{ height: "60px" }}>
+        <Button onClick={() => setOpen(true)}>Select New products</Button>
+      </div>
       <FormLayout>
-        <ResourcePicker
-          selectMultiple={5}
-          resourceType="Product"
-          showVariants={false}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onSelection={(resources) => handleSelection(resources)}
+        <TextField
+          label="Announcement text"
+          value={props.announcment}
+          onChange={handleEmptyChange}
+          type="text"
+          placeholder="Text displayed before item links"
         />
-        <ResourceList
-          resourceName={{ singular: "customer", plural: "customers" }}
-          items={props.products}
-          renderItem={(item) => {
-            const { id, url } = item;
-            const media = (
-              <Thumbnail
-                source={item.images[0] ? item.images[0].originalSrc : ""}
-                alt={item.images[0] ? item.images[0].altText : ""}
-              />
-            );
-
-            return (
-              <ResourceItem
-                id={id}
-                url={url}
-                media={media}
-                accessibilityLabel={`View details for ${item.title}`}
-              >
-                <h3>
-                  <TextStyle variation="strong">{item.title}</TextStyle>
-                </h3>
-                <div>{item.variants[0].price}</div>
-              </ResourceItem>
-            );
-          }}
-        />
-        <div style={{ height: "60px" }}>
-          <Button onClick={() => setOpen(true)}>Select New products</Button>
-        </div>
-        <FormLayout>
-          <TextField
-            label="Announcement text"
-            value={props.announcment}
-            onChange={handleEmptyChange}
-            type="text"
-            placeholder="Text displayed before item links"
-          />
-          <Button primary onClick={() => sendText()}>
-            Save Changes!
-          </Button>
-        </FormLayout>
+        <Button primary onClick={() => sendText()}>
+          Save Changes!
+        </Button>
       </FormLayout>
-    </div>
+    </FormLayout>
+  </div>
   );
 };
 export default Shipping;
