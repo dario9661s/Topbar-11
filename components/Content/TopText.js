@@ -22,27 +22,35 @@ const TopText = (props) => {
           rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
             if(metafield['namespace'] === namespace && metafield['key'] === key){
                campaign = JSON.parse(metafield.value);
+               console.log(campaign)
+               if (campaign.campaign.link) {
+                 props.setCampaign("Link");
+                 props.setLink(campaign.campaign.link);
+                 props.setLinkText(campaign.campaign.linkText);
+               } else if (campaign.campaign.date) {
+                 props.setCampaign("CountDown");
+                 let date = campaign.campaign.date;
+                 let countDownDate = new Date(date).getTime();
+                 let now = new Date().getTime();
+                 let distance = countDownDate - now;
+                 props.setCountDownText(campaign.campaign.text);
+                 props.setCountDownFinished(campaign.campaign.finishText);
+                 props.setTimeRemaining(distance / 1000);
+               } else if (campaign.campaign.products) {
+                 props.setCampaign("Announcment");
+                 props.setProducts(JSON.parse(campaign.campaign.products))
+               } else if (campaign.campaign.empty) {
+                 props.setCampaign("Shipping");
+                 props.setEmptyText(campaign.campaign.empty);
+                 props.setFree(campaign.campaign.free);
+                 props.setMoreAfter(campaign.campaign.after);
+                 props.setMoreBefore(campaign.campaign.before);
+               }
             }
           })
          
         }
-        console.log(campaign)
-        if (campaign.campaign.link) {
-          props.setCampaign("Link");
-        } else if (campaign.campaign.date) {
-          props.setCampaign("CountDown");
-        } else if (campaign.campaign.products) {
-          props.setCampaign("Announcment");
-          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
-            if(metafield['namespace'] === namespace && metafield['key'] === key){
-              let value = JSON.parse(metafield.value);
-              props.setProducts(JSON.parse(value.campaign.products))
-            }
-          })
-        
-        } else if (campaign.campaign.empty) {
-          props.setCampaign("Shipping");
-        }
+    
       });
   }, []);
   return (

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useAppBridge } from "@shopify/app-bridge-react";
 import Install from "../pages/install";
 import Stepper from "../components/Steper";
-import { getSessionToken } from "@shopify/app-bridge-utils";
 import Preview from "../components/Preview";
 import { useAxios } from "../hooks/useAxios";
 import axioss from "axios";
@@ -13,18 +12,14 @@ function index({ shopOrigin }) {
   const [axios] = useAxios();
   const [shippingRate, setShippingRate] = useState(null);
   const [step, setStep] = useState(0);
-  const [color, setColor] = useState({
-    hue: 120,
-    brightness: 1,
-    saturation: 1,
-  });
-  const [checked, setChecked] = useState();
+  const [color, setColor] = useState("transparent");
+  const [animation, setAnimation] = useState();
   const [value, setValue] = useState("50px");
-  const [campaign, setCampaign] = useState();
-  const [emptyText, setEmptyText] = useState();
+  const [campaign, setCampaign] = useState('');
+  const [emptyText, setEmptyText] = useState('');
   const [moreBefore, setMoreBefore] = useState("");
   const [moreAfter, setMoreAfter] = useState("");
-  const [free, setFree] = useState();
+  const [free, setFree] = useState('');
   const [shippingFocused, setShippingFocused] = useState("");
   const [announcment, setAnnouncment] = useState("");
   const [products, setProducts] = useState([]);
@@ -37,87 +32,47 @@ function index({ shopOrigin }) {
   const [shop, setShop] = useState("");
   const [fontSize, setFontSize] = useState("");
   const [fontColor, setFontColor] = useState("");
+  const [animationTiming, setAnimationTiming] = useState("once");
 
   useEffect(() => {
-    if (shop) {
-      axioss
+    let namespace = 'cleverchoice';
+    let key = 'topbar';
+      axios
         .get(
-          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/.json`
+          `https://massive-frog-5.loca.lt/campaign/metafields`
         )
         .then((res) => {
-          if (res.data.color) {
-            setColor(res.data.color.color.hex);
-          }
-          if (res.data.fontSize) {
-            setFontSize(res.data.fontSize.fontSize);
-          }
-          if (res.data.fontColor) {
-            setFontColor(res.data.fontColor.fontColor);
-          }
+          let rateMetafields = res.data
+        let data = null
+        if(res.data.body.metafields){
+          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
+            if(metafield['namespace'] === namespace && metafield['key'] === key){
+               data = JSON.parse(metafield.value);
+               if (data.design.color) {
+                setColor(data.design.color);
+              }
+              if (data.design.fontSize) {
+                setFontSize(data.design.fontSize);
+              }
+              if (data.design.fontColor) {
+                setFontColor(data.design.fontColor);
+              }
+              console.log(data);
+            }
+          })
+        }
+         
           if (res.data.cart) {
-            const animation = res.data.cart.checked;
-            setChecked(animation);
-          }
-          if (res.data.campaign.announcement) {
-            setCampaign("Announcment");
-            setAnnouncment(res.data.campaign.announcement.announcementText);
-            setProducts(
-              [...res.data.campaign.announcement.products].filter(Boolean)
-            );
-          }
-          if (res.data.campaign.text) {
-            setCampaign("Shipping");
-            setEmptyText(res.data.campaign.text.before);
-            setFree(res.data.campaign.text.freeShippin);
-            setMoreAfter(res.data.campaign.text.after);
-            setMoreBefore(res.data.campaign.text.before);
-          }
-          if (res.data.campaign.countDown) {
-            setCampaign("CountDown");
-            let date = res.data.campaign.countDown.date;
-            let countDownDate = new Date(date).getTime();
-            let now = new Date().getTime();
-            let distance = countDownDate - now;
-            setCountDownText(res.data.campaign.countDown.text);
-            setCountDownFinished(res.data.campaign.countDown.finishText);
-            setTimeRemaining(distance / 1000);
-          }
-          if (res.data.campaign.link) {
-            setCampaign("Link");
-            setLink(res.data.campaign.link.link);
-            setLinkText(res.data.campaign.link.linkText);
+            // const animation = res.data.cart.checked;
+            // setAnimation(animation);
           }
         });
-    }
-  }, [shop]);
+  }, []);
   useEffect(() => {
     getUrl();
     fetchShippingRate();
   }, []);
-  useEffect(() => {
-    if (checked === "left") {
-      axioss
-        .put(
-          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
-          { checked: checked }
-        )
-        .then((res) => res);
-    } else if (checked === "right") {
-      axioss
-        .put(
-          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
-          { checked: checked }
-        )
-        .then((res) => res);
-    } else {
-      axioss
-        .put(
-          `https://cleverchoicetopbar-default-rtdb.firebaseio.com/${shop}/cart.json`,
-          { checked: checked }
-        )
-        .then((res) => res);
-    }
-  }, [checked]);
+ 
   async function fetchShippingRate() {
     const { data } = await axios.get(
       `https://massive-frog-5.loca.lt/script_tag/ship`
@@ -138,6 +93,8 @@ function index({ shopOrigin }) {
     <Frame>
       <Loading />
       <Preview
+        animationTiming = {animationTiming}
+        setAnimationTiming = {(time)=>setAnimationTiming(time)}
         fontColor={fontColor}
         fontSize={fontSize}
         countDownFocus={countDownFocus}
@@ -157,10 +114,12 @@ function index({ shopOrigin }) {
         campaign={campaign}
         color={color}
         value={value}
-        checked={checked}
+        animation={animation}
       />
       <div className="Progress">
         <Stepper
+          animationTiming = {animationTiming}
+          setAnimationTiming = {(time)=>setAnimationTiming(time)}
           fontColor={fontColor}
           setFontColor={(clr) => setFontColor(clr)}
           fontSize={fontSize}
@@ -201,8 +160,8 @@ function index({ shopOrigin }) {
           setColor={(color) => setColor(color)}
           activeStep={step}
           setActiveStep={(step) => setStep(step)}
-          checked={checked}
-          setChecked={(newChecked) => setChecked(newChecked)}
+          animation={animation}
+          setAnimation={(newChecked) => setAnimation(newChecked)}
         />
       </div>
       <Install />

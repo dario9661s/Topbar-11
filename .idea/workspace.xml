@@ -3,20 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Link.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/TopText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/TopText.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/FontColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontColor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/FontSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontSize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/SizeChanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/SizeChanger.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/campaign_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/campaign_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/design_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/design_controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/router/design.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/design.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,6 +100,8 @@
       <workItem from="1622798232533" duration="62629000" />
       <workItem from="1623228318363" duration="8274000" />
       <workItem from="1623255133664" duration="2483000" />
+      <workItem from="1624009961234" duration="27000" />
+      <workItem from="1624614176425" duration="1157000" />
     </task>
     <servers />
   </component>

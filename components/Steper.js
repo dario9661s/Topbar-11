@@ -5,7 +5,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Animations from "../components/Animations";
+import Animations from "./Animations/Animations";
 import Colors from "../components/Design/Color"
 import TopText from "../components/Content/TopText"
 
@@ -31,7 +31,7 @@ const  StepperComponent = (props) => {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <TopText
+        return <TopText 
                         shop = {props.shop}
                         countDownFocus = {props.countDownFocus}
                         setCountDownFocus = {(fcs)=>props.setCountDownFocus(fcs)}
@@ -72,7 +72,7 @@ const  StepperComponent = (props) => {
                        setColor={(color) => props.setColor(color)}/>
               ;
       case 2:
-        return <Animations checked = {props.checked} setChecked={(newChecked)=>props.setChecked(newChecked)}/>
+        return <Animations campaign = {props.campaign} animationTiming = {props.animationTiming} setAnimationTiming = {(time)=>props.setAnimationTiming(time)} animation = {props.animation} setAnimation={(newChecked)=>props.setAnimation(newChecked)}/>
       default:
         return 'Unknown step';
     }

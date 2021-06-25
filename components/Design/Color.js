@@ -56,7 +56,7 @@ const Colors = (props) => {
           <SizeChanger
             shop={props.shop}
             checked={props.checked}
-            setChecked={(newChecked) => props.setChecked(newChecked)}
+            setAnimation={(newChecked) => props.setAnimation(newChecked)}
             value={props.value}
             setValue={(value) => props.setValue(value)}
           />
