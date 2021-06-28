@@ -40,7 +40,7 @@ const CountDown = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`
+        `https://tidy-shrimp-31.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`
       )
       .then((res) => console.log(res));
   };

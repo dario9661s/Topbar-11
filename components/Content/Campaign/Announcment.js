@@ -14,38 +14,30 @@ import { ResourcePicker } from "@shopify/app-bridge-react";
 const Shipping = (props) => {
   const [axios] = useAxios();
   const [open, setOpen] = useState(false);
-  console.log(props.products);
   const sendText = () => {
     let products = props.products.map((product) => {
       return {
-        name:product.name,
+        name: product.name,
         handle: product.handle,
         src: product.src,
         alt: product.alt,
         price: product.price,
         id: product.id,
-        url: product.url
+        url: product.url,
       };
     });
-
-    console.log(products);
-    console.log(props.announcment);
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/announcement?announcement=${
+        `https://tidy-shrimp-31.loca.lt/campaign/announcement?announcement=${
           props.announcment
         }&products=${JSON.stringify(products)}`
       )
       .then((res) => {
         if (res.data) {
-          console.log(res.data);
         }
       });
   };
-  console.log(props.products);
-
   function handleSelection(resources) {
-    console.log(resources)
     const idsFromResources = resources.selection.map((product) => {
       return {
         name: product.title,
@@ -54,11 +46,10 @@ const Shipping = (props) => {
         alt: product.images[0] ? product.images[0].altText : "",
         price: product.variants[0].price,
         id: product.id,
-        url: product.url
-      }
+        url: product.url,
+      };
     });
     setOpen(false);
-    console.log(idsFromResources)
     props.setProducts(idsFromResources);
   }
   const handleEmptyChange = useCallback(
@@ -67,58 +58,53 @@ const Shipping = (props) => {
   );
   return (
     <div className="CampaignContainer">
-    <FormLayout>
-      <ResourcePicker
-        selectMultiple={5}
-        resourceType="Product"
-        showVariants={false}
-        open={open}
-        onCancel={() => setOpen(false)}
-        onSelection={(resources) => handleSelection(resources)}
-      />
-      <ResourceList
-        resourceName={{ singular: "customer", plural: "customers" }}
-        items={props.products}
-        renderItem={(item) => {
-          const { id, url } = item;
-          const media = (
-            <Thumbnail
-              source={item.src}
-              alt={item.alt}
-            />
-          );
-          return (
-            <ResourceItem
-              id={id}
-              url={url}
-              media={media}
-              accessibilityLabel={`View details for ${item.name}`}
-            >
-              <h3>
-                <TextStyle variation="strong">{item.name}</TextStyle>
-              </h3>
-              <div>{item.price}</div>
-            </ResourceItem>
-          );
-        }}
-      />
-      <div style={{ height: "60px" }}>
-        <Button onClick={() => setOpen(true)}>Select New products</Button>
-      </div>
       <FormLayout>
-        <TextField
-          label="Announcement text"
-          value={props.announcment}
-          onChange={handleEmptyChange}
-          type="text"
-          placeholder="Text displayed before item links"
+        <ResourcePicker
+          selectMultiple={5}
+          resourceType="Product"
+          showVariants={false}
+          open={open}
+          onCancel={() => setOpen(false)}
+          onSelection={(resources) => handleSelection(resources)}
         />
-        <Button primary onClick={() => sendText()}>
-          Save Changes!
-        </Button>
+        <ResourceList
+          resourceName={{ singular: "customer", plural: "customers" }}
+          items={props.products}
+          renderItem={(item) => {
+            const { id, url } = item;
+            const media = <Thumbnail source={item.src} alt={item.alt} />;
+            return (
+              <ResourceItem
+                id={id}
+                url={url}
+                media={media}
+                accessibilityLabel={`View details for ${item.name}`}
+              >
+                <h3>
+                  <TextStyle variation="strong">{item.name}</TextStyle>
+                </h3>
+                <div>{item.price}</div>
+              </ResourceItem>
+            );
+          }}
+        />
+        <div style={{ height: "60px" }}>
+          <Button onClick={() => setOpen(true)}>Select New products</Button>
+        </div>
+        <FormLayout>
+          <TextField
+            label="Announcement text"
+            value={props.announcment}
+            onChange={handleEmptyChange}
+            type="text"
+            placeholder="Text displayed before item links"
+          />
+          <Button primary onClick={() => sendText()}>
+            Save Changes!
+          </Button>
+        </FormLayout>
       </FormLayout>
-    </FormLayout>
-  </div>
+    </div>
   );
 };
 export default Shipping;

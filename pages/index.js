@@ -13,13 +13,12 @@ function index({ shopOrigin }) {
   const [shippingRate, setShippingRate] = useState(null);
   const [step, setStep] = useState(0);
   const [color, setColor] = useState("transparent");
-  const [animation, setAnimation] = useState();
   const [value, setValue] = useState("50px");
-  const [campaign, setCampaign] = useState('');
-  const [emptyText, setEmptyText] = useState('');
+  const [campaign, setCampaign] = useState("");
+  const [emptyText, setEmptyText] = useState("");
   const [moreBefore, setMoreBefore] = useState("");
   const [moreAfter, setMoreAfter] = useState("");
-  const [free, setFree] = useState('');
+  const [free, setFree] = useState("");
   const [shippingFocused, setShippingFocused] = useState("");
   const [announcment, setAnnouncment] = useState("");
   const [products, setProducts] = useState([]);
@@ -32,50 +31,55 @@ function index({ shopOrigin }) {
   const [shop, setShop] = useState("");
   const [fontSize, setFontSize] = useState("");
   const [fontColor, setFontColor] = useState("");
-  const [animationTiming, setAnimationTiming] = useState("once");
+  const [animationProps, setAnimationProps] = useState({
+    animation: "",
+    animationTiming: "once",
+    animationSecounds: "1",
+  });
 
   useEffect(() => {
-    let namespace = 'cleverchoice';
-    let key = 'topbar';
-      axios
-        .get(
-          `https://massive-frog-5.loca.lt/campaign/metafields`
-        )
-        .then((res) => {
-          let rateMetafields = res.data
-        let data = null
-        if(res.data.body.metafields){
-          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
-            if(metafield['namespace'] === namespace && metafield['key'] === key){
-               data = JSON.parse(metafield.value);
-               if (data.design.color) {
-                setColor(data.design.color);
+    let namespace = "cleverchoice";
+    let key = "topbar";
+    axios
+      .get(`https://tidy-shrimp-31.loca.lt/campaign/metafields`)
+      .then((res) => {
+        let rateMetafields = res.data;
+        let data = null;
+        if (res.data.body.metafields) {
+          rateMetafields["body"]["metafields"] &&
+            rateMetafields["body"]["metafields"].forEach((metafield) => {
+              if (
+                metafield["namespace"] === namespace &&
+                metafield["key"] === key
+              ) {
+                data = JSON.parse(metafield.value);
+                if (data.design.color) {
+                  setColor(data.design.color);
+                }
+                if (data.design.fontSize) {
+                  setFontSize(data.design.fontSize);
+                }
+                if (data.design.fontColor) {
+                  setFontColor(data.design.fontColor);
+                }
               }
-              if (data.design.fontSize) {
-                setFontSize(data.design.fontSize);
-              }
-              if (data.design.fontColor) {
-                setFontColor(data.design.fontColor);
-              }
-              console.log(data);
-            }
-          })
+            });
         }
-         
-          if (res.data.cart) {
-            // const animation = res.data.cart.checked;
-            // setAnimation(animation);
-          }
-        });
+
+        if (res.data.cart) {
+          // const animation = res.data.cart.checked;
+          // setAnimation(animation);
+        }
+      });
   }, []);
   useEffect(() => {
     getUrl();
     fetchShippingRate();
   }, []);
- 
+
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://massive-frog-5.loca.lt/script_tag/ship`
+      `https://tidy-shrimp-31.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -85,7 +89,7 @@ function index({ shopOrigin }) {
   }
   async function getUrl() {
     const { data } = await axios.get(
-      `https://massive-frog-5.loca.lt/script_tag/shop`
+      `https://tidy-shrimp-31.loca.lt/script_tag/shop`
     );
     setShop(data.details.domain.replaceAll(".", "_"));
   }
@@ -93,8 +97,8 @@ function index({ shopOrigin }) {
     <Frame>
       <Loading />
       <Preview
-        animationTiming = {animationTiming}
-        setAnimationTiming = {(time)=>setAnimationTiming(time)}
+        // animationTiming = {animationTiming}
+        // setAnimationTiming = {(time)=>setAnimationTiming(time)}
         fontColor={fontColor}
         fontSize={fontSize}
         countDownFocus={countDownFocus}
@@ -114,12 +118,11 @@ function index({ shopOrigin }) {
         campaign={campaign}
         color={color}
         value={value}
-        animation={animation}
       />
       <div className="Progress">
         <Stepper
-          animationTiming = {animationTiming}
-          setAnimationTiming = {(time)=>setAnimationTiming(time)}
+          animationProps={animationProps}
+          setAnimationProps={(time) => setAnimationProps(time)}
           fontColor={fontColor}
           setFontColor={(clr) => setFontColor(clr)}
           fontSize={fontSize}
@@ -160,8 +163,6 @@ function index({ shopOrigin }) {
           setColor={(color) => setColor(color)}
           activeStep={step}
           setActiveStep={(step) => setStep(step)}
-          animation={animation}
-          setAnimation={(newChecked) => setAnimation(newChecked)}
         />
       </div>
       <Install />

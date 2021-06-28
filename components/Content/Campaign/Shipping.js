@@ -7,9 +7,9 @@ const Shipping = (props) => {
   const sendText = () => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
+        `https://tidy-shrimp-31.loca.lt/campaign/shipping?empty=${props.emptyText}&after=${props.moreAfter}&before=${props.moreBefore}&freeShipping=${props.free}`
       )
-      .then((res) => console.log(res));
+      .then((res) => res);
   };
   const handleEmptyChange = useCallback(
     (value) => props.setEmptyText(value),

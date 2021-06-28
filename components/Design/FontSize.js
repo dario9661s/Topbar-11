@@ -7,7 +7,7 @@ const FontSize = (props) => {
   useEffect(() => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/design/fontsize?fontsize=${props.fontSize}`
+        `https://tidy-shrimp-31.loca.lt/design/fontsize?fontsize=${props.fontSize}`
       )
       .then((res) => console.log(res));
   }, [props.fontSize]);

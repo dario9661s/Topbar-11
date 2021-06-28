@@ -29,10 +29,7 @@ export async function updateTheme(shop, accessToken) {
 }
 
 function getFile(fileName) {
-  console.log("file", fileName);
-  console.log("path", path.resolve(__dirname, fileName));
   const f = fs.readFileSync(path.resolve(__dirname, fileName), "utf-8");
-  console.log(f);
   return f;
 }
 async function uploadAssetTheme(axios, id, page, pageName) {
@@ -43,13 +40,12 @@ async function uploadAssetTheme(axios, id, page, pageName) {
     },
   };
   await axios.put(`/themes/${id}/assets.json`, body);
-  console.log(`Upload page ${pageName}`);
 }
 async function getAssetThemeLiquid(id, axios) {
   const { data } = await axios.get(
     `/themes/${id}/assets.json?asset[key]=layout/theme.liquid`
   );
-  console.log("Theme liquid file");
+  console.log("Theme liquid file", data);
   if (!data.asset.value) {
     return;
   }
@@ -70,7 +66,6 @@ async function getThemeId(axios) {
   console.log("Themes found: ", data);
   const mainTheme = data.themes.find((theme) => theme.role === "main");
   if (!mainTheme) {
-    console.log("No main theme found");
     return;
   }
   // console.log("The main theme is:", mainTheme);

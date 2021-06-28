@@ -12,7 +12,10 @@ const Colors = (props) => {
   const changeColor = (color) => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/design/color?color=${(color.hex.replace("#", ""))}`
+        `https://tidy-shrimp-31.loca.lt/design/color?color=${color.hex.replace(
+          "#",
+          ""
+        )}`
       )
       .then((res) => res);
     props.setColor(color.hex);

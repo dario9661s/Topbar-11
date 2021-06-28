@@ -9,48 +9,51 @@ import { useAxios } from "../../hooks/useAxios";
 
 const TopText = (props) => {
   const [axios] = useAxios();
+  console.log(props.campaign);
 
   useEffect(() => {
-    let namespace = 'cleverchoice';
-    let key = 'topbar';
+    let namespace = "cleverchoice";
+    let key = "topbar";
     axios
-      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
+      .get(`https://tidy-shrimp-31.loca.lt/campaign/metafields`)
       .then((res) => {
-        let rateMetafields = res.data
-        let campaign = null
-        if(res.data.body.metafields){
-          rateMetafields['body']['metafields'] && rateMetafields['body']['metafields'].forEach(metafield => {
-            if(metafield['namespace'] === namespace && metafield['key'] === key){
-               campaign = JSON.parse(metafield.value);
-               console.log(campaign)
-               if (campaign.campaign.link) {
-                 props.setCampaign("Link");
-                 props.setLink(campaign.campaign.link);
-                 props.setLinkText(campaign.campaign.linkText);
-               } else if (campaign.campaign.date) {
-                 props.setCampaign("CountDown");
-                 let date = campaign.campaign.date;
-                 let countDownDate = new Date(date).getTime();
-                 let now = new Date().getTime();
-                 let distance = countDownDate - now;
-                 props.setCountDownText(campaign.campaign.text);
-                 props.setCountDownFinished(campaign.campaign.finishText);
-                 props.setTimeRemaining(distance / 1000);
-               } else if (campaign.campaign.products) {
-                 props.setCampaign("Announcment");
-                 props.setProducts(JSON.parse(campaign.campaign.products))
-               } else if (campaign.campaign.empty) {
-                 props.setCampaign("Shipping");
-                 props.setEmptyText(campaign.campaign.empty);
-                 props.setFree(campaign.campaign.free);
-                 props.setMoreAfter(campaign.campaign.after);
-                 props.setMoreBefore(campaign.campaign.before);
-               }
-            }
-          })
-         
+        let rateMetafields = res.data;
+        let campaign = null;
+        if (res.data.body.metafields) {
+          rateMetafields["body"]["metafields"] &&
+            rateMetafields["body"]["metafields"].forEach((metafield) => {
+              if (
+                metafield["namespace"] === namespace &&
+                metafield["key"] === key
+              ) {
+                campaign = JSON.parse(metafield.value);
+                console.log(campaign);
+                if (campaign.campaign.link) {
+                  props.setCampaign("Link");
+                  props.setLink(campaign.campaign.link);
+                  props.setLinkText(campaign.campaign.linkText);
+                } else if (campaign.campaign.date) {
+                  props.setCampaign("CountDown");
+                  let date = campaign.campaign.date;
+                  let countDownDate = new Date(date).getTime();
+                  let now = new Date().getTime();
+                  let distance = countDownDate - now;
+                  props.setCountDownText(campaign.campaign.text);
+                  props.setCountDownFinished(campaign.campaign.finishText);
+                  props.setTimeRemaining(distance / 1000);
+                } else if (campaign.campaign.products) {
+                  props.setCampaign("Announcment");
+                  props.setProducts(JSON.parse(campaign.campaign.products));
+                } else if (campaign.campaign.empty) {
+                  props.setCampaign("Shipping");
+                  props.setEmptyText(campaign.campaign.empty);
+                  props.setFree(campaign.campaign.free);
+                  props.setMoreAfter(campaign.campaign.after);
+                  props.setMoreBefore(campaign.campaign.before);
+                }
+              }
+            });
         }
-    
       });
   }, []);
   return (
