@@ -1,63 +1,34 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import {
   Card,
   Layout,
   Stack,
   Button,
-  ButtonGroup,
-  TextField,
+  RangeSlider
 } from "@shopify/polaris";
 import AnimationBtn from "./AnimationBtn";
+import { useAxios } from "../../hooks/useAxios";
 
 const Animations = (props) => {
-  console.log(props.campaign);
-
-  let animations = ["None", "Left-Right", "Right-Left"];
+  const [axios] = useAxios();
+  let animations = ["None", "Left-Right", "Right-Left", "Pulse", "Vibrate"];
   if (props.campaign === "Announcment") {
     animations = ["None", "Pulse", "Vibrate"];
   }
-  const handleChange = useCallback((newValue) => setValue(newValue), []);
-  const triggerOncehandler = useCallback(() => {
-    if (props.animationProps.animationTiming) return;
-    props.setAnimationProps({ ...props.animationProps, animationTiming: true });
-  }, [props.animationProps.animationTiming]);
-
-  const triggerInfinitehandHandler = useCallback(() => {
-    if (!props.animationProps.animationTiming) return;
-    props.setAnimationProps({
-      ...props.animationProps,
-      animationTiming: false,
-    });
-  }, [props.animationProps.animationTiming]);
-  console.log(props.animationProps.animation);
+  const sendAnimation = () => {
+    axios
+      .put(
+        `https://dejri-123.loca.lt/animation/anim?animation=${props.animationProps.animation}&animationSecounds=${props.animationProps.animationSecounds}`
+      )
+      .then((res) => res);
+  };
 
   return (
     <Layout>
       <Layout.Section oneThird>
         <Card title="Animation Timing" sectioned>
-          <Stack>
-            <ButtonGroup segmented>
-              <Button
-                pressed={props.animationProps.animationTiming}
-                onClick={triggerOncehandler}
-              >
-                Trigger Once
-              </Button>
-              <Button
-                pressed={!props.animationProps.animationTiming}
-                onClick={triggerInfinitehandHandler}
-              >
-                Infinite Loop
-              </Button>
-              {props.animationProps.animationTiming ? null : (
-                <TextField
-                  label="Quantity"
-                  type="number"
-                  value={"1"}
-                  onChange={handleChange}
-                />
-              )}
-            </ButtonGroup>
+          <Stack distribution="fill" >
+             <RangeSlider label="Scounds" min = {7} max={12} value={props.animationProps.animationSecounds} onChange={(value)=> props.setAnimationProps({...props.animationProps, animationSecounds : value})} output />
           </Stack>
         </Card>
       </Layout.Section>
@@ -74,6 +45,9 @@ const Animations = (props) => {
                 />
               );
             })}
+            <Button primary onClick={() => sendAnimation()}>
+            Save Changes!
+            </Button>
           </Stack>
         </Card>
       </Layout.Section>

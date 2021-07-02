@@ -3,21 +3,28 @@
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Animations/AnimationBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Animations/AnimationBtn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Animations/Animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Animations/Animations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Link.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Content/CampaignPicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/CampaignPicker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Content/TopText.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/TopText.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Design/FontColor.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontColor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Design/FontSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontSize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Design/SizeChanger.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/SizeChanger.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Preview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Steper.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Steper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/updateTheme/updateTheme.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/updateTheme/updateTheme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/design_controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/design_controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/design.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/design.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +129,20 @@
       <workItem from="1624696796585" duration="139000" />
       <workItem from="1624725010845" duration="33000" />
       <workItem from="1624725450982" duration="719000" />
+      <workItem from="1624877206700" duration="2042000" />
+      <workItem from="1624879446845" duration="1792000" />
+      <workItem from="1624881267661" duration="2684000" />
+      <workItem from="1624884161981" duration="1783000" />
+      <workItem from="1624885971533" duration="1188000" />
+      <workItem from="1624888238639" duration="1945000" />
+      <workItem from="1624891524400" duration="43000" />
+      <workItem from="1624974284046" duration="656000" />
+      <workItem from="1624984934792" duration="652000" />
+      <workItem from="1625046770101" duration="91000" />
+      <workItem from="1625059739514" duration="617000" />
+      <workItem from="1625131746302" duration="33000" />
+      <workItem from="1625131994114" duration="1199000" />
+      <workItem from="1625143699029" duration="755000" />
     </task>
     <servers />
   </component>

@@ -1,46 +1,19 @@
-import React, { useCallback, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useAxios } from "../../hooks/useAxios";
-import { Heading, RadioButton, Stack } from "@shopify/polaris";
+import { Heading, Button, ButtonGroup, Stack, RangeSlider } from "@shopify/polaris";
 
 const SizeChanger = (props) => {
   const [axios] = useAxios();
   useEffect(() => {
-    axios
-      .put(`https://tidy-shrimp-31.loca.lt/design/size?size=${props.value}`)
-      .then((res) => console.log(res));
-  }, [props.value]);
-  const handleChange = useCallback(
-    (_checked, newValue) => props.setValue(newValue),
-    []
-  );
+   
+  }, [props.design.value]);
+console.log(props.design.value);
   return (
-    <div style={{ marginTop: "30px" }}>
-      <Heading element="h1">Size</Heading>
-      <div style={{ marginTop: "10px" }}></div>
-      <Stack>
-        <RadioButton
-          label="Large"
-          checked={props.value === "50px"}
-          id="50px"
-          name="size"
-          onChange={handleChange}
-        />
-        <RadioButton
-          label="Medium"
-          id="30px"
-          name="size"
-          checked={props.value === "30px"}
-          onChange={handleChange}
-        />
-        <RadioButton
-          label="Small"
-          id="20px"
-          name="size"
-          checked={props.value === "20px"}
-          onChange={handleChange}
-        />
+      <Stack vertical>
+         <Heading element="h1">Size</Heading>
+         <RangeSlider min = {20} max={70} value={props.design.value.replace("px", "")} onChange={(value)=> props.setDesign({...props.design, value : `${value}px`})} output />
       </Stack>
-    </div>
+
   );
 };
 export default SizeChanger;

@@ -1,15 +1,28 @@
+
+.Polaris-ResourceItem{
+  animation: example 0.6s;
+}
+.navContainer{
+  
+}
 .background p {
   margin: auto;
 }
 .CampaignContainer{
   width: 80%;
 }
+.Icons svg {
+  width: 25px;
+  height: 25px;
+}
+.Icons p {
+  font-size: 22px;
+}
 .DesignContainer{
   height: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
-;
 }
 .NextBackBtns {
   width: 100%;
@@ -59,28 +72,7 @@
 .CampaignBtnActive svg {
   margin-left: 10px;
 }
-.CampaignBtn {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  padding: 10px 10px;
-  border-radius: 5px;
-  background-color: rgba(86, 86, 86, 0.49);
-  cursor: pointer;
-  color: white;
-  font-weight: 600;
-}
-.CampaignBtnActive {
-  display: flex;
-  align-items: center;
-  width: 90%;
-  color: white;
-  font-weight: bold;
-  padding: 10px 10px;
-  border-radius: 5px;
-  background-color: rgba(82, 117, 212, 0.77);
-  cursor: pointer;
-}
+
 .AnnouncmentContainer ul {
   margin: 20px;
 }
@@ -111,20 +103,76 @@
   -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
-
-.animation {
+.Left-Right {
+  display: flex;
   animation: slide-left 7s infinite;
 }
-.animationRight {
+.Right-Left {
+  display: flex;
+  animation: slide-left 7s infinite;
+}
+.Left-Right7 {
+  display: flex;
+
+  animation: slide-left 7s infinite;
+}
+.Right-Left7 {
   animation: slide-right 7s infinite;
 }
-.none {
+.Left-Right8 {
+  animation: slide-left 8s infinite;
+}
+.Right-Left8 {
+  animation: slide-right 8s infinite;
+}
+.Left-Right9 {
+  animation: slide-left 9s infinite;
+}
+.Right-Left9 {
+  animation: slide-right 9s infinite;
+}
+.Left-Right10 {
+  animation: slide-left 10s infinite;
+}
+.Right-Left10 {
+  animation: slide-right 10s infinite;
+}
+.Left-Right11 {
+  animation: slide-left 11s infinite;
+}
+.Right-Left11 {
+  animation: slide-right 11s infinite;
+}
+.Left-Right12 {
+  animation: slide-left 12s infinite;
+}
+.Right-Left12 {
+  animation: slide-right 12s infinite;
+}
+
+.sketch-picker {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+.swatches-picker {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+@keyframes example {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.rcp {
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+.None {
+  display: flex;
   animation: none;
   margin: auto;
 }
-MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
-  width: 100% !important;
-}
+
 .Progress {
   margin: 0 auto;
   width: 90%;
@@ -133,9 +181,7 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
   align-items: center;
   padding-top: 80px;
 }
-.Polaris-Stack .Polaris-Stack--vertical {
-  margin-top: 20px !important;
-}
+
 .ColorText {
   display: flex;
   justify-content: space-around;
@@ -250,10 +296,10 @@ MuiPaper-root MuiStepper-root MuiStepper-horizontal MuiPaper-elevation0 {
 
 @keyframes slide-left {
   0% {
-    transform: translateX(-10%);
+    transform: translateX(-100%);
   }
   100% {
-    transform: translateX(110%);
+    transform: translateX(100%);
   }
 }
 @keyframes slide-right {

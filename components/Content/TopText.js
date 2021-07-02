@@ -1,72 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Shipping from "./Campaign/Shipping";
-import { Layout, Card } from "@shopify/polaris";
+import { Layout, Card, Spinner, Stack } from "@shopify/polaris";
 import Announcment from "./Campaign/Announcment";
 import CountDown from "./Campaign/CountDown/CountDown";
 import CampaignPicker from "./CampaignPicker";
 import Link from "./Campaign/Link";
-import { useAxios } from "../../hooks/useAxios";
-
 const TopText = (props) => {
-  const [axios] = useAxios();
-  console.log(props.campaign);
-
-  useEffect(() => {
-    let namespace = "cleverchoice";
-    let key = "topbar";
-    axios
-      .get(`https://tidy-shrimp-31.loca.lt/campaign/metafields`)
-      .then((res) => {
-        let rateMetafields = res.data;
-        let campaign = null;
-        if (res.data.body.metafields) {
-          rateMetafields["body"]["metafields"] &&
-            rateMetafields["body"]["metafields"].forEach((metafield) => {
-              if (
-                metafield["namespace"] === namespace &&
-                metafield["key"] === key
-              ) {
-                campaign = JSON.parse(metafield.value);
-                console.log(campaign);
-                if (campaign.campaign.link) {
-                  props.setCampaign("Link");
-                  props.setLink(campaign.campaign.link);
-                  props.setLinkText(campaign.campaign.linkText);
-                } else if (campaign.campaign.date) {
-                  props.setCampaign("CountDown");
-                  let date = campaign.campaign.date;
-                  let countDownDate = new Date(date).getTime();
-                  let now = new Date().getTime();
-                  let distance = countDownDate - now;
-                  props.setCountDownText(campaign.campaign.text);
-                  props.setCountDownFinished(campaign.campaign.finishText);
-                  props.setTimeRemaining(distance / 1000);
-                } else if (campaign.campaign.products) {
-                  props.setCampaign("Announcment");
-                  props.setProducts(JSON.parse(campaign.campaign.products));
-                } else if (campaign.campaign.empty) {
-                  props.setCampaign("Shipping");
-                  props.setEmptyText(campaign.campaign.empty);
-                  props.setFree(campaign.campaign.free);
-                  props.setMoreAfter(campaign.campaign.after);
-                  props.setMoreBefore(campaign.campaign.before);
-                }
-              }
-            });
-        }
-      });
-  }, []);
   return (
     <Layout>
       <Layout.Section oneThird>
         <Card title="Order details" sectioned>
           <CampaignPicker
+            animationProps={props.animationProps}
+            setAnimationProps={(time) => props.setAnimationProps(time)}
             campaign={props.campaign}
             setCampaign={(camp) => props.setCampaign(camp)}
           />
         </Card>
+     
       </Layout.Section>
-      <Layout.Section>
+     <Layout.Section>
+        
         <Card
           title={
             props.campaign === "Shipping"
@@ -81,23 +35,17 @@ const TopText = (props) => {
           }
           sectioned
         >
-          {props.campaign === "Shipping" ? (
+           {props.loading?    <Stack alignment="center" distribution="center">
+           <Spinner accessibilityLabel="Spinner example" size="large" /></Stack> :
+          props.campaign === "Shipping" ? (
             <Shipping
-              shop={props.shop}
-              shippingFocused={props.shippingFocused}
-              setShippingFocused={(focus) => props.setShippingFocused(focus)}
-              emptyText={props.emptyText}
-              free={props.free}
-              setFree={(text) => props.setFree(text)}
-              moreAfter={props.moreAfter}
-              setMoreAfter={(text) => props.setMoreAfter(text)}
-              setEmptyText={(text) => props.setEmptyText(text)}
-              moreBefore={props.moreBefore}
-              setMoreBefore={(text) => props.setMoreBefore(text)}
+              activeCampaign={props.activeCampaign}
+              shipping = {props.shipping}
+              setShipping={(text) => props.setShipping(text)}
             />
           ) : props.campaign === "Announcment" ? (
             <Announcment
-              shop={props.shop}
+              activeCampaign={props.activeCampaign}
               products={props.products}
               setProducts={(prod) => props.setProducts(prod)}
               setAnnouncment={props.setAnnouncment}
@@ -105,27 +53,22 @@ const TopText = (props) => {
             />
           ) : props.campaign === "CountDown" ? (
             <CountDown
-              countDownFocus={props.countDownFocus}
-              setCountDownFocus={(fcs) => props.setCountDownFocus(fcs)}
-              shop={props.shop}
-              countDownFinished={props.countDownFinished}
-              setCountDownFinished={(cdf) => props.setCountDownFinished(cdf)}
-              countDownText={props.countDownText}
-              setCountDownText={(text) => props.setCountDownText(text)}
-              setTimeRemaining={(time) => {
-                props.setTimeRemaining(time);
-              }}
+              activeCampaign={props.activeCampaign}
+              countDown = {props.countDown}
+              setCountDown={(text) => props.setCountDown(text)}
             />
           ) : props.campaign === "Link" ? (
             <Link
-              shop={props.shop}
+              activeCampaign={props.activeCampaign}
               link={props.link}
               setLink={(link) => props.setLink(link)}
               linkText={props.linkText}
               setLinkText={(linkText) => props.setLinkText(linkText)}
             />
-          ) : null}
-        </Card>
+          ) : null
+          }
+        </Card> 
+      
       </Layout.Section>
     </Layout>
   );

@@ -4,6 +4,7 @@ import {
   postFontColor,
   postFontSize,
   postSize,
+  postItalic
 } from "../controllers/design_controller";
 
 const router = new Router({ prefix: "/design" });
@@ -26,5 +27,9 @@ router.put("/fontsize", async (ctx) => {
 router.put("/size", async (ctx) => {
   const size = ctx.query.size;
   ctx.body = await postSize(ctx.myClient, size);
+});
+router.put("/italic", async (ctx) => {
+  const italic = ctx.query.italic;
+  ctx.body = await postItalic(ctx.myClient, italic);
 });
 export default router;

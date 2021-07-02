@@ -4,47 +4,111 @@ import Install from "../pages/install";
 import Stepper from "../components/Steper";
 import Preview from "../components/Preview";
 import { useAxios } from "../hooks/useAxios";
-import axioss from "axios";
+import { ColorPicker, useColor } from "react-color-palette";
 import { Loading, Frame } from "@shopify/polaris";
 
 function index({ shopOrigin }) {
   const app = useAppBridge();
   const [axios] = useAxios();
-  const [shippingRate, setShippingRate] = useState(null);
   const [step, setStep] = useState(0);
-  const [color, setColor] = useState("transparent");
-  const [value, setValue] = useState("50px");
   const [campaign, setCampaign] = useState("");
-  const [emptyText, setEmptyText] = useState("");
-  const [moreBefore, setMoreBefore] = useState("");
-  const [moreAfter, setMoreAfter] = useState("");
-  const [free, setFree] = useState("");
-  const [shippingFocused, setShippingFocused] = useState("");
+  const [activeCampaign, setActiveCampaign] = useState("");
+  const [shipping, setShipping] = useState({
+    emptyText: "",
+    moreBefore: "",
+    moreAfter: "",
+    free: "",
+    shippingFocused: ""
+  });
+  const [color, setColor] = useColor("hex", "#121212");
+  const [colorBack, setColorBack] = useColor("hex", "#ffffff");
+  const [shippingRate, setShippingRate] = useState(null);
   const [announcment, setAnnouncment] = useState("");
   const [products, setProducts] = useState([]);
-  const [timeRemaining, setTimeRemaining] = useState(null);
-  const [countDownText, setCountDownText] = useState("");
-  const [countDownFinished, setCountDownFinished] = useState("");
-  const [countDownFocus, setCountDownFocus] = useState();
+  const [countDown, setCountDown] = useState({
+    timeRemaining : null,
+    countDownText: "",
+    countDownFinished: "",
+    countDownFocus: "",
+    currentDate : ""
+  });
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
-  const [shop, setShop] = useState("");
-  const [fontSize, setFontSize] = useState("");
-  const [fontColor, setFontColor] = useState("");
+  const [design, setDesign] = useState({
+    color:"transparent",
+    value: "50px",
+    fontSize: "16px",
+    fontColor: "black",
+    icons: "none",
+    iconLeftActive: true,
+    iconRightActive: true,
+    letterSpacing:""
+  });
   const [animationProps, setAnimationProps] = useState({
     animation: "",
-    animationTiming: "once",
-    animationSecounds: "1",
+    animationSecounds: ""
   });
-
+  const [loading, setLoading] = useState(true)
+  
   useEffect(() => {
     let namespace = "cleverchoice";
     let key = "topbar";
     axios
-      .get(`https://tidy-shrimp-31.loca.lt/campaign/metafields`)
+      .get(`https://dejri-123.loca.lt/campaign/metafields`)
+      .then((res) => {
+        let rateMetafields = res.data;
+        let campaign = null;
+        if (res.data.body.metafields) {
+          rateMetafields["body"]["metafields"] &&
+            rateMetafields["body"]["metafields"].forEach((metafield) => {
+              if (
+                metafield["namespace"] === namespace &&
+                metafield["key"] === key
+              ) {
+                campaign = JSON.parse(metafield.value);
+                console.log(campaign);
+                if (campaign.campaign.link) {
+                  setCampaign("Link");
+                  setActiveCampaign("Link")
+                  setLink(campaign.campaign.link);
+                  setLinkText(campaign.campaign.linkText);
+                  setLoading(false)
+                } else if (campaign.campaign.date) {
+                  setCampaign("CountDown");
+                  setActiveCampaign("CountDown")
+                  setLoading(false)
+                  let date = campaign.campaign.date;
+                  let countDownDate = new Date(date).getTime();
+                  let now = new Date().getTime();
+                  let distance = countDownDate - now;
+                  setCountDown({...countDown, currentDate : campaign.campaign.date, countDownText : campaign.campaign.text, countDownFinished: campaign.campaign.finishText , timeRemaining :distance / 1000});
+                } else if (campaign.campaign.products) {
+                  setCampaign("Announcment");
+                  setActiveCampaign("Announcment")
+                  setLoading(false)
+                  setProducts(JSON.parse(campaign.campaign.products));
+                } else if (campaign.campaign.empty) {
+                  console.log(campaign)
+                  setCampaign("Shipping");
+                  setActiveCampaign("Shipping")
+                  setLoading(false)
+                  setShipping({...shipping, emptyText:campaign.campaign.empty, free: campaign.campaign.free, moreAfter:campaign.campaign.after, moreBefore: campaign.campaign.before});
+                }
+              }
+            });
+        }
+      })
+  }, []);
+
+  useEffect(() => {
+    let namespace = "cleverchoice";
+    let key = "topbar";
+      axios
+      .get(`https://dejri-123.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let data = null;
+        console.log(res.data);
         if (res.data.body.metafields) {
           rateMetafields["body"]["metafields"] &&
             rateMetafields["body"]["metafields"].forEach((metafield) => {
@@ -53,15 +117,8 @@ function index({ shopOrigin }) {
                 metafield["key"] === key
               ) {
                 data = JSON.parse(metafield.value);
-                if (data.design.color) {
-                  setColor(data.design.color);
-                }
-                if (data.design.fontSize) {
-                  setFontSize(data.design.fontSize);
-                }
-                if (data.design.fontColor) {
-                  setFontColor(data.design.fontColor);
-                }
+                  setDesign({...design, fontSize: data.design.fontSize, fontColor: data.design.fontColor})
+
               }
             });
         }
@@ -71,15 +128,15 @@ function index({ shopOrigin }) {
           // setAnimation(animation);
         }
       });
+
   }, []);
   useEffect(() => {
-    getUrl();
     fetchShippingRate();
   }, []);
-
+  console.log(design);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://tidy-shrimp-31.loca.lt/script_tag/ship`
+      `https://dejri-123.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -87,80 +144,47 @@ function index({ shopOrigin }) {
       )
     );
   }
-  async function getUrl() {
-    const { data } = await axios.get(
-      `https://tidy-shrimp-31.loca.lt/script_tag/shop`
-    );
-    setShop(data.details.domain.replaceAll(".", "_"));
-  }
   return (
     <Frame>
       <Loading />
       <Preview
-        // animationTiming = {animationTiming}
-        // setAnimationTiming = {(time)=>setAnimationTiming(time)}
-        fontColor={fontColor}
-        fontSize={fontSize}
-        countDownFocus={countDownFocus}
+        colorBack = {colorBack}
+        color = {color}
+        countDown={countDown}
+        animationProps = {animationProps}
         linkText={linkText}
-        shippingFocused={shippingFocused}
-        countDownFinished={countDownFinished}
-        countDownText={countDownText}
-        timeRemaining={timeRemaining}
         announcment={announcment}
-        text={{
-          empty: emptyText,
-          moreBefore: moreBefore,
-          moreAfter: moreAfter,
-          free: free,
-        }}
+        shipping = {shipping}
         products={products}
         campaign={campaign}
-        color={color}
-        value={value}
+        design={design}
       />
       <div className="Progress">
         <Stepper
+          setColorBack = {(color)=>setColorBack(color)}
+          colorBack = {colorBack}
+          setColor = {(color)=>setColor(color)}
+          color = {color}
+          loading = {loading}
+          activeCampaign={activeCampaign}
           animationProps={animationProps}
           setAnimationProps={(time) => setAnimationProps(time)}
-          fontColor={fontColor}
-          setFontColor={(clr) => setFontColor(clr)}
-          fontSize={fontSize}
-          setFontSize={(size) => setFontSize(size)}
-          countDownFocus={countDownFocus}
-          setCountDownFocus={(fcs) => setCountDownFocus(fcs)}
-          shop={shop}
-          shippingFocused={shippingFocused}
-          setShippingFocused={(focus) => setShippingFocused(focus)}
+          countDown = {countDown}
           link={link}
           setLink={(link) => setLink(link)}
           linkText={linkText}
           setLinkText={(linkText) => setLinkText(linkText)}
-          countDownFinished={countDownFinished}
-          setCountDownFinished={(cdf) => setCountDownFinished(cdf)}
-          countDownText={countDownText}
-          setCountDownText={(text) => setCountDownText(text)}
-          setTimeRemaining={(time) => {
-            setTimeRemaining(time);
-          }}
+          setCountDown={(time) => setCountDown(time)}
           products={products}
           setProducts={(prod) => setProducts(prod)}
-          emptyText={emptyText}
-          free={free}
-          setFree={(text) => setFree(text)}
-          moreAfter={moreAfter}
-          setMoreAfter={(text) => setMoreAfter(text)}
-          setEmptyText={(text) => setEmptyText(text)}
-          moreBefore={moreBefore}
-          setMoreBefore={(text) => setMoreBefore(text)}
+          shipping={shipping}
+          setShipping={(text) => setShipping(text)}
           setAnnouncment={(ann) => setAnnouncment(ann)}
           announcment={announcment}
           campaign={campaign}
           setCampaign={(camp) => setCampaign(camp)}
-          value={value}
-          setValue={(value) => setValue(value)}
-          color={color}
-          setColor={(color) => setColor(color)}
+          design = {design}
+          setDesign={(color) => setDesign(color)}
           activeStep={step}
           setActiveStep={(step) => setStep(step)}
         />

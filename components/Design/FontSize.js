@@ -1,48 +1,20 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useAxios } from "../../hooks/useAxios";
-import { Heading, RadioButton, Stack } from "@shopify/polaris";
+import { Heading, ButtonGroup, RangeSlider, Button, Stack } from "@shopify/polaris";
 
 const FontSize = (props) => {
   const [axios] = useAxios();
   useEffect(() => {
-    axios
-      .put(
-        `https://tidy-shrimp-31.loca.lt/design/fontsize?fontsize=${props.fontSize}`
-      )
-      .then((res) => console.log(res));
-  }, [props.fontSize]);
-  const handleChange = useCallback(
-    (_checked, newValue) => props.setFontSize(newValue),
-    []
-  );
+   
+  }, [props.design.fontSize]);
   return (
-    <div style={{ marginTop: "30px" }}>
-      <Heading element="h1">Font Size</Heading>
-      <div style={{ marginTop: "10px" }}></div>
-      <Stack>
-        <RadioButton
-          label="16px"
-          checked={props.fontSize === "16px"}
-          id="16px"
-          name="fontSize"
-          onChange={handleChange}
-        />
-        <RadioButton
-          label="18px"
-          id="18px"
-          name="fontSize"
-          checked={props.fontSize === "18px"}
-          onChange={handleChange}
-        />
-        <RadioButton
-          label="20px"
-          id="20px"
-          name="fontSize"
-          checked={props.fontSize === "20px"}
-          onChange={handleChange}
-        />
+      <Stack vertical>
+
+         <Heading element="h1">Font Size</Heading>
+         <ButtonGroup fullWidth segmented={true}  >
+         <RangeSlider min = {14} max={25} value={props.design.fontSize.replace("px", "")} onChange={(value)=> props.setDesign({...props.design, fontSize : `${value}px`})} output />
+          </ButtonGroup>
       </Stack>
-    </div>
   );
 };
 export default FontSize;

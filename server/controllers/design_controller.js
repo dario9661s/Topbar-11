@@ -40,7 +40,7 @@ export async function postColor(client, color) {
   return "return";
 }
 
-export async function postFontColor(client, fontcolor) {
+export async function postFontColor(client, fontColor) {
   if (!client) {
     msg();
     return;
@@ -55,7 +55,9 @@ export async function postFontColor(client, fontcolor) {
         if(!value["design"]){
           value["design"] = {}
         }
-        value['design']["fontColor"] = fontcolor;
+        let hash = "#"
+        value["design"]["fontColor"] = hash.concat("",fontColor);
+
         client.put({
           path: `metafields/${metafield.id}`,
           data: {
@@ -121,6 +123,38 @@ export async function postSize(client, size) {
         value["design"] = {}
       }
       value['design']["size"] = size;
+      client.put({
+        path: `metafields/${metafield.id}`,
+        data: {
+          metafield: {
+            id: metafield.id,
+            value: JSON.stringify(value),
+            value_type: "json_string",
+          },
+        },
+        type: DataType.JSON,
+      });
+    }
+  });
+  return "return";
+}
+
+export async function postItalic(client, italic) {
+  if (!client) {
+    msg();
+    return;
+  }
+  const rateMetafields = await client.get({
+    path: "metafields",
+  });
+  rateMetafields["body"]["metafields"] &&
+  rateMetafields["body"]["metafields"].forEach((metafield) => {
+    if (metafield["namespace"] === namespace && metafield["key"] === key) {
+      let value = JSON.parse(metafield.value);
+      if(!value["design"]){
+        value["design"] = {}
+      }
+      value['design']["italic"] = italic;
       client.put({
         path: `metafields/${metafield.id}`,
         data: {

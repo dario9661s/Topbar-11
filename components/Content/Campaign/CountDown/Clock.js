@@ -5,15 +5,15 @@ const Clock = (props) => {
 
   const countDown =
     <div className="CountDownText">
-      <p className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}
-         style={props.animation === "left" || props.animation === "right" ? {flex: "1"} : null}>{props.countDownText}</p>
-      {props.timeRemaining ? <Countdown  className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}
-                                        style={props.animation === "left" || props.animation === "right" ? {flex: "1"} : null} date={Date.now() + props.timeRemaining * 1000}/> : null}
+      <p className={ props.animationProps.animation + props.animationProps.animationSecounds}
+         style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>{props.countDown.countDownText}</p>
+      {props.countDown.timeRemaining ? <Countdown  className={ props.animationProps.animation + props.animationProps.animationSecounds}
+                                                   style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null} date={Date.now() + props.countDown.timeRemaining * 1000}/> : null}
     </div>
 
   return (
  <div className="TimerContainer">
-   {props.countDownFocus === "timer"? countDown : props.countDownFocus === "finished"? <p className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}  style={props.animation === "left" || props.animation === "right" ? {flex: "1"} : null}>{props.countDownFinished}</p> : <p>Start Typing in the text field</p>}
+   {props.countDown.countDownFocus === "timer"? countDown : props.countDown.countDownFocus === "finished"? <p className={ props.animationProps.animation + props.animationProps.animationSecounds}   style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>{props.countDown.countDownFinished}</p> : <p>Start Typing in the text field</p>}
  </div>
   );
 };

@@ -1,22 +1,22 @@
 import React, { useCallback } from "react";
 import { useAxios } from "../../../hooks/useAxios";
 import "react-datepicker/dist/react-datepicker.css";
-import { TextField, FormLayout, Button } from "@shopify/polaris";
+import { TextField, FormLayout, Button, TextStyle } from "@shopify/polaris";
 
 const link = (props) => {
   const [axios] = useAxios();
   const sendData = () => {
     axios
       .put(
-        `https://tidy-shrimp-31.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
+        `https://dejri-123.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
       )
       .then((res) => console.log(res));
   };
   const changeLink = useCallback((value) => props.setLink(value), []);
   const changeText = useCallback((value) => props.setLinkText(value), []);
   return (
-    <div className="CampaignContainer">
       <FormLayout>
+        {props.activeCampaign === "Link" ?<TextStyle variation="positive">Active</TextStyle> : null}
         <TextField
           label="Link url"
           value={props.link}
@@ -35,7 +35,6 @@ const link = (props) => {
           Save Changes!
         </Button>
       </FormLayout>
-    </div>
   );
 };
 export default link;

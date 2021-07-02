@@ -28,7 +28,7 @@ const Shipping = (props) => {
     });
     axios
       .put(
-        `https://tidy-shrimp-31.loca.lt/campaign/announcement?announcement=${
+        `https://dejri-123.loca.lt/campaign/announcement?announcement=${
           props.announcment
         }&products=${JSON.stringify(products)}`
       )
@@ -57,8 +57,8 @@ const Shipping = (props) => {
     []
   );
   return (
-    <div className="CampaignContainer">
       <FormLayout>
+        {props.activeCampaign === "Announcment" ?<TextStyle variation="positive">Active</TextStyle> : null}
         <ResourcePicker
           selectMultiple={5}
           resourceType="Product"
@@ -104,7 +104,6 @@ const Shipping = (props) => {
           </Button>
         </FormLayout>
       </FormLayout>
-    </div>
   );
 };
 export default Shipping;

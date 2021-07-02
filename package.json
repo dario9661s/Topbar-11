@@ -52,6 +52,7 @@
     "react": "^16.10.1",
     "react-apollo": "^3.1.5",
     "react-color": "^2.19.3",
+    "react-color-palette": "^6.0.0",
     "react-countdown": "^2.3.2",
     "react-datepicker": "^3.8.0",
     "react-dom": "^16.10.1",

@@ -1,11 +1,15 @@
 import React from "react";
-import { Stack } from "@shopify/polaris";
+import { Stack, Button } from "@shopify/polaris";
 import CheckIcon from '@material-ui/icons/Check';
 
 export default function SimpleListMenu(props) {
 
   const handleSelectChange = (btn)=>{
      props.setCampaign(btn)
+     props.setAnimationProps({
+      animation: "",
+      animationSecounds: ""
+     })
   }
 
   const options = [
@@ -18,10 +22,9 @@ export default function SimpleListMenu(props) {
   return (
     <Stack vertical={true}>
       {options.map((btn,i)=> {
-        return <div key={i}  className={props.campaign === btn.value? "CampaignBtnActive" : "CampaignBtn" } onClick={()=>handleSelectChange(btn.value)}>
+        return <Button key={i}  fullWidth pressed={props.campaign === btn.value? true : false } onClick={()=>handleSelectChange(btn.value)}>
           {btn.label}
-          {props.campaign === btn.value? <CheckIcon/> : null}
-        </div>
+        </Button>
       })}
     </Stack>
   );

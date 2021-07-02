@@ -32,50 +32,36 @@ const StepperComponent = (props) => {
       case 0:
         return (
           <TopText
-            shop={props.shop}
-            countDownFocus={props.countDownFocus}
-            setCountDownFocus={(fcs) => props.setCountDownFocus(fcs)}
-            shippingFocused={props.shippingFocused}
-            setShippingFocused={(focus) => props.setShippingFocused(focus)}
+            loading = {props.loading}
+            activeCampaign={props.activeCampaign}
+            animationProps={props.animationProps}
+            setAnimationProps={(time) => props.setAnimationProps(time)}
+            countDown = {props.countDown}
             link={props.link}
             setLink={(link) => props.setLink(link)}
             linkText={props.linkText}
             setLinkText={(linkText) => props.setLinkText(linkText)}
-            countDownFinished={props.countDownFinished}
-            setCountDownFinished={(cdf) => props.setCountDownFinished(cdf)}
-            emptyText={props.emptyText}
-            free={props.free}
-            setFree={(text) => props.setFree(text)}
-            moreAfter={props.moreAfter}
-            setMoreAfter={(text) => props.setMoreAfter(text)}
-            setEmptyText={(text) => props.setEmptyText(text)}
-            moreBefore={props.moreBefore}
-            setMoreBefore={(text) => props.setMoreBefore(text)}
+            shipping={props.shipping}
+            setShipping={(text) => props.setShipping(text)}
             campaign={props.campaign}
             setCampaign={(camp) => props.setCampaign(camp)}
             setAnnouncment={(ann) => props.setAnnouncment(ann)}
             announcment={props.announcment}
             products={props.products}
             setProducts={(prod) => props.setProducts(prod)}
-            setTimeRemaining={(time) => {
-              props.setTimeRemaining(time);
-            }}
-            countDownText={props.countDownText}
-            setCountDownText={(text) => props.setCountDownText(text)}
+            setCountDown={(time) => props.setCountDown(time)}
+            // countDownText={props.countDownText}
           />
         );
       case 1:
         return (
           <Colors
-            fontColor={props.fontColor}
-            setFontColor={(clr) => props.setFontColor(clr)}
-            fontSize={props.fontSize}
-            setFontSize={(size) => props.setFontSize(size)}
-            shop={props.shop}
-            value={props.value}
-            setValue={(value) => props.setValue(value)}
-            color={props.color}
-            setColor={(color) => props.setColor(color)}
+          colorBack = {props.colorBack}
+          setColorBack = {(color)=>props.setColorBack(color)}
+          color = {props.color}
+          setColor = {(color)=>props.setColor(color)}
+          design = {props.design}
+          setDesign={(color) => props.setDesign(color)}
           />
         );
       case 2:

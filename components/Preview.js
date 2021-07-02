@@ -1,42 +1,56 @@
 import React from "react";
 import Clock from "../components/Content/Campaign/CountDown/Clock"
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import GradeIcon from '@material-ui/icons/Grade';
+import DoneIcon from '@material-ui/icons/Done';
 
 const  Preview = (props) => {
-  let announcement = props.products.map((product) => {
+  console.log(props.design);
+  let icons = props.design.icons === "arrow"? <DoubleArrowIcon/> : props.design.icons === "like"? <ThumbUpIcon/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null
+  let iconsRot =   props.design.iconRightActive ? props.design.icons === "arrow"? <DoubleArrowIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null}}/> : props.design.icons === "like"? <ThumbUpIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null }}/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null: null
 
-    return <p
-      className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}
-      style={ props.animation === "left" || props.animation === "right" ? {flex: "1"} : null}
-    >
-      {props.announcment + " " + product.name}
-    </p>
+  let announcement = props.products.map((product) => {
+    return <div  className={props.animationProps.animation + props.animationProps.animationSecounds}
+              style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
+            <p>
+              {icons}
+              {props.announcment + " " + product.name}
+              {iconsRot}
+            </p>
+          </div>
   })
-  let shipping = <p
-    className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}
-    style={props.animation === "left" || props.animation === "right" ? {flex: "1"} : null}>
-    {props.shippingFocused === "more"?  props.text.moreBefore + " user cart value " + props.text.moreAfter : props.shippingFocused === "free"? props.text.free : props.shippingFocused === "empty"? props.text.empty : "Focus text fields for preview!" }
+  let shipping = <div className={ props.animationProps.animation + props.animationProps.animationSecounds} style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
+  <p>
+  {props.design.iconLeftActive ? props.design.icons === "arrow"? <DoubleArrowIcon style={{transform:props.design.rotateLeft? null : "rotate(180deg)"}}/> : props.design.icons === "like"? <ThumbUpIcon style={{transform:props.design.rotateLeft? "rotate(180deg)" : null}}/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null: null}
+  {props.shipping.shippingFocused === "more"?  props.shipping.moreBefore + " user cart value " + props.shipping.moreAfter : props.shipping.shippingFocused === "free"? props.shipping.free : props.shippingFocused === "empty"?   "Focus text fields for preview!" : props.shipping.emptyText }
+  {props.design.iconRightActive ? props.design.icons === "arrow"? <DoubleArrowIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null}}/> : props.design.icons === "like"? <ThumbUpIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null }}/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null: null}
   </p>
+  </div> 
   let link = <p
-    className={props.animation === "left" ? "animation" : props.animation === "right" ? "animationRight" : props.animation === "pulse" ? "animationPulse" : props.animation === "vibrate" ? "vibrate-1" : null}
-    style={ props.animation === "left" || props.animation === "right" ? {flex: "1"} : null}>
+  className={props.animationProps.animation + props.animationProps.animationSecounds}
+    style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
     {props.linkText}
   </p>
-  console.log(props.fontColor)
+
   return (
     <div className="background" style={{
+      fontStyle: props.design.italic === "italic"? "italic" : "normal",
       width: "100%",
-      color: props.fontColor,
-      backgroundColor: props.color,
-      height: props.value,
-      fontSize: props.fontSize,
+      color: props.color.hex,
+      backgroundColor: props.colorBack.hex,
+      height: props.design.value,
+      fontSize: props.design.fontSize,
       display: "flex",
       justifyContent: "space-around",
       alignItems: "center",
       position: "fixed",
-      zIndex: "1000"
+      zIndex: "1000",
+      letterSpacing: props.design.letterSpacing
     }}>
+    
       {props.campaign === "Announcment" ? announcement : props.campaign === "Shipping" ? shipping : props.campaign === "CountDown" ?
-        <Clock animation = {props.animation} countDownFinished = {props.countDownFinished} countDownFocus = {props.countDownFocus} countDownText={props.countDownText} timeRemaining={props.timeRemaining}/> : props.campaign === "Link"? link : null}
+        <Clock animationProps = {props.animationProps} countDown = {props.countDown} /> : props.campaign === "Link"? link : null}
     </div>
   );
 }

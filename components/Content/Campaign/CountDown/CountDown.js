@@ -13,7 +13,7 @@ import {
 
 const CountDown = (props) => {
   const [axios] = useAxios();
-  const [startDate, setStartDate] = useState(null);
+  const [startDate, setStartDate] = useState(props.countDown.currentDate);
   const [{ month, year }, setDate] = useState({
     month: new Date().getMonth(),
     year: new Date().getFullYear(),
@@ -22,36 +22,26 @@ const CountDown = (props) => {
     start: new Date(Date.now()),
     end: new Date(Date.now()),
   });
-
   useEffect(() => {
     if (startDate) {
       const oneDay = 1000; // hours*minutes*seconds*milliseconds
       const firstDate = startDate.end;
       const secondDate = new Date(Date.now());
       const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-      props.setTimeRemaining(diffDays);
+      props.setCountDown({...props.countDown, timeRemaining:diffDays});
     }
   }, [startDate]);
   const handleMonthChange = useCallback(
     (month, year) => setDate({ month, year }),
     []
   );
-  console.log(startDate);
   const sendData = () => {
     axios
       .put(
-        `https://tidy-shrimp-31.loca.lt/campaign/countdown?text=${props.countDownText}&date=${startDate.end}&finish=${props.countDownFinished}`
+        `https://dejri-123.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
       )
-      .then((res) => console.log(res));
+      .then(res => res);
   };
-  const handleChangeCountDownFinished = useCallback(
-    (value) => props.setCountDownFinished(value),
-    []
-  );
-  const handleChange = useCallback(
-    (value) => props.setCountDownText(value),
-    []
-  );
   return (
     <div className="CampaignContainer">
       <FormLayout>
@@ -61,31 +51,25 @@ const CountDown = (props) => {
           year={year}
           onChange={setStartDate}
           onMonthChange={handleMonthChange}
-          selected={selectedDates}
+          selected={startDate.start}
         />
-        {/* <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        minDate={Date.now()}
-        placeholderText="Select a date after 5 days ago"
-      /> */}
         <TextField
           label="Text before Timer"
-          onFocus={() => props.setCountDownFocus("timer")}
-          value={props.countDownText}
-          onChange={handleChange}
+          onFocus={() => props.setCountDown({...props.countDown, countDownFocus:"timer"})}
+          value={props.countDown.countDownText}
+          onChange={(value) => props.setCountDown({...props.countDown, countDownText:value})}
           type="text"
           placeholder="Sale!"
         />
         <TextField
           label="Text displayed when the timer is finished"
-          onFocus={() => props.setCountDownFocus("finished")}
-          value={props.countDownFinished}
-          onChange={handleChangeCountDownFinished}
+          onFocus={() => props.setCountDown({...props.countDown, countDownFocus:"finished"})}
+          value={props.countDown.countDownFinished}
+          onChange={(value) => props.setCountDown({...props.countDown, countDownFinished:value})}
           type="text"
           placeholder="Timer finished!!!"
         />
-        <Button onClick={() => sendData()} primary>
+        <Button disabled = {startDate ? false : true} onClick={() => sendData()} primary>
           Save Changes!
         </Button>
       </FormLayout>
