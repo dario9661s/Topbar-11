@@ -22,21 +22,23 @@ const  Preview = (props) => {
   })
   let shipping = <div className={ props.animationProps.animation + props.animationProps.animationSecounds} style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
   <p>
-  {props.design.iconLeftActive ? props.design.icons === "arrow"? <DoubleArrowIcon style={{transform:props.design.rotateLeft? null : "rotate(180deg)"}}/> : props.design.icons === "like"? <ThumbUpIcon style={{transform:props.design.rotateLeft? "rotate(180deg)" : null}}/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null: null}
+  {icons}
   {props.shipping.shippingFocused === "more"?  props.shipping.moreBefore + " user cart value " + props.shipping.moreAfter : props.shipping.shippingFocused === "free"? props.shipping.free : props.shippingFocused === "empty"?   "Focus text fields for preview!" : props.shipping.emptyText }
-  {props.design.iconRightActive ? props.design.icons === "arrow"? <DoubleArrowIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null}}/> : props.design.icons === "like"? <ThumbUpIcon style={{transform:props.design.rotateRight? "rotate(180deg)" : null }}/> : props.design.icons === "star"? <GradeIcon/> : props.design.icons === "check"? <DoneIcon/> : null: null}
+  {iconsRot}
   </p>
   </div> 
   let link = <p
   className={props.animationProps.animation + props.animationProps.animationSecounds}
-    style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
+style={ props.animationProps.animation === "Left-Right" || props.animationProps.animation === "Right-Left" ? {flex: "1"} : null}>
+    {icons}  
     {props.linkText}
+    {iconsRot}
   </p>
-
   return (
     <div className="background" style={{
       fontStyle: props.design.italic === "italic"? "italic" : "normal",
       width: "100%",
+      fontFamily: props.design.fontStyle + ",sans-serif", 
       color: props.color.hex,
       backgroundColor: props.colorBack.hex,
       height: props.design.value,

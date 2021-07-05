@@ -10,6 +10,7 @@ export default function SimpleListMenu(props) {
       animation: "",
       animationSecounds: ""
      })
+     props.setDesign({...props.design, icon:"none"})
   }
 
   const options = [

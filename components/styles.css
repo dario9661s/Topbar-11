@@ -1,11 +1,9 @@
-
-.Polaris-ResourceItem{
+@import url('https://fonts.googleapis.com/css2?family=Mukta&family=Open+Sans&family=Poppins&family=Roboto&display=swap');.Polaris-ResourceItem{
   animation: example 0.6s;
 }
-.navContainer{
-  
-}
+
 .background p {
+
   margin: auto;
 }
 .CampaignContainer{

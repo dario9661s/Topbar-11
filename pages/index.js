@@ -35,6 +35,8 @@ function index({ shopOrigin }) {
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
   const [design, setDesign] = useState({
+    fontStyle: "roboto",
+    italic:"normal",
     color:"transparent",
     value: "50px",
     fontSize: "16px",

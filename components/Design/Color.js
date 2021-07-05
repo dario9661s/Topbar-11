@@ -18,40 +18,16 @@ const Colors = (props) => {
   const [picker, setPicker] = useState("our");
 
   const changeColor = () => {
+
     axios
       .put(
-        `https://dejri-123.loca.lt/design/color?color=${props.colorBack.hex.replace("#", "" )}`).then((res) => res)
-        .then(()=> {
-          axios
-        .put(
-          `https://dejri-123.loca.lt/design/fontsize?fontsize=${props.design.fontSize}`
-        )
-        .then((res) => res).then(()=> {
-          axios
-          .put(`https://dejri-123.loca.lt/design/size?size=${props.design.value}`)
-          .then((res) => res).then(()=> {
-            axios
-            .put(
-              `https://dejri-123.loca.lt/design/fontcolor?fontcolor=${props.color.hex.replace("#", "" )}`
-            )
-            .then(res => res).then(()=> {
-              axios
-              .put(
-                `https://dejri-123.loca.lt/design/italic?italic=${props.design.italic}`
-              )
-              .then((res) => console.log(res));
-            })
-          })
-        })
-      })
+        `https://dejri-123.loca.lt/design/design?color=${props.colorBack.hex.replace("#", "" )}&fontsize=${props.design.fontSize}&size=${props.design.value}&fontcolor=${props.color.hex.replace("#", "" )}&italic=${props.design.italic}`).then((res) => console.log(res))
   };
-  console.log(props.color.hex);
-  console.log(props.colorBack.hex);
+
   return (
     <Layout>
       <Layout.Section oneThird>
         <Card title="Design" sectioned>
-
           <Stack vertical>
           <Icons
                design = {props.design}
@@ -88,12 +64,11 @@ const Colors = (props) => {
               <Italic
                design = {props.design}
                setDesign={(color) => props.setDesign(color)}/>
-
                <Stack vertical>
-                  <Heading element="h1">Background Color</Heading>
+                  <Heading element="h1">Colors</Heading>
                   <ButtonGroup fullWidth segmented={true}  >
-                    <Button pressed={picker==="our"? true : false} onClick = {()=>setPicker("our")}>Custom</Button>
-                    <Button pressed={picker==="custom"? true : false} onClick = {()=>setPicker("custom")}>Colors</Button>
+                    <Button pressed={picker==="our"? true : false} onClick = {()=>setPicker("our")}>Font</Button>
+                    <Button pressed={picker==="custom"? true : false} onClick = {()=>setPicker("custom")}>Background</Button>
                   </ButtonGroup>
               </Stack>
               </Stack>
