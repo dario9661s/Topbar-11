@@ -18,7 +18,7 @@ const Animations = (props) => {
   const sendAnimation = () => {
     axios
       .put(
-        `https://dejri-123.loca.lt/animation/anim?animation=${props.animationProps.animation}&animationSecounds=${props.animationProps.animationSecounds}`
+        `https://funny-goat-3.loca.lt/animation/anim?animation=${props.animationProps.animation}&animationSecounds=${props.animationProps.animationSecounds}`
       )
       .then((res) => res);
   };

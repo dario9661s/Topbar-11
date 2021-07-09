@@ -51,12 +51,12 @@ function index({ shopOrigin }) {
     animationSecounds: ""
   });
   const [loading, setLoading] = useState(true)
-  
+
   useEffect(() => {
     let namespace = "cleverchoice";
     let key = "topbar";
     axios
-      .get(`https://dejri-123.loca.lt/campaign/metafields`)
+      .get(`https://funny-goat-3.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let campaign = null;
@@ -106,7 +106,7 @@ function index({ shopOrigin }) {
     let namespace = "cleverchoice";
     let key = "topbar";
       axios
-      .get(`https://dejri-123.loca.lt/campaign/metafields`)
+      .get(`https://funny-goat-3.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let data = null;
@@ -138,7 +138,7 @@ function index({ shopOrigin }) {
   console.log(design);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://dejri-123.loca.lt/script_tag/ship`
+      `https://funny-goat-3.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(

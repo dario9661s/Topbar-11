@@ -38,7 +38,7 @@ const CountDown = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://dejri-123.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
+        `https://funny-goat-3.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
       )
       .then(res => res);
   };

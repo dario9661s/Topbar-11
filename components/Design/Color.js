@@ -21,9 +21,9 @@ const Colors = (props) => {
 
     axios
       .put(
-        `https://dejri-123.loca.lt/design/design?color=${props.colorBack.hex.replace("#", "" )}&fontsize=${props.design.fontSize}&size=${props.design.value}&fontcolor=${props.color.hex.replace("#", "" )}&italic=${props.design.italic}`).then((res) => console.log(res))
+        `https://funny-goat-3.loca.lt/design/design?color=${props.colorBack.hex.replace("#", "" )}&fontsize=${props.design.fontSize}&size=${props.design.value}&fontcolor=${props.color.hex.replace("#", "" )}&italic=${props.design.italic}`).then((res) => console.log(res))
   };
-
+console.log(props.colorBack);
   return (
     <Layout>
       <Layout.Section oneThird>
@@ -40,7 +40,7 @@ const Colors = (props) => {
            design = {props.design}
            setDesign={(color) => props.setDesign(color)}
           />
-          <LetterSpacing 
+          <LetterSpacing
           design = {props.design}
           setDesign={(color) => props.setDesign(color)}/>
           <Button onClick={()=>changeColor()} fullWidth primary>Save Design</Button>

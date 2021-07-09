@@ -56,6 +56,8 @@ const StepperComponent = (props) => {
       case 1:
         return (
           <Colors
+          setColorBack = {(color)=>props.setColorBack(color)}
+          colorBack={props.colorBack}
           color = {props.color}
           setColor = {(color)=>props.setColor(color)}
           design = {props.design}
