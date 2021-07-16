@@ -18,7 +18,7 @@ function index({ shopOrigin }) {
     moreBefore: "",
     moreAfter: "",
     free: "",
-    shippingFocused: ""
+    shippingFocused: "",
   });
   const [color, setColor] = useColor("hex", "#121212");
   const [colorBack, setColorBack] = useColor("hex", "#ffffff");
@@ -26,37 +26,38 @@ function index({ shopOrigin }) {
   const [announcment, setAnnouncment] = useState("");
   const [products, setProducts] = useState([]);
   const [countDown, setCountDown] = useState({
-    timeRemaining : null,
+    timeRemaining: null,
     countDownText: "",
     countDownFinished: "",
     countDownFocus: "",
-    currentDate : ""
+    currentDate: "",
   });
   const [linkText, setLinkText] = useState("");
   const [link, setLink] = useState("");
   const [design, setDesign] = useState({
     fontStyle: "roboto",
-    italic:"normal",
-    color:"transparent",
+    italic: "normal",
+    color: "transparent",
     value: "50px",
     fontSize: "16px",
     fontColor: "black",
     icons: "none",
     iconLeftActive: true,
     iconRightActive: true,
-    letterSpacing:""
+    letterSpacing: "",
   });
   const [animationProps, setAnimationProps] = useState({
     animation: "",
-    animationSecounds: ""
+    animationTiming: "Repeat",
+    animationSecounds: "",
   });
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let namespace = "cleverchoice";
     let key = "topbar";
     axios
-      .get(`https://funny-goat-3.loca.lt/campaign/metafields`)
+      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let campaign = null;
@@ -71,42 +72,54 @@ function index({ shopOrigin }) {
                 console.log(campaign);
                 if (campaign.campaign.link) {
                   setCampaign("Link");
-                  setActiveCampaign("Link")
+                  setActiveCampaign("Link");
                   setLink(campaign.campaign.link);
                   setLinkText(campaign.campaign.linkText);
-                  setLoading(false)
+                  setLoading(false);
                 } else if (campaign.campaign.date) {
                   setCampaign("CountDown");
-                  setActiveCampaign("CountDown")
-                  setLoading(false)
+                  setActiveCampaign("CountDown");
+                  setLoading(false);
                   let date = campaign.campaign.date;
                   let countDownDate = new Date(date).getTime();
                   let now = new Date().getTime();
                   let distance = countDownDate - now;
-                  setCountDown({...countDown, currentDate : campaign.campaign.date, countDownText : campaign.campaign.text, countDownFinished: campaign.campaign.finishText , timeRemaining :distance / 1000});
+                  setCountDown({
+                    ...countDown,
+                    currentDate: campaign.campaign.date,
+                    countDownText: campaign.campaign.text,
+                    countDownFinished: campaign.campaign.finishText,
+                    timeRemaining: distance / 1000,
+                  });
                 } else if (campaign.campaign.products) {
                   setCampaign("Announcment");
-                  setActiveCampaign("Announcment")
-                  setLoading(false)
+                  setActiveCampaign("Announcment");
+                  setLoading(false);
                   setProducts(JSON.parse(campaign.campaign.products));
                 } else if (campaign.campaign.empty) {
-                  console.log(campaign)
+                  console.log(campaign);
                   setCampaign("Shipping");
-                  setActiveCampaign("Shipping")
-                  setLoading(false)
-                  setShipping({...shipping, emptyText:campaign.campaign.empty, free: campaign.campaign.free, moreAfter:campaign.campaign.after, moreBefore: campaign.campaign.before});
+                  setActiveCampaign("Shipping");
+                  setLoading(false);
+                  setShipping({
+                    ...shipping,
+                    emptyText: campaign.campaign.empty,
+                    free: campaign.campaign.free,
+                    moreAfter: campaign.campaign.after,
+                    moreBefore: campaign.campaign.before,
+                  });
                 }
               }
             });
         }
-      })
+      });
   }, []);
 
   useEffect(() => {
     let namespace = "cleverchoice";
     let key = "topbar";
-      axios
-      .get(`https://funny-goat-3.loca.lt/campaign/metafields`)
+    axios
+      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let data = null;
@@ -119,8 +132,11 @@ function index({ shopOrigin }) {
                 metafield["key"] === key
               ) {
                 data = JSON.parse(metafield.value);
-                  setDesign({...design, fontSize: data.design.fontSize, fontColor: data.design.fontColor})
-
+                setDesign({
+                  ...design,
+                  fontSize: data.design.fontSize,
+                  fontColor: data.design.fontColor,
+                });
               }
             });
         }
@@ -130,7 +146,6 @@ function index({ shopOrigin }) {
           // setAnimation(animation);
         }
       });
-
   }, []);
   useEffect(() => {
     fetchShippingRate();
@@ -138,7 +153,7 @@ function index({ shopOrigin }) {
   console.log(design);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://funny-goat-3.loca.lt/script_tag/ship`
+      `https://massive-frog-5.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(
@@ -150,28 +165,28 @@ function index({ shopOrigin }) {
     <Frame>
       <Loading />
       <Preview
-        colorBack = {colorBack}
-        color = {color}
+        colorBack={colorBack}
+        color={color}
         countDown={countDown}
-        animationProps = {animationProps}
+        animationProps={animationProps}
         linkText={linkText}
         announcment={announcment}
-        shipping = {shipping}
+        shipping={shipping}
         products={products}
         campaign={campaign}
         design={design}
       />
       <div className="Progress">
         <Stepper
-          setColorBack = {(color)=>setColorBack(color)}
-          colorBack = {colorBack}
-          setColor = {(color)=>setColor(color)}
-          color = {color}
-          loading = {loading}
+          setColorBack={(color) => setColorBack(color)}
+          colorBack={colorBack}
+          setColor={(color) => setColor(color)}
+          color={color}
+          loading={loading}
           activeCampaign={activeCampaign}
           animationProps={animationProps}
           setAnimationProps={(time) => setAnimationProps(time)}
-          countDown = {countDown}
+          countDown={countDown}
           link={link}
           setLink={(link) => setLink(link)}
           linkText={linkText}
@@ -185,7 +200,7 @@ function index({ shopOrigin }) {
           announcment={announcment}
           campaign={campaign}
           setCampaign={(camp) => setCampaign(camp)}
-          design = {design}
+          design={design}
           setDesign={(color) => setDesign(color)}
           activeStep={step}
           setActiveStep={(step) => setStep(step)}

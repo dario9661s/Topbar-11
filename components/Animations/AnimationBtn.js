@@ -17,6 +17,7 @@ const Animations = (props) => {
   return (
     <div>
       <Button
+        disabled={props.animationProps.animation === props.label ? true : false}
         fullWidth
         onClick={() =>
           props.setAnimationProps({

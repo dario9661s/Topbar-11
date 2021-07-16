@@ -11,16 +11,16 @@ const TopText = (props) => {
       <Layout.Section oneThird>
         <Card title="Order details" sectioned>
           <CampaignPicker
+            design={props.design}
+            setDesign={(color) => props.setDesign(color)}
             animationProps={props.animationProps}
             setAnimationProps={(time) => props.setAnimationProps(time)}
             campaign={props.campaign}
             setCampaign={(camp) => props.setCampaign(camp)}
           />
         </Card>
-     
       </Layout.Section>
-     <Layout.Section>
-        
+      <Layout.Section>
         <Card
           title={
             props.campaign === "Shipping"
@@ -35,12 +35,14 @@ const TopText = (props) => {
           }
           sectioned
         >
-           {props.loading?    <Stack alignment="center" distribution="center">
-           <Spinner accessibilityLabel="Spinner example" size="large" /></Stack> :
-          props.campaign === "Shipping" ? (
+          {props.loading ? (
+            <Stack alignment="center" distribution="center">
+              <Spinner accessibilityLabel="Spinner example" size="large" />
+            </Stack>
+          ) : props.campaign === "Shipping" ? (
             <Shipping
               activeCampaign={props.activeCampaign}
-              shipping = {props.shipping}
+              shipping={props.shipping}
               setShipping={(text) => props.setShipping(text)}
             />
           ) : props.campaign === "Announcment" ? (
@@ -54,7 +56,7 @@ const TopText = (props) => {
           ) : props.campaign === "CountDown" ? (
             <CountDown
               activeCampaign={props.activeCampaign}
-              countDown = {props.countDown}
+              countDown={props.countDown}
               setCountDown={(text) => props.setCountDown(text)}
             />
           ) : props.campaign === "Link" ? (
@@ -65,10 +67,8 @@ const TopText = (props) => {
               linkText={props.linkText}
               setLinkText={(linkText) => props.setLinkText(linkText)}
             />
-          ) : null
-          }
-        </Card> 
-      
+          ) : null}
+        </Card>
       </Layout.Section>
     </Layout>
   );

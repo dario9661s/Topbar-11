@@ -8,33 +8,35 @@ const link = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://funny-goat-3.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
+        `https://massive-frog-5.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
       )
       .then((res) => console.log(res));
   };
   const changeLink = useCallback((value) => props.setLink(value), []);
   const changeText = useCallback((value) => props.setLinkText(value), []);
   return (
-      <FormLayout>
-        {props.activeCampaign === "Link" ?<TextStyle variation="positive">Active</TextStyle> : null}
-        <TextField
-          label="Link url"
-          value={props.link}
-          onChange={changeLink}
-          type="text"
-          placeholder="www.your-product.com"
-        />
-        <TextField
-          label="Link text"
-          value={props.linkText}
-          onChange={changeText}
-          type="text"
-          placeholder="Product name"
-        />
-        <Button onClick={() => sendData()} primary>
-          Save Changes!
-        </Button>
-      </FormLayout>
+    <FormLayout>
+      {props.activeCampaign === "Link" ? (
+        <TextStyle variation="positive">Active</TextStyle>
+      ) : null}
+      <TextField
+        label="Link url"
+        value={props.link}
+        onChange={changeLink}
+        type="text"
+        placeholder="www.your-product.com"
+      />
+      <TextField
+        label="Link text"
+        value={props.linkText}
+        onChange={changeText}
+        type="text"
+        placeholder="Product name"
+      />
+      <Button onClick={() => sendData()} primary>
+        Save Changes!
+      </Button>
+    </FormLayout>
   );
 };
 export default link;

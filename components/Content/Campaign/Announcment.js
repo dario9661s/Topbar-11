@@ -28,7 +28,7 @@ const Shipping = (props) => {
     });
     axios
       .put(
-        `https://funny-goat-3.loca.lt/campaign/announcement?announcement=${
+        `https://massive-frog-5.loca.lt/campaign/announcement?announcement=${
           props.announcment
         }&products=${JSON.stringify(products)}`
       )
@@ -57,53 +57,55 @@ const Shipping = (props) => {
     []
   );
   return (
+    <FormLayout>
+      {props.activeCampaign === "Announcment" ? (
+        <TextStyle variation="positive">Active</TextStyle>
+      ) : null}
+      <ResourcePicker
+        selectMultiple={5}
+        resourceType="Product"
+        showVariants={false}
+        open={open}
+        onCancel={() => setOpen(false)}
+        onSelection={(resources) => handleSelection(resources)}
+      />
+      <ResourceList
+        resourceName={{ singular: "customer", plural: "customers" }}
+        items={props.products}
+        renderItem={(item) => {
+          const { id, url } = item;
+          const media = <Thumbnail source={item.src} alt={item.alt} />;
+          return (
+            <ResourceItem
+              id={id}
+              url={url}
+              media={media}
+              accessibilityLabel={`View details for ${item.name}`}
+            >
+              <h3>
+                <TextStyle variation="strong">{item.name}</TextStyle>
+              </h3>
+              <div>{item.price}</div>
+            </ResourceItem>
+          );
+        }}
+      />
+      <div style={{ height: "60px" }}>
+        <Button onClick={() => setOpen(true)}>Select New products</Button>
+      </div>
       <FormLayout>
-        {props.activeCampaign === "Announcment" ?<TextStyle variation="positive">Active</TextStyle> : null}
-        <ResourcePicker
-          selectMultiple={5}
-          resourceType="Product"
-          showVariants={false}
-          open={open}
-          onCancel={() => setOpen(false)}
-          onSelection={(resources) => handleSelection(resources)}
+        <TextField
+          label="Announcement text"
+          value={props.announcment}
+          onChange={handleEmptyChange}
+          type="text"
+          placeholder="Text displayed before item links"
         />
-        <ResourceList
-          resourceName={{ singular: "customer", plural: "customers" }}
-          items={props.products}
-          renderItem={(item) => {
-            const { id, url } = item;
-            const media = <Thumbnail source={item.src} alt={item.alt} />;
-            return (
-              <ResourceItem
-                id={id}
-                url={url}
-                media={media}
-                accessibilityLabel={`View details for ${item.name}`}
-              >
-                <h3>
-                  <TextStyle variation="strong">{item.name}</TextStyle>
-                </h3>
-                <div>{item.price}</div>
-              </ResourceItem>
-            );
-          }}
-        />
-        <div style={{ height: "60px" }}>
-          <Button onClick={() => setOpen(true)}>Select New products</Button>
-        </div>
-        <FormLayout>
-          <TextField
-            label="Announcement text"
-            value={props.announcment}
-            onChange={handleEmptyChange}
-            type="text"
-            placeholder="Text displayed before item links"
-          />
-          <Button primary onClick={() => sendText()}>
-            Save Changes!
-          </Button>
-        </FormLayout>
+        <Button primary onClick={() => sendText()}>
+          Save Changes!
+        </Button>
       </FormLayout>
+    </FormLayout>
   );
 };
 export default Shipping;

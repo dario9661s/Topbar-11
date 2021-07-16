@@ -13,13 +13,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: "50px",
   },
-  // button: {
-  //   marginRight: theme.spacing(1),
-  // },
-  // instructions: {
-  //   marginTop: theme.spacing(1),
-  //   marginBottom: theme.spacing(1),
-  // },
 }));
 
 function getSteps() {
@@ -32,11 +25,13 @@ const StepperComponent = (props) => {
       case 0:
         return (
           <TopText
-            loading = {props.loading}
+            design={props.design}
+            setDesign={(color) => props.setDesign(color)}
+            loading={props.loading}
             activeCampaign={props.activeCampaign}
             animationProps={props.animationProps}
             setAnimationProps={(time) => props.setAnimationProps(time)}
-            countDown = {props.countDown}
+            countDown={props.countDown}
             link={props.link}
             setLink={(link) => props.setLink(link)}
             linkText={props.linkText}
@@ -56,12 +51,12 @@ const StepperComponent = (props) => {
       case 1:
         return (
           <Colors
-          setColorBack = {(color)=>props.setColorBack(color)}
-          colorBack={props.colorBack}
-          color = {props.color}
-          setColor = {(color)=>props.setColor(color)}
-          design = {props.design}
-          setDesign={(color) => props.setDesign(color)}
+            setColorBack={(color) => props.setColorBack(color)}
+            colorBack={props.colorBack}
+            color={props.color}
+            setColor={(color) => props.setColor(color)}
+            design={props.design}
+            setDesign={(color) => props.setDesign(color)}
           />
         );
       case 2:

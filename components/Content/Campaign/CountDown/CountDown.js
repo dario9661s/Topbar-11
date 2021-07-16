@@ -28,7 +28,7 @@ const CountDown = (props) => {
       const firstDate = startDate.end;
       const secondDate = new Date(Date.now());
       const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-      props.setCountDown({...props.countDown, timeRemaining:diffDays});
+      props.setCountDown({ ...props.countDown, timeRemaining: diffDays });
     }
   }, [startDate]);
   const handleMonthChange = useCallback(
@@ -38,9 +38,9 @@ const CountDown = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://funny-goat-3.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
+        `https://massive-frog-5.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
       )
-      .then(res => res);
+      .then((res) => res);
   };
   return (
     <div className="CampaignContainer">
@@ -55,21 +55,36 @@ const CountDown = (props) => {
         />
         <TextField
           label="Text before Timer"
-          onFocus={() => props.setCountDown({...props.countDown, countDownFocus:"timer"})}
+          onFocus={() =>
+            props.setCountDown({ ...props.countDown, countDownFocus: "timer" })
+          }
           value={props.countDown.countDownText}
-          onChange={(value) => props.setCountDown({...props.countDown, countDownText:value})}
+          onChange={(value) =>
+            props.setCountDown({ ...props.countDown, countDownText: value })
+          }
           type="text"
           placeholder="Sale!"
         />
         <TextField
           label="Text displayed when the timer is finished"
-          onFocus={() => props.setCountDown({...props.countDown, countDownFocus:"finished"})}
+          onFocus={() =>
+            props.setCountDown({
+              ...props.countDown,
+              countDownFocus: "finished",
+            })
+          }
           value={props.countDown.countDownFinished}
-          onChange={(value) => props.setCountDown({...props.countDown, countDownFinished:value})}
+          onChange={(value) =>
+            props.setCountDown({ ...props.countDown, countDownFinished: value })
+          }
           type="text"
           placeholder="Timer finished!!!"
         />
-        <Button disabled = {startDate ? false : true} onClick={() => sendData()} primary>
+        <Button
+          disabled={startDate ? false : true}
+          onClick={() => sendData()}
+          primary
+        >
           Save Changes!
         </Button>
       </FormLayout>

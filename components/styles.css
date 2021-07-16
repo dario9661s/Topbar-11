@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta&family=Open+Sans&family=Poppins&family=Roboto&display=swap');.Polaris-ResourceItem{
+@import url("https://fonts.googleapis.com/css2?family=Mukta&family=Open+Sans&family=Poppins&family=Roboto&display=swap");
+.Polaris-ResourceItem {
   animation: example 0.6s;
 }
 
 .background p {
-
   margin: auto;
 }
-.CampaignContainer{
+.CampaignContainer {
   width: 80%;
 }
 .Icons svg {
@@ -16,7 +16,7 @@
 .Icons p {
   font-size: 22px;
 }
-.DesignContainer{
+.DesignContainer {
   height: 350px;
   display: flex;
   align-items: center;
@@ -83,7 +83,6 @@
   background-color: rgb(179, 179, 179);
   font-weight: bold;
 
-
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -101,53 +100,178 @@
   -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
   animation: heartbeat 1.5s ease-in-out infinite both;
 }
-.Left-Right {
+.Left-RightRepeat {
+  flex: 1;
   display: flex;
   animation: slide-left 7s infinite;
 }
-.Right-Left {
+.Right-LeftRepeat {
+  flex: 1;
   display: flex;
   animation: slide-left 7s infinite;
 }
-.Left-Right7 {
+.Left-Right7Repeat {
+  flex: 1;
   display: flex;
 
   animation: slide-left 7s infinite;
 }
-.Right-Left7 {
+.Right-Left7Repeat {
+  flex: 1;
   animation: slide-right 7s infinite;
 }
-.Left-Right8 {
+.Left-Right8Repeat {
+  flex: 1;
   animation: slide-left 8s infinite;
 }
-.Right-Left8 {
+.Right-Left8Repeat {
+  flex: 1;
   animation: slide-right 8s infinite;
 }
-.Left-Right9 {
+.Left-Right9Repeat {
+  flex: 1;
   animation: slide-left 9s infinite;
 }
-.Right-Left9 {
+.Right-Left9Repeat {
+  flex: 1;
   animation: slide-right 9s infinite;
 }
-.Left-Right10 {
+.Left-Right10Repeat {
+  flex: 1;
   animation: slide-left 10s infinite;
 }
-.Right-Left10 {
+.Right-Left10Repeat {
+  flex: 1;
   animation: slide-right 10s infinite;
 }
-.Left-Right11 {
+.Left-Right11Repeat {
+  flex: 1;
   animation: slide-left 11s infinite;
 }
-.Right-Left11 {
+.Right-Left11Repeat {
+  flex: 1;
   animation: slide-right 11s infinite;
 }
-.Left-Right12 {
+.Left-Right12Repeat {
+  flex: 1;
   animation: slide-left 12s infinite;
 }
-.Right-Left12 {
+.Right-Left12Repeat {
+  flex: 1;
   animation: slide-right 12s infinite;
 }
 
+.Left-RightOnce {
+  flex: 1;
+  display: flex;
+  animation: slide-left 7s;
+}
+.Right-LeftOnce {
+  flex: 1;
+  display: flex;
+  animation: slide-left 7s;
+}
+.Left-Right7Once {
+  flex: 1;
+  display: flex;
+  animation: slide-left 7s;
+}
+.Right-Left7Once {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  animation: slide-right 7s;
+}
+.Left-Right8Once {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  animation: slide-left 8s;
+}
+.Right-Left8Once {
+  width: 100%;
+  display: flex;
+  flex: 1;
+  animation: slide-right 8s;
+}
+.Left-Right9Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-left 9s;
+}
+.Right-Left9Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-right 9s;
+}
+.Left-Right10Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-left 10s;
+}
+.Right-Left10Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-right 10s;
+}
+.Left-Right11Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-left 11s;
+}
+.Right-Left11Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-right 11s;
+}
+.Left-Right12Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-left 12s;
+}
+.Right-Left12Once {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  animation: slide-right 12s;
+}
+.Vibrate7Repeat {
+  -webkit-animation: vibrate-1 0.3s linear infinite both;
+  animation: vibrate-1 0.3s linear infinite both;
+}
+.Pulse7Repeat {
+  -webkit-animation: heartbeat 1s linear infinite both;
+  animation: heartbeat 1s linear infinite both;
+}
+.Pulse7Once {
+  -webkit-animation: heartbeat 1s linear both;
+}
+.Pulse8Repeat {
+  -webkit-animation: heartbeat 1.5s linear infinite both;
+  animation: heartbeat 1.5s linear infinite both;
+}
+.Pulse8Once {
+  -webkit-animation: heartbeat 1.5s linear both;
+}
+.Pulse9Repeat {
+  -webkit-animation: heartbeat 2s linear infinite both;
+}
+.Pulse9Once {
+  -webkit-animation: heartbeat 2s linear both;
+}
+.Pulse10Repeat {
+  -webkit-animation: heartbeat 2.5s linear infinite both;
+}
+.Pulse10Once {
+  -webkit-animation: heartbeat 2.5s linear both;
+}
 .sketch-picker {
   animation-name: example;
   animation-duration: 0.3s;
@@ -157,8 +281,12 @@
   animation-duration: 0.3s;
 }
 @keyframes example {
-  from {opacity: 0;}
-  to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .rcp {
@@ -302,47 +430,13 @@
 }
 @keyframes slide-right {
   0% {
-    transform: translateX(110%);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(-20%);
+    transform: translateX(-100%);
   }
 }
 @-webkit-keyframes heartbeat {
-  from {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: center center;
-    transform-origin: center center;
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  10% {
-    -webkit-transform: scale(0.91);
-    transform: scale(0.91);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  17% {
-    -webkit-transform: scale(0.98);
-    transform: scale(0.98);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  33% {
-    -webkit-transform: scale(0.87);
-    transform: scale(0.87);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  45% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-}
-@keyframes heartbeat {
   from {
     -webkit-transform: scale(1);
     transform: scale(1);

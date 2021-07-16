@@ -7,7 +7,14 @@ function msg() {
   );
 }
 
-export async function postColor(client, color, italic, size, fontsize, fontcolor) {
+export async function postColor(
+  client,
+  color,
+  italic,
+  size,
+  fontsize,
+  fontcolor
+) {
   if (!client) {
     msg();
     return;
@@ -19,15 +26,15 @@ export async function postColor(client, color, italic, size, fontsize, fontcolor
     rateMetafields["body"]["metafields"].forEach((metafield) => {
       if (metafield["namespace"] === namespace && metafield["key"] === key) {
         let value = JSON.parse(metafield.value);
-        if(!value["design"]){
-          value["design"] = {}
+        if (!value["design"]) {
+          value["design"] = {};
         }
-        let hash = "#"
-        value["design"]["color"] = hash.concat("",color);
-        value["design"]["fontColor"] = hash.concat("",fontcolor);
-        value['design']["fontSize"] = fontsize;
-        value['design']["size"] = size;
-        value['design']["italic"] = italic;
+        let hash = "#";
+        value["design"]["color"] = hash.concat("", color);
+        value["design"]["fontColor"] = hash.concat("", fontcolor);
+        value["design"]["fontSize"] = fontsize;
+        value["design"]["size"] = size;
+        value["design"]["italic"] = italic;
         client.put({
           path: `metafields/${metafield.id}`,
           data: {
@@ -43,131 +50,3 @@ export async function postColor(client, color, italic, size, fontsize, fontcolor
     });
   return "return";
 }
-
-// export async function postFontColor(client, fontColor) {
-//   if (!client) {
-//     msg();
-//     return;
-//   }
-//   const rateMetafields = await client.get({
-//     path: "metafields",
-//   });
-//   rateMetafields["body"]["metafields"] &&
-//     rateMetafields["body"]["metafields"].forEach((metafield) => {
-//       if (metafield["namespace"] === namespace && metafield["key"] === key) {
-//         let value = JSON.parse(metafield.value);
-//         if(!value["design"]){
-//           value["design"] = {}
-//         }
-//         let hash = "#"
-      
-
-//         client.put({
-//           path: `metafields/${metafield.id}`,
-//           data: {
-//             metafield: {
-//               id: metafield.id,
-//               value: JSON.stringify(value),
-//               value_type: "json_string",
-//             },
-//           },
-//           type: DataType.JSON,
-//         });
-//       }
-//     });
-//   return "return";
-// }
-
-// export async function postFontSize(client, fontsize) {
-//   if (!client) {
-//     msg();
-//     return;
-//   }
-//   const rateMetafields = await client.get({
-//     path: "metafields",
-//   });
-//   rateMetafields["body"]["metafields"] &&
-//     rateMetafields["body"]["metafields"].forEach((metafield) => {
-//       if (metafield["namespace"] === namespace && metafield["key"] === key) {
-//         let value = JSON.parse(metafield.value);
-//         if(!value["design"]){
-//           value["design"] = {}
-//         }
-//        // picked
-//         client.put({
-//           path: `metafields/${metafield.id}`,
-//           data: {
-//             metafield: {
-//               id: metafield.id,
-//               value: JSON.stringify(value),
-//               value_type: "json_string",
-//             },
-//           },
-//           type: DataType.JSON,
-//         });
-//       }
-//     });
-//   return "return";
-// }
-
-// export async function postSize(client, size) {
-//   if (!client) {
-//     msg();
-//     return;
-//   }
-//   const rateMetafields = await client.get({
-//     path: "metafields",
-//   });
-//   rateMetafields["body"]["metafields"] &&
-//   rateMetafields["body"]["metafields"].forEach((metafield) => {
-//     if (metafield["namespace"] === namespace && metafield["key"] === key) {
-//       let value = JSON.parse(metafield.value);
-//       if(!value["design"]){
-//         value["design"] = {}
-//       }
-//       client.put({
-//         path: `metafields/${metafield.id}`,
-//         data: {
-//           metafield: {
-//             id: metafield.id,
-//             value: JSON.stringify(value),
-//             value_type: "json_string",
-//           },
-//         },
-//         type: DataType.JSON,
-//       });
-//     }
-//   });
-//   return "return";
-// }
-
-// export async function postItalic(client, italic) {
-//   if (!client) {
-//     msg();
-//     return;
-//   }
-//   const rateMetafields = await client.get({
-//     path: "metafields",
-//   });
-//   rateMetafields["body"]["metafields"] &&
-//   rateMetafields["body"]["metafields"].forEach((metafield) => {
-//     if (metafield["namespace"] === namespace && metafield["key"] === key) {
-//       let value = JSON.parse(metafield.value);
-//       if(!value["design"]){
-//         value["design"] = {}
-//       }
-//       client.put({
-//         path: `metafields/${metafield.id}`,
-//         data: {
-//           metafield: {
-//             id: metafield.id,
-//             value: JSON.stringify(value),
-//             value_type: "json_string",
-//           },
-//         },
-//         type: DataType.JSON,
-//       });
-//     }
-//   });
-//   return "return";
-// }
