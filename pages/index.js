@@ -57,7 +57,7 @@ function index({ shopOrigin }) {
     let namespace = "cleverchoice";
     let key = "topbar";
     axios
-      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
+      .get(`https://strange-chicken-26.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let campaign = null;
@@ -119,7 +119,7 @@ function index({ shopOrigin }) {
     let namespace = "cleverchoice";
     let key = "topbar";
     axios
-      .get(`https://massive-frog-5.loca.lt/campaign/metafields`)
+      .get(`https://strange-chicken-26.loca.lt/campaign/metafields`)
       .then((res) => {
         let rateMetafields = res.data;
         let data = null;
@@ -153,7 +153,7 @@ function index({ shopOrigin }) {
   console.log(design);
   async function fetchShippingRate() {
     const { data } = await axios.get(
-      `https://massive-frog-5.loca.lt/script_tag/ship`
+      `https://strange-chicken-26.loca.lt/script_tag/ship`
     );
     setShippingRate(
       Number(

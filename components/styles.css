@@ -2,6 +2,39 @@
 .Polaris-ResourceItem {
   animation: example 0.6s;
 }
+.TimerContainer span {
+  font-size: unset !important;
+}
+.flip-countdown-title {
+  display: none;
+}
+.title {
+  font-size: 36px;
+}
+
+.timer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timer {
+  font-size: 46px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer span {
+  font-size: 16px;
+  color: #444;
+}
+
+.semicolon {
+  font-size: 36px;
+}
 
 .background p {
   margin: auto;
@@ -99,6 +132,11 @@
 .animationPulse {
   -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
   animation: heartbeat 1.5s ease-in-out infinite both;
+}
+.Left-Right {
+  flex: 1;
+  display: flex;
+  animation: slide-left infinite;
 }
 .Left-RightRepeat {
   flex: 1;

@@ -28,7 +28,7 @@ const Shipping = (props) => {
     });
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/announcement?announcement=${
+        `https://strange-chicken-26.loca.lt/campaign/announcement?announcement=${
           props.announcment
         }&products=${JSON.stringify(products)}`
       )

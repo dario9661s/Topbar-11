@@ -27,6 +27,7 @@
     "@koa/cors": "^3.1.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@rumess/react-flip-countdown": "^1.2.3",
     "@shopify/app-bridge-react": "^1.29.0",
     "@shopify/app-bridge-utils": "^1.30.0",
     "@shopify/koa-shopify-auth": "^4.1.3",

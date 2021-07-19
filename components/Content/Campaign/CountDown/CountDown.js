@@ -24,11 +24,7 @@ const CountDown = (props) => {
   });
   useEffect(() => {
     if (startDate) {
-      const oneDay = 1000; // hours*minutes*seconds*milliseconds
-      const firstDate = startDate.end;
-      const secondDate = new Date(Date.now());
-      const diffDays = Math.round(Math.abs((firstDate - secondDate) / oneDay));
-      props.setCountDown({ ...props.countDown, timeRemaining: diffDays });
+      props.setCountDown({ ...props.countDown, timeRemaining: startDate.start });
     }
   }, [startDate]);
   const handleMonthChange = useCallback(
@@ -38,7 +34,7 @@ const CountDown = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
+        `https://strange-chicken-26.loca.lt/campaign/countdown?text=${props.countDown.countDownText}&date=${startDate.end}&finish=${props.countDown.countDownFinished}`
       )
       .then((res) => res);
   };

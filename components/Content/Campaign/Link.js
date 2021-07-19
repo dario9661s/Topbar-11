@@ -8,7 +8,7 @@ const link = (props) => {
   const sendData = () => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
+        `https://strange-chicken-26.loca.lt/campaign/link?link=${props.link}&linkText=${props.linkText}`
       )
       .then((res) => console.log(res));
   };

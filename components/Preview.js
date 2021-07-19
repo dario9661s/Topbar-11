@@ -114,6 +114,9 @@ const Preview = (props) => {
         shipping
       ) : props.campaign === "CountDown" ? (
         <Clock
+          icons = {icons}
+          iconsRot={iconsRot}
+          design = {props.design}
           animationProps={props.animationProps}
           countDown={props.countDown}
         />

@@ -26,7 +26,7 @@ const Colors = (props) => {
   const changeColor = () => {
     axios
       .put(
-        `https://massive-frog-5.loca.lt/design/design?color=${props.colorBack.hex.replace(
+        `https://strange-chicken-26.loca.lt/design/design?color=${props.colorBack.hex.replace(
           "#",
           ""
         )}&fontsize=${props.design.fontSize}&size=${
