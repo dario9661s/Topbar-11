@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="519d01a8-2cfa-4a24-b8f6-d540b120bd54" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDownTimerCustom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Animations/Animations.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Animations/Animations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Announcment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/Clock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/CountDown/CountDown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Link.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Link.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Content/Campaign/Shipping.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/Color.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/Color.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Design/FontSize.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Design/FontSize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Preview.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Preview.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/install.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/install.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +29,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Shopify Themes/Munk Pack" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="C:\Users\dario\Desktop\shopify\bannerv2\node_modules\prettier" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2021.1.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -140,6 +129,10 @@
       <workItem from="1625570683409" duration="10000" />
       <workItem from="1625944952422" duration="208000" />
       <workItem from="1626246881005" duration="39000" />
+      <workItem from="1626701448656" duration="1448000" />
+      <workItem from="1626869638261" duration="593000" />
+      <workItem from="1627048389112" duration="98000" />
+      <workItem from="1627474647924" duration="938000" />
     </task>
     <servers />
   </component>

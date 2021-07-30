@@ -24,16 +24,26 @@ const Preview = (props) => {
   ]);
   console.log(clas);
 
-  let icons =
+  let icons = props.design.iconLeftActive ? (
     props.design.icons === "arrow" ? (
-      <DoubleArrowIcon />
+      <DoubleArrowIcon
+        style={{
+          transform: props.design.rotateLeft ? "rotate(180deg)" : null,
+        }}
+      />
     ) : props.design.icons === "like" ? (
-      <ThumbUpIcon />
+      <ThumbUpIcon
+        style={{
+          transform: props.design.rotateLeft ? "rotate(180deg)" : null,
+        }}
+      />
     ) : props.design.icons === "star" ? (
       <GradeIcon />
     ) : props.design.icons === "check" ? (
       <DoneIcon />
-    ) : null;
+    ) : null
+  ) : null;
+
   let iconsRot = props.design.iconRightActive ? (
     props.design.icons === "arrow" ? (
       <DoubleArrowIcon

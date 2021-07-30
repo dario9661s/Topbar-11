@@ -307,8 +307,17 @@
 .Pulse10Repeat {
   -webkit-animation: heartbeat 2.5s linear infinite both;
 }
-.Pulse10Once {
+.Pulse11Repeat {
+  -webkit-animation: heartbeat 3s linear infinite both;
+}
+.Pulse11Once {
+  -webkit-animation: heartbeat 3s linear both;
+}
+.Pulse12Once {
   -webkit-animation: heartbeat 2.5s linear both;
+}
+.Pulse12Repeat {
+  -webkit-animation: heartbeat 2.5s linear infinite both;
 }
 .sketch-picker {
   animation-name: example;

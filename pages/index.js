@@ -52,7 +52,7 @@ function index({ shopOrigin }) {
     animationSecounds: "",
   });
   const [loading, setLoading] = useState(true);
-
+  console.log(design)
   useEffect(() => {
     let namespace = "cleverchoice";
     let key = "topbar";
